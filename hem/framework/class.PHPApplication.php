@@ -110,46 +110,41 @@ class PHPApplication
     if(strstr($this->getAppType(), 'WEB'))
       {
 
-	// NOTE: Deprecated since we use LiveUser    
-	// session_start();
-	// $this->user_id_ = (! empty($_SESSION['SESSION_USER_ID'])) ? $_SESSION['SESSION_USER_ID'] : null;
-	// $this->user_name_ = (! empty($_SESSION['SESSION_USERNAME'])) ? $_SESSION['SESSION_USERNAME'] : null;
-	// $this->user_email_ = (! empty($_SESSION['SESSION_USERNAME'])) ? $_SESSION['SESSION_USERNAME'] : null;
-	// $this->setUrl();
-
 	// TODO: Include LiveUser here!!! --> Done: clean up!
-
 
 	if(defined("AUTH_HANDLER_LOADED") && $this->user_auth_)
 	  {
 	    $this->setAuthHandler();
 	  }
 
-	/*	if($this->user_auth_ && !$this->authenticate())
-	  {
-	    $this->showPopup('UNAUTHORIZED_ACCESS');
-	    }*/
 	if($this->user_auto_auth_ && !$this->isAuthenticated()) $this->reauthenticate();
 
 	$this->user_id_ = $this->getSessionField('SESSION_USER_ID', null);
 
-	// TODO: Setup User Object here
-	$this->user_ = new User($this->user_id_);
-
+	// TODO: Setup User Object here Done: --> programm User class!
+	if($this->dbi_->isConnected()) {
+	  $this->user_ = new User($this->user_id_, $this->dbi_);
+	}
       }
   }
 
 
-  function getUserEmail()
+  // TODO: Clean up. replaced by 
+  /*  function getUserEmail()
   {
     return $this->user_email_;
-  }
+    }
 
   function getUserName()
   {
     list($name, $host) = explode('@', $this->getUserEmail());
     return ucwords($name);
-  }
+    }*/
+
+  function getUID()
+  {
+    return $this->user_id_;
+    }
 
   function setUID($uid = null)
   {
@@ -157,32 +152,6 @@ class PHPApplication
     $this->user_id_ = $uid;
   }
 
-  function getUID()
-  {
-    return $this->user_id_;
-  }
-
-
-  // NOTE: Deprectated through LiveUser
-  /*  function checkSession()
-  {
-    if(isset($this->session_ok_) && $this->session_ok_ == TRUE)
-      {
-	return TRUE;
-      }
-    
-    if(!empty($this->user_name_))
-      {
-	$this->session_ok_ = TRUE;
-      }
-    else
-      {
-	$this->session_ok_ = FALSE;
-	$this->reauthenticate();
-      }
-    
-    return $this->session_ok_;
-    } */
 
   function setAuthHandler()
   {
@@ -195,7 +164,6 @@ class PHPApplication
 
     
     $this->auth_handler_ = new AuthHandler($conf);
-				
   }
 
   function isAuthenticated()
@@ -603,6 +571,21 @@ class PHPApplication
     return !empty($_SERVER[$key]) ? $_SERVER[$key] : null;
   }
 
+
+  // for security reasons. only requestfield is not good for sensitive data
+  // can be tricked with url hacking
+  function getPostRequestField($field, $default)
+  {
+    return (! empty($_POST[$field] )) ? $_POST[$field] : $default;
+  }
+
+  function getGetRequestField($field, $default)
+  {
+    return (! empty($_GET[$field] )) ? $_GET[$field] : $default;
+  }
+
+  // just use for insensitive Data
+  // can be hacked with url hacking
   function getRequestField($field, $default = null)
   {
     return (! empty($_REQUEST[$field] )) ? $_REQUEST[$field] : $default;
@@ -679,8 +662,6 @@ class PHPApplication
 					));
 	    $this->mTempl->show();
 	  }
-	
-	// TODO: Theme stuff goes here
       }
     else
       {
@@ -692,6 +673,11 @@ class PHPApplication
   {
     global $DEFAULT_CSS;
     // Get users prefernced css
+
+    if(isset($this->user_id_))
+      {
+	$this->debug($this->user_->getTheme());
+      }
 
     if(isset($DEFAULT_CSS))
       {

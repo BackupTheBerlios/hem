@@ -32,6 +32,11 @@ $MASTER_TEMPLATE = "index.html";
 $MASTER_TEMPLATE_DIR = $APP_ROOT . "/templates";
 $DEFAULT_CSS = $REL_APP_ROOT . '/templates/default.css';
 
+$AUTH_DB_URL = 'mysql://test:test@localhost/testlu';
+$DB_PREFIX = "test_";
+$USER_PREF_TBL = $DB_PREFIX . "user_pref";
+$TEMPLATE_PREF_ID = "1";
+
 
 $ON = TRUE;
 $OFF = FALSE;

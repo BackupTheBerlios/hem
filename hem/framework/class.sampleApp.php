@@ -40,7 +40,7 @@ class sampleApp extends PHPApplication
 	$tpl->parseCurrentBlock('side_box');
 	
 	$content.= $this->getMessageText('AUTH_AS').": ".$this->auth_handler_->getUserName()."<br/>";
-	$content.= $this->getMessageText('MSG_UID').": ".$this->getUID()."<br/>";
+	$content.= $this->getMessageText('MSG_UID').": ".$this->auth_handler_->getUID()."<br/>";
 	$content.= $this->getMessageText('LAST_LOGIN').": ".$this->getLocDate($this->auth_handler_->getLastLogin())." ".$this->getLocTime($this->auth_handler_->getLastLogin())."<br/>";
 	$content.= "<a href=\"".$_SERVER['SCRIPT_NAME']."?logout=1\">".$this->getLabelText('LOGOUT_BUTTON')."</a>";
       }
@@ -71,11 +71,7 @@ class sampleApp extends PHPApplication
     
     $tpl->parseCurrentBlock('side_box');
 
-
-
-
     return TRUE;
-
   }
 
   function doSomething()

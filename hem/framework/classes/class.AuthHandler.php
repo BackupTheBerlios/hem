@@ -85,7 +85,6 @@ class AuthHandler
     return $this->auth_handler_->isLoggedIn();
   }
 
-
   function getUserName()
   {
     return $this->auth_handler_->getProperty('handle');
