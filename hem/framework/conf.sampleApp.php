@@ -7,7 +7,7 @@ $USER_DIR = '/martin';
 $PROJECT_NAME = '/hem';
 
 $APP_ROOT = $DOC_ROOT . $USER_DIR . $PROJECT_NAME;
-$APP_REL_ROOT =  $USER_DIR . $PROJECT_NAME;
+$REL_APP_ROOT =  $USER_DIR . $PROJECT_NAME;
 
 $PEAR_DIR = $APP_ROOT . '/pear';
 $APP_FRAMEWORK_DIR = $APP_ROOT . '/framework';
@@ -26,19 +26,29 @@ define('MESSAGE_FILE', 'messages.sampleApp.php');
 define('LABEL_FILE', 'labels.sampleApp.php');
 
 
+$LOGO_URL = $REL_APP_ROOT . '/templates/img/logo40.gif';
+
+$MASTER_TEMPLATE = "index.html";
+$MASTER_TEMPLATE_DIR = $APP_ROOT . "/templates";
+$DEFAULT_CSS = $REL_APP_ROOT . '/templates/default.css';
+
+
 $ON = TRUE;
 $OFF = FALSE;
+
+$TEMPLATE = 'sampleApp.html';
 
 $DEFAULT_LANGUAGE='US';
 
 $APP_AUTH_DSN = "mysql://test:test@localhost/testlu";
 
-$AUTHENTICATION_URL=$APP_REL_ROOT . "/" . 'login/run.login.php';
+$AUTHENTICATION_URL=$REL_APP_ROOT . "/" . 'login/run.login.php';
 
+$TEMPLATE_DIR = $APP_ROOT . "/framework";
 $REL_TEMPLATE_DIR = 
   $USER_DIR.
   $PROJECT_NAME.
-  "/framework";
+  "/templates";
 
 $GLOBALS['SAMPLE_DB_URI'] = 'mysql://test:test@localhost/test';
 

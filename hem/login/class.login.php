@@ -72,6 +72,8 @@ class loginApp extends PHPApplication
     //    $tpl = new TemplateHandler($TEMPLATE_DIR);
     //    $tpl->loadTemplatefile($LOGIN_TEMPLATE, true, false);
 
+    $tpl->setCurrentBlock('main_block');
+    
     $tpl->setVar(array(
 			    'SELF_PATH' => $PHP_SELF,
 			    'PAGE_TITLE' => $this->getAppName(),
@@ -87,8 +89,12 @@ class loginApp extends PHPApplication
 			    'BASE_URL' => sprintf("%s", $this->getBaseUrl()),
 			    'REDIRECT_URL' => sprintf("%s", $url)
 			    ));
+    $tpl->parseCurrentBlock();
 
-    //    $tpl->show();
+    $tpl->setCurrentBlock('side_box');
+    $tpl->setVar('TITLE', "TEST titel");
+    $tpl->parseCurrentBlock();
+
     // TODO: Recheck Return Values
     return 1;
     }

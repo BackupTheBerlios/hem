@@ -27,6 +27,12 @@ $DEFAULT_LANGUAGE = 'US';
 
 $AUTH_DB_URL = 'mysql://test:test@localhost/testlu';
 
+$MASTER_TEMPLATE = "index.html";
+$MASTER_TEMPLATE_DIR = $APP_ROOT . "/templates";
+$DEFAULT_CSS = $REL_APP_ROOT . '/templates/default.css';
+
+
+
 // --- end proj wide ---
 
 

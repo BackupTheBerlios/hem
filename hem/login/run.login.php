@@ -5,7 +5,7 @@ require_once "conf.login.php";
 $count = 0;
 $thisApp = new loginApp(
 			array(
-			      'app_name'=>$APPLICATION_NAME,
+			      'app_name' => $APPLICATION_NAME,
 			      'app_version'=>'1.0.0',
 			      'app_type'=>'WEB',
 			      'app_db_url'=>$AUTH_DB_URL,
@@ -16,7 +16,7 @@ $thisApp = new loginApp(
 			      'app_session_name' => 'PHPSESSION',
 			      'app_auto_connect'=>TRUE,
 			      'app_debugger' =>$ON,
-			      'app_themes' => FALSE
+			      'app_themes' => TRUE
 			      )
 			);
 

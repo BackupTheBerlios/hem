@@ -50,7 +50,7 @@ class TemplateHandler
 
   function setCurrentBlock($block = "__global")
   {
-    $this->setCurrentBlock($block);
+    $this->tpl_->setCurrentBlock($block);
   }
 
 

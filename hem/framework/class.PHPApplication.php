@@ -633,6 +633,8 @@ class PHPApplication
     
     $template =new TemplateHandler($this->template_dir_);
     $this->setupScreen($template, $template_file);
+    
+    $this->debug("Template File: ".$template_file);
 
     if ($func != null)
       {
@@ -648,22 +650,55 @@ class PHPApplication
 
   function setupScreen(&$t, $template_file)
   {
-    $t->loadTemplatefile($template_file, true, false);
+    $t->loadTemplatefile($template_file, true, true);
   }
 
 
   // TODO: implement th whole Theme Story! This one just does nothing!
   function showPage($content = null)
   {
+    global $MASTER_TEMPLATE_DIR, $MASTER_TEMPLATE, $LOGO_URL;
 
     if($this->app_themes_ == TRUE)
       {
+	if(isset($MASTER_TEMPLATE_DIR) && isset($MASTER_TEMPLATE))
+	  {
+	    $this->debug("Showing template");
+	    $this->mTempl = new TemplateHandler($MASTER_TEMPLATE_DIR);
+	    $this->setupScreen($this->mTempl, $MASTER_TEMPLATE);
+	    
+	    
+	    $this->mTempl->setVar(array(
+					'BASE_URL' => $this->getBaseURL(),
+					'LOGO_URL' => $LOGO_URL,
+					'CSS_FILE' => $this->getStyle(),
+					'PAGE_TITLE' => $this->getAppName(),
+					'CONTENT' => $content
+		
+					
+					));
+	    $this->mTempl->show();
+	  }
+	
 	// TODO: Theme stuff goes here
       }
     else
       {
 	echo $content;
       }
+  }
+
+  function getStyle()
+  {
+    global $DEFAULT_CSS;
+    // Get users prefernced css
+
+    if(isset($DEFAULT_CSS))
+      {
+	return $DEFAULT_CSS;
+      }
+
+
   }
   
 }

@@ -53,8 +53,8 @@ class Debugger {
 
   function write($msg)
   {
-    $out = sprintf("<font color='%s'>%03d &nbsp;</font>".
-		   "<font color='%s'>%s</font><br/>\n",
+    $out = sprintf("<div style='align:left;'><font color='%s'>%03d &nbsp;</font>".
+		   "<font color='%s'>%s</font><br/></div>\n",
 		   $this->debugger_color_,
 		   $this->line_++,
 		   $this->color_,

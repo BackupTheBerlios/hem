@@ -17,7 +17,7 @@ $thisApp = new sampleApp(
 			       'app_session_name' => 'PHPSESSION',
 			       'app_type' => 'WEB',
 			       'app_debugger' => $ON,
-			       'app_themes' => FALSE
+			       'app_themes' => TRUE
 			       )
 			 );
 
