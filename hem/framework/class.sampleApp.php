@@ -19,11 +19,30 @@ class sampleApp extends PHPApplication
 
     $this->debug("showDoSomething called");
 
-    //$theme_id = '02ec099f2d602cc49c099f2d6nwa8a5f';
-    //$this->debug("Setting Usertheme to ".$theme_id);
-    //$this->user_->setThemeID($theme_id);
+    //    $theme_id = '02ec099f2d602cc49c099f2d6nwa8a5f';
+    //    $this->debug("Setting Usertheme to ".$theme_id);
+    //    $this->user_->setThemeID($theme_id);
     $this->debug("User Theme is: ". $this->user_->getThemeID());
-    
+
+    $user_data = array(
+				    'auth_user_id' => '29214857b12575501c5c731353c7217e',
+				    'first_name' => 'Alois',
+				    'last_name' => 'Dengg',
+				    'email' => 'ali@sbox.tugraz.at',
+				    'street' => 'Infeldgasse',
+				    'no' => '16c',
+				    'city' => 'Graz',
+				    'zip' => '8010',
+				    'country' => 'Austria',
+				    'phone' => '0676 212312321',
+				    'comment' => 'Nixi'
+				    );
+
+    $this->user_->updateUserData($user_data);
+
+
+    $this->debugArray($this->user_->getUserData());
+
     $some_id = $this->getUniqueId();
 
     $this->debug("SomeID: ". $some_id . " with length: " . strlen($some_id));
@@ -42,7 +61,7 @@ class sampleApp extends PHPApplication
 
 	$tpl->parseCurrentBlock('side_box');
 	
-	$content.= $this->getMessageText('AUTH_AS').": ".$this->auth_handler_->getUserName()."<br/>";
+	$content.= $this->getMessageText('AUTH_AS').": ".$this->auth_handler_->getUserName()." ( ".$this->user_->getEmail()." )<br/>";
 	$content.= $this->getMessageText('MSG_UID').": ".$this->auth_handler_->getUID()."<br/>";
 	$content.= $this->getMessageText('LAST_LOGIN').": ".$this->getLocDate($this->auth_handler_->getLastLogin())." ".$this->getLocTime($this->auth_handler_->getLastLogin())."<br/>";
 	$content.= "<a href=\"".$_SERVER['SCRIPT_NAME']."?logout=1\">".$this->getLabelText('LOGOUT_BUTTON')."</a>";
