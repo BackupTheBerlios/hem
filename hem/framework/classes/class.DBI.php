@@ -5,7 +5,7 @@
  * Uses PEAR::DB
  * from M.J.Kabir
  * adapted by Martin Loitzl
- * 2004-06-08
+ * 2004-06-09: added $this->connected_ = FALSE; in line 86
  */
 
 
@@ -83,6 +83,7 @@ class DBI
     if (isset($this->dbh_))
       {
 	$this->dbh_->disconnect();
+	$this->connected_ = FALSE;
 	return TRUE;
       }
     else
