@@ -10,6 +10,7 @@ $FORM_VALIDATOR_CLASS = 'classes/class.FormValidator.php';
 $AUTH_HANDLER_CLASS = 'classes/class.AuthHandler.php';
 $TEMPLATE_HANDLER_CLASS = 'classes/class.TemplateHandler.php';
 $USER_CLASS = 'classes/class.User.php';
+$THEME_CLASS = 'classes/class.Theme.php';
 
 define(FALSE, 'FALSE');
 define(TRUE, 'TRUE');
@@ -64,6 +65,11 @@ if(!defined("TEMPLATE_HANDLER_LOADED") && !empty($TEMPLATE_HANDLER_CLASS))
 if(!defined("USER_CLASS_LOADED") && !empty($USER_CLASS))
   {
     include_once $USER_CLASS;
+  }
+
+if(!defined("THEME_HANDLER_LOADED") && !empty($THEME_CLASS))
+  {
+    include_once $THEME_CLASS;
   }
 
 ?>

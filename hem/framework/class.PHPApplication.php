@@ -17,6 +17,7 @@ require_once('def.PHPApplication.php');
  *
  * Errormessages:
  * APP_FAILED -> Very bad, no database connection
+ * NO_CSS_FOUND -> Themes support Activated, but no CSS file found
  *
  * @author M.J.Kabir
  * @author Martin Loitzl <martin@loitzl.com>
@@ -122,9 +123,16 @@ class PHPApplication
 	$this->user_id_ = $this->getSessionField('SESSION_USER_ID', null);
 
 	// TODO: Setup User Object here Done: --> programm User class!
-	if($this->dbi_->isConnected()) {
-	  $this->user_ = new User($this->user_id_, $this->dbi_);
-	}
+	if($this->dbi_->isConnected() && $this->user_auth_ )
+	  {
+	    $this->user_ = new User($this->user_id_, $this->dbi_);
+	  }
+	
+	if(defined("THEME_HANDLER_LOADED") && $this->app_themes_ && $this->dbi_->isConnected() )
+	  {
+	    $this->theme_ = new Theme($this->dbi_);
+	  }
+
       }
   }
 
@@ -144,7 +152,7 @@ class PHPApplication
   function getUID()
   {
     return $this->user_id_;
-    }
+  }
 
   function setUID($uid = null)
   {
@@ -654,7 +662,7 @@ class PHPApplication
 	    $this->mTempl->setVar(array(
 					'BASE_URL' => $this->getBaseURL(),
 					'LOGO_URL' => $LOGO_URL,
-					'CSS_FILE' => $this->getStyle(),
+					'CSS_FILE' => $this->getCSS(),
 					'PAGE_TITLE' => $this->getAppName(),
 					'CONTENT' => $content
 		
@@ -669,19 +677,36 @@ class PHPApplication
       }
   }
 
-  function getStyle()
+  function getCSS()
   {
     global $DEFAULT_CSS;
-    // Get users prefernced css
+    // Get users preferenced css
 
-    if(isset($this->user_id_))
+    if( ($this->user_id_ != null) && isset($this->theme_) )
       {
-	$this->debug($this->user_->getTheme());
+	$user_theme_id = $this->user_->getThemeID();
+	if( $this->user_->getThemeID() )
+	  {
+	    $this->debug("This Users CSS: ".$this->theme_->getThemeCSS($user_theme_id));
+	    return $this->theme_->getThemeCSS($user_theme_id);
+	    //return 1; $this->theme_->getCSSFile();
+	  }
+	else
+	  {
+	    return $DEFAULT_CSS;
+	  }
       }
-
-    if(isset($DEFAULT_CSS))
+    else 
       {
-	return $DEFAULT_CSS;
+	if(isset($DEFAULT_CSS))
+	  {
+	    return $DEFAULT_CSS;
+	  }
+	else
+	  {
+	    $this->setError($NO_CSS_FOUND);
+	    return FALSE;
+	  }
       }
 
 

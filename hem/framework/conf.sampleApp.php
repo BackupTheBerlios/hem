@@ -12,7 +12,6 @@ $REL_APP_ROOT =  $USER_DIR . $PROJECT_NAME;
 $PEAR_DIR = $APP_ROOT . '/pear';
 $APP_FRAMEWORK_DIR = $APP_ROOT . '/framework';
 
-
 $PATH = $PEAR_DIR.":".
   $APP_FRAMEWORK_DIR;
 

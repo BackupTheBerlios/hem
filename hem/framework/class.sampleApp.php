@@ -25,6 +25,11 @@ class sampleApp extends PHPApplication
 
     $this->debug("showDoSomething called");
 
+    //   $theme_id = '02ec099f2d602cc49c099f2d6nwa8a5f';
+    //$this->debug("Setting Usertheme to ".$theme_id);
+    //$this->user_->setThemeID($theme_id);
+    $this->debug("User Theme is: ". $this->user_->getThemeID());
+
     $content =$this->getMessageText('SOME_MSG');
     $content .= "<br/>";
     if($this->auth_handler_->isAuthenticated())
@@ -60,8 +65,6 @@ class sampleApp extends PHPApplication
     $tpl->setVar('CONTENT', 'Blog wirds hoffentlich keine ;o)');
 
     $tpl->parseCurrentBlock('side_box');
-
-
 
     $tpl->setCurrentBlock('side_box');
 

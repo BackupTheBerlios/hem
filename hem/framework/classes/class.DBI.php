@@ -56,12 +56,10 @@ class DBI
 
     if($this->connected_) 
       {
-
-      $this->dbh_->setFetchMode(DB_FETCHMODE_OBJECT);
-
+	$this->dbh_->setFetchMode(DB_FETCHMODE_OBJECT);
       }
   }
-
+  
 
   /*
    * DODO: Doc!!
