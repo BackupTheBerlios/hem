@@ -15,7 +15,8 @@ $thisApp = new loginApp(
 			      'app_exit_point' => $_SERVER['SCRIPT_NAME'],
 			      'app_session_name' => 'PHPSESSION',
 			      'app_auto_connect'=>TRUE,
-			      'app_debugger'=>$ON
+			      'app_debugger' =>$ON,
+			      'app_themes' => FALSE
 			      )
 			);
 

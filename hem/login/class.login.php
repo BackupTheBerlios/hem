@@ -38,43 +38,60 @@ class loginApp extends PHPApplication
   
   function displayLogin()
   {
-    global $TEMPLATE_DIR;
-    global $LOGIN_TEMPLATE;
+   global $LOGIN_TEMPLATE;
+
+   $this->showScreen($LOGIN_TEMPLATE, 'displayLoginScreen', $this->getAppName());
+
+  }
+
+  function displayLoginScreen(& $tpl)
+  {
+    //    global $TEMPLATE_DIR;
+    //   global $LOGIN_TEMPLATE;
     global $MAX_ATTEMPTS;
     // TODO: Check->    global $REL_TEMPLATE_DIR;
     global $email, $url;
     global $PHP_SELF, $FORGOTTEN_PASSWORD_APP;
     
+    $this->debug("Now in Display function");
+
+
     $url = $this->getRequestField('url');
 
-    if($this->getSessionField("SESSION_ATTEMPTS") > $MAX_ATTEMPTS)
+    if(0)
+      //$this->getSessionField("SESSION_ATTEMPTS") > $MAX_ATTEMPTS)
       {
 	$this->warn();
       }
 
     $this->debug("Display login dialog box");
-    // TODO: Abstract this!!!
-    require_once('HTML/Template/IT.php');
-    $tpl =& new HTML_Template_IT($TEMPLATE_DIR);
-    $tpl->loadTemplatefile($LOGIN_TEMPLATE, true, false);
+    // TODO: Abstract this!!! --> DONE! Clean up!
+    //    require_once('HTML/Template/IT.php');
+    //$tpl =& new HTML_Template_IT($TEMPLATE_DIR);
+    //    $tpl = new TemplateHandler($TEMPLATE_DIR);
+    //    $tpl->loadTemplatefile($LOGIN_TEMPLATE, true, false);
 
-    $tpl->setVariable('SELF_PATH', $PHP_SELF);
-    $tpl->setVariable('PAGE_TITLE', $this->getAppName());
-    $tpl->setVariable('ATTEMPTS', $this->getSessionField("SESSION_ATTEMPTS"));
-    $tpl->setVariable('USERNAME', $email);
-    $tpl->setVariable('LABEL_USERNAME', $this->getLabelText('LABEL_USERNAME'));
-    $tpl->setVariable('LABEL_PASSWORD', $this->getLabelText('LABEL_PASSWORD'));
-    $tpl->setVariable('REDIRECT_URL', $url);
-    $tpl->setVariable('FORGOTTEN_PASSWORD_APP', $FORGOTTEN_PASSWORD_APP);
-    $tpl->setVariable('LOGIN_BUTTON', $this->getLabelText('LOGIN_BUTTON'));
-    $tpl->setVariable('CANCEL_BUTTON', $this->getLabelText('CANCEL_BUTTON'));
-    $tpl->setVariable('LABEL_FORGOTTEN_PASSWORD', $this->getLabelText('FORGOTTEN_PASSWORD_APP'));
-    $tpl->setVariable('BASE_URL', sprintf("%s", $this->base_url_));
-    $tpl->setVariable('REDIRECT_URL', sprintf("%s", $url));
-    $tpl->show();
+    $tpl->setVar(array(
+			    'SELF_PATH' => $PHP_SELF,
+			    'PAGE_TITLE' => $this->getAppName(),
+			    'ATTEMPTS' => $this->getSessionField("SESSION_ATTEMPTS"),
+			    'USERNAME' => $this->getRequestField('handle', ''),
+			    'LABEL_USERNAME' => $this->getLabelText('LABEL_USERNAME'),
+			    'LABEL_PASSWORD' => $this->getLabelText('LABEL_PASSWORD'),
+			    'REDIRECT_URL' => $url,
+			    'FORGOTTEN_PASSWORD_APP' => $FORGOTTEN_PASSWORD_APP,
+			    'LOGIN_BUTTON' => $this->getLabelText('LOGIN_BUTTON'),
+			    'CANCEL_BUTTON' => $this->getLabelText('CANCEL_BUTTON'),
+			    'LABEL_FORGOTTEN_PASSWORD' => $this->getLabelText('FORGOTTEN_PASSWORD_APP'),
+			    'BASE_URL' => sprintf("%s", $this->base_url_),
+			    'REDIRECT_URL' => sprintf("%s", $url)
+			    ));
+
+    //    $tpl->show();
+    // TODO: Recheck Return Values
     return 1;
     }
-
+  
   /*  
   function isAuthenticated()
   {

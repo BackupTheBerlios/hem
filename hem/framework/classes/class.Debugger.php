@@ -1,6 +1,6 @@
 <?
 /* 
- * Multilanguage Error Hanlder class
+ * Fullfeartured debugger  class
  * from M.J.Kabir
  * adapted by Martin Loitzl
  */
