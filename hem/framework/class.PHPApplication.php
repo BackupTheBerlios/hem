@@ -708,9 +708,36 @@ class PHPApplication
 	    return FALSE;
 	  }
       }
-
-
   }
+
+
+  /**
+   * Returns a unique id of $length, or 32, if no length given
+   *
+   * taken from http://www.zend.com/codex.php?id=308&single=1
+   * 
+   * @param int lenght lenght of the id
+   * @param string pool pool of characters used for creation
+   */
+
+
+
+  function getUniqueId($length=32, $pool="")
+  { 
+    // set pool of possible char 
+    if($pool == ""){ 
+      //      $pool = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
+      $pool = "abcdefghijklmnopqrstuvwxyz"; 
+      $pool .= "0123456789"; 
+    }// end if 
+    mt_srand ((double) microtime() * 1000000); 
+    $unique_id = ""; 
+    for ($index = 0; $index < $length; $index++) { 
+      $unique_id .= substr($pool, (mt_rand()%(strlen($pool))), 1); 
+    }// end for 
+    return($unique_id); 
+  }// end get_unique_id 
+  
   
 }
 ?>

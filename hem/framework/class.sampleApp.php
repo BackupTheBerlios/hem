@@ -14,21 +14,19 @@ class sampleApp extends PHPApplication
     $this->doSomething();
   }
 
-  /*
-  function authenticate($name = null)
-  {
-  return TRUE;
-  }*/
-
   function showDoSomething(& $tpl)
   {
 
     $this->debug("showDoSomething called");
 
-    //   $theme_id = '02ec099f2d602cc49c099f2d6nwa8a5f';
+    //$theme_id = '02ec099f2d602cc49c099f2d6nwa8a5f';
     //$this->debug("Setting Usertheme to ".$theme_id);
     //$this->user_->setThemeID($theme_id);
     $this->debug("User Theme is: ". $this->user_->getThemeID());
+    
+    $some_id = $this->getUniqueId();
+
+    $this->debug("SomeID: ". $some_id . " with length: " . strlen($some_id));
 
     $content =$this->getMessageText('SOME_MSG');
     $content .= "<br/>";
