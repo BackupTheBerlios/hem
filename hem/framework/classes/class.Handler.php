@@ -46,12 +46,12 @@ class Handler {
 	  }
 	else 
 	  {
-	    return (!empty($this->messages_[$code])) ? $this->messages_[$code] : null;
+	    return (!empty($this->messages_[$code])) ? $this->messages_[$code] : $code;
 	  }
       }
     else 
       {
-	return (!empty($this->messages_['MISSING'])) ? $this->messages_['MISSING'] : null;
+	return (!empty($this->messages_['MISSING'])) ? $this->messages_['MISSING'] : $code;
       }
   }
 

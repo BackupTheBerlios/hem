@@ -91,7 +91,25 @@ class AuthHandler
     return $this->auth_handler_->getProperty('handle');
   }
 
+  function getUID()
+  {
+    return $this->auth_handler_->getProperty('authUserId');
+  }
 
+  function getLastLogin()
+  {
+    return $this->auth_handler_->getProperty('lastLogin');
+  }
+
+  function isActive()
+  {
+    return $this->auth_handler_->getProperty('isActive');
+  }
+
+  function getCurrentLogin()
+  {
+    return $this->auth_handler_->getProperty('currentLogin');
+  }
 
   function apiVersion()
   {

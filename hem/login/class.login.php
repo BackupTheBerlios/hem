@@ -6,7 +6,7 @@ class loginApp extends PHPApplication
   function run()
   {
     global $MIN_USERNAME_SIZE, $MIN_PASSWORD_SIZE, $MAX_ATTEMPTS;
-    global $WARNING_URL, $APP_MENU;
+    global $APP_MENU;
 
     $url = $this->getRequestField('url');    
 
@@ -17,6 +17,7 @@ class loginApp extends PHPApplication
 	$this->debug("User already authenticated");
 	$this->debug("Redirecting to $url");
 	$url = (isset($url)) ? $url : $this->getServer();
+	$this->setUID($this->auth_handler_->getUID());
 	// TODO: Log Users Acitivity
 	header("Location: $url");
       }
@@ -83,7 +84,7 @@ class loginApp extends PHPApplication
 			    'LOGIN_BUTTON' => $this->getLabelText('LOGIN_BUTTON'),
 			    'CANCEL_BUTTON' => $this->getLabelText('CANCEL_BUTTON'),
 			    'LABEL_FORGOTTEN_PASSWORD' => $this->getLabelText('FORGOTTEN_PASSWORD_APP'),
-			    'BASE_URL' => sprintf("%s", $this->base_url_),
+			    'BASE_URL' => sprintf("%s", $this->getBaseUrl()),
 			    'REDIRECT_URL' => sprintf("%s", $url)
 			    ));
 

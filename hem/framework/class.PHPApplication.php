@@ -9,7 +9,7 @@ require_once('def.PHPApplication.php');
 /**
  * PHP Application Framework Class
  *
- * TODO: Decribe me!
+ * TODO: Describe me!
  * TODO: Check the config stuff created by kabir
  *       Should be done with a unique method (via globals, or via $params array)
  *       We want to differentiate betwwen Proj wide Conf and App conf
@@ -34,7 +34,8 @@ class PHPApplication
   function PHPApplication($param = null)
   {
     global $ON, $OFF, $TEMPLATE_DIR, $DEFAULT_LANGUAGE;
-    global $MESSAGES, $DEFAULT_MESSAGE, $REL_APP_PATH, 
+    //    global $MESSAGES
+    global $DEFAULT_MESSAGE, $REL_APP_PATH, 
       $REL_TEMPLATE_DIR;  //<-- TODO: check paths
 
     $this->app_name_ = $this->setDefault($param['app_name'], null);
@@ -55,7 +56,7 @@ class PHPApplication
     $this->base_url_ = sprintf("%s%s", $this->getServer(), $REL_TEMPLATE_DIR);
     $this->app_path_ = $REL_APP_PATH;
     $this->template_dir_ = $TEMPLATE_DIR;
-    $this->messages_ = $MESSAGES;
+    //    $this->messages_ = $MESSAGES;
     $this->user_auth_ = $this->setDefault($param['app_authentication'], FALSE);
     $this->user_auto_auth_ = $this->setDefault($param['app_auto_authenticate'], FALSE);
     $this->user_auth_dsn_ = $this->setDefault($param['app_auth_dsn'], FALSE);
@@ -91,7 +92,6 @@ class PHPApplication
 	  default:
 	    break;
 	  }
-
       }
 
     $this->has_error_ = null;
@@ -101,15 +101,11 @@ class PHPApplication
     $this->setLabelHandler();
 
 
-    //    $this->debugArray($this);
-	
     if(! empty($this->app_db_url_) && $this->auto_connect_ && !$this->connect())
       {
 	$this->showPopup('APP_FAILED');
       }	  
     
-
-    //    $this->debugArray($param);
 
     if(strstr($this->getAppType(), 'WEB'))
       {
@@ -121,7 +117,7 @@ class PHPApplication
 	// $this->user_email_ = (! empty($_SESSION['SESSION_USERNAME'])) ? $_SESSION['SESSION_USERNAME'] : null;
 	// $this->setUrl();
 
-	// TODO: Include LiveUser here!!!
+	// TODO: Include LiveUser here!!! --> Done: clean up!
 
 
 	if(defined("AUTH_HANDLER_LOADED") && $this->user_auth_)
@@ -134,8 +130,13 @@ class PHPApplication
 	    $this->showPopup('UNAUTHORIZED_ACCESS');
 	    }*/
 	if($this->user_auto_auth_ && !$this->isAuthenticated()) $this->reauthenticate();
+
+	$this->user_id_ = $this->getSessionField('SESSION_USER_ID', null);
+
+	// TODO: Setup User Object here
+	$this->user_ = new User($this->user_id_);
+
       }
-    
   }
 
 
@@ -454,7 +455,7 @@ class PHPApplication
     return $this->app_type_;
   }
 
-
+  // TODO: Convert this to a Session Messaging System!
   function setError($err = null)
   {
     if(isset($err))
@@ -565,6 +566,37 @@ class PHPApplication
     $tpl->get();
   }
 
+  function getLocDate($timestamp)
+  {
+    switch ($this->language_)
+      {
+      case 'US':
+	return date('Y-m-d');
+	break;
+      case 'DE':
+	return date('d.m.Y');
+	break;
+      default:
+	return date('Y-m-d');
+	break;
+      }
+  }
+
+  function getLocTime($timestamp)
+  {
+    switch ($this->language_)
+      {
+      case 'US':
+	return date('g:i:s a');
+	break;
+      case 'DE':
+	return date('H:i:s');
+	break;
+      default:
+	return date('Y-m-d');
+	break;
+      }
+  }
 
   function getEnvironment($key)
   {
@@ -632,8 +664,6 @@ class PHPApplication
       {
 	echo $content;
       }
-
-
   }
   
 }

@@ -2,13 +2,15 @@
 
 error_reporting(E_ALL);
 
-
+// TODO: Recheck projetc wide settings
+// --- begin proj wide ---
 $DOC_ROOT = $_SERVER['DOCUMENT_ROOT'];
 
 $USER_DIR = '/martin';
 $PROJECT_NAME = '/hem';
 
 $APP_ROOT = $DOC_ROOT . $USER_DIR . $PROJECT_NAME;
+$REL_APP_ROOT = $USER_DIR . $PROJECT_NAME;
 
 $PEAR_DIR = $APP_ROOT . '/pear';
 $APP_FRAMEWORK_DIR = $APP_ROOT . '/framework';
@@ -17,19 +19,27 @@ $APP_FRAMEWORK_DIR = $APP_ROOT . '/framework';
 $PATH = $PEAR_DIR.":".
   $APP_FRAMEWORK_DIR;
 
-
 ini_set( 'include_path' , ':' . 
 	 $PATH . ':' .
 	 ini_get( 'include_path' ));
 
-$PHP_SELF = $_SERVER['PHP_SELF'];
-
-$LOGIN_TEMPLATE ='login.html';
-
-$APPLICATION_NAME = 'LOGIN';
 $DEFAULT_LANGUAGE = 'US';
 
 $AUTH_DB_URL = 'mysql://test:test@localhost/testlu';
+
+// --- end proj wide ---
+
+
+$PHP_SELF = $_SERVER['PHP_SELF'];
+
+$LOGIN_TEMPLATE ='login.html';
+$WARNING_URL = $REL_APP_ROOT. '/login/warn.html';
+
+$APPLICATION_NAME = 'LOGIN';
+$APP_DIR = '/login';
+
+$REL_APP_PATH = $REL_APP_ROOT . $APP_DIR;
+
 
 $MIN_USERNAME_SIZE = 1;
 $MIN_PASSWORD_SIZE = 1;
@@ -40,17 +50,15 @@ $FORGOTTEN_PASSWORD_APP = 'user_manager/run.ForgottenPassword.php';
 
 $APP_MENU = '/';
 
-$TEMPLATE_DIR = $APP_ROOT . '/login';
+$TEMPLATE_DIR = $APP_ROOT . $APP_DIR;
+$REL_TEMPLATE_DIR = $REL_APP_ROOT . $APP_DIR;
 // TODO: check --> $REL_TEMPLATE_DIR = $USER_DIR . $PROJECT_NAME . '/login';
-
-$WARNING_URL = $USER_DIR . $PROJECT_NAME . '/login/warn.html';
 
 $ON = TRUE;
 $OFF = FALSE;
 
 
 require_once 'class.PHPApplication.php';
-require_once 'class.Authentication.php';
 require_once 'class.login.php';
 
 define('ERROR_FILE', 'errors.login.php');
