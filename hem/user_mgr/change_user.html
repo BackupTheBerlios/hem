@@ -8,24 +8,27 @@
 	</strong></h2>
 	<script type="text/javascript" language="Javascript">
 	  <!--
-	      window.onload = function() {document.changeUserForm.handle.focus();}
+	    //  window.onload = function() {document.changeUserForm.fields[2].focus();}
 	    -->
 	</script>
 	<form name="changeUserForm" action="{SELF_PATH}" method="post">
-	  {LABEL_FIRSTNAME}<input type="text" name="data['first_name']" value="{FIRST_NAME}" /><br/>
-	  {LABEL_LASTNAME}<input type="text" name="data['last_name']" value="{LAST_NAME}" /><br/>
-	  {LABEL_EMAIL}<input type="text" name="data['email']" value="{EMAIL}" /><br/>
-	  {LABEL_STREET}<input type="text" name="data['street']" value="{STREET}" /><br/>
-	  {LABEL_NO}<input type="text" name="data['no']" value="{NO}" /><br/>
-	  {LABEL_CITY}<input type="text" name="data['city']" value="{CITY}" /><br/>
-	  {LABEL_ZIP}<input type="text" name="data['zip']" value="{ZIP}" /><br/>
-	  {LABEL_COUNTRY}<input type="text" name="data['country']" value="{COUNTRY}" /><br/>
-	  {LABEL_FIRSTNAME}<input type="text" name="data['phone']" value="{PHONE}" /><br/>
-	  {LABEL_FIRSTNAME}<input type="text" name="data['comment']" value="{COMMENT}" /><br/>
+	  {LABEL_FIRSTNAME}<input type="text" name="data[first_name]" value="{FIRST_NAME}" /><br/>
+	  {LABEL_LASTNAME}<input type="text" name="data[last_name]" value="{LAST_NAME}" /><br/>
+	  {LABEL_EMAIL}<input type="text" name="data[email]" value="{EMAIL}" /><br/>
+	  {LABEL_STREET}<input type="text" name="data[street]" value="{STREET}" /><br/>
+	  {LABEL_NO}<input type="text" name="data[no]" value="{NO}" /><br/>
+	  {LABEL_CITY}<input type="text" name="data[city]" value="{CITY}" /><br/>
+	  {LABEL_ZIP}<input type="text" name="data[zip]" value="{ZIP}" /><br/>
+	  {LABEL_COUNTRY}<input type="text" name="data[country]" value="{COUNTRY}" /><br/>
+	  {LABEL_PHONE}<input type="text" name="data[phone]" value="{PHONE}" /><br/>
+	  {LABEL_COMMENT}<input type="text" name="data[comment]" value="{COMMENT}" /><br/>
 
 	  <input type="submit" value="{SUBMIT_BUTTON}" /><br/>
 	  <input type="reset" value="{CANCEL_BUTTON}" /><br/>
-	  <input type="hidden" value="{USER_ID}" name="id" />
+	  <input type="hidden" value="{USER_ID}" name="data[auth_user_id]" />
+	  <input type="hidden" value="{REDIRECT_URL}" name="url" />
+	  <input type="hidden" value="1" name="step" />
+
 
 	</form>
 	<!-- END main_block -->
