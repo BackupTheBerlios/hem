@@ -11,22 +11,29 @@ class sampleApp extends PHPApplication
 
   function run()
   {
-    $this->debug($this->getAppName()." running");
-    $this->debug("Calling doSomething");
     $this->doSomething();
   }
 
-
+  /*
   function authenticate($name = null)
   {
     return TRUE;
-  }
+    }*/
 
 
   function doSomething()
   {
-    echo "Hi! I'm doing something<br/>";
+    echo $this->getMessageText('SOME_MSG');
+    echo "<br/>";
+    if($this->auth_handler_->isAuthenticated())
+      {
+	echo $this->getMessageText('AUTH_AS').": ".$this->auth_handler_->getUserName()."<br/>";
+	echo "<a href=\"".$_SERVER['SCRIPT_NAME']."?logout=1\">".$this->getLabelText('LOGOUT_BUTTON')."</a>";
+      }
+    
+
   }
+
 
 
 }

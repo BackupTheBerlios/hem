@@ -1,32 +1,52 @@
 <?
 
-/* 
- * Database abstraction class
- * Uses PEAR::DB
- * from M.J.Kabir
- * adapted by Martin Loitzl
- * 2004-06-09: added $this->connected_ = FALSE; in line 86
+/**
+ * Konstant for checking if file is included
+ */
+define('DBI_LOADED', TRUE);
+
+
+
+/**
+ * Include the API we're abstracting here
  */
 
+// TODO: check invocation of PEAR::DB.php
+require_once 'DB.php';
 
-define('DBI_LOADED', TRUE);
+
+/**
+ * Database abstraction class
+ *
+ * This is a class for abstracting the API from the package PEAR::DB
+ * @author M.J.Kabir
+ * @author Martin Loitzl <martin@loitzl.com>
+ * @version 1.0.0
+ *
+ *
+ * 2004-06-09: added $this->connected_ = FALSE; in line 86
+ */
 
 class DBI 
 {
 
 
 
-  /*
-   * DODO: Doc!!
+  /**
+   * Version number 
    *
+   * @access private
+   * @var string
    */
   var $version_ = "1.0.0";
 
 
-  /*
-   * DODO: Doc!!
+  /**
+   * Constructor of the class
    *
+   * @param string $DB_URL DSN of the Database to connect to
    */
+
   function DBI($DB_URL) 
   {
 

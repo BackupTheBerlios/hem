@@ -25,7 +25,8 @@ class ErrorHandler extends Handler
 
     //$this->caller_class_ = (!empty($params['caller'])) ? $params['caller'] : null ;
     //$this->error_message_ = array();
-    $this->loadErrorCode();
+
+    return $this->loadErrorCode();
   }
 
 
@@ -79,14 +80,14 @@ class ErrorHandler extends Handler
 
   function loadErrorCode()
   {
-    global $ERRORS;
-
-    if(empty($ERRORS[$this->language_]))
+    if(!defined("ERROR_FILE") || !file_exists(ERROR_FILE))
       {
 	return FALSE;
       }
     else
       {
+	require_once ERROR_FILE;
+
 	while (list($key, $value) = each ($ERRORS[$this->language_]))
 	  {
 	    $this->messages_[$key] = $value;

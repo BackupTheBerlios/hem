@@ -58,7 +58,7 @@ class Debugger {
 		   $this->debugger_color_,
 		   $this->line_++,
 		   $this->color_,
-		   $msg);
+		   strip_tags(htmlentities(trim($msg))));
     
     $this->printBanner();
     if($this->buffer_ == TRUE) 

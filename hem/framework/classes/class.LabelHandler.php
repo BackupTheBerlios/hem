@@ -17,8 +17,7 @@ class LabelHandler extends Handler
   function labelHandler($params=null)
   {
     Handler::Handler($params);
-
-    $this->loadLabelCode();
+    return $this->loadLabelCode();
   }
 
 
@@ -40,12 +39,14 @@ class LabelHandler extends Handler
   {
     global $LABELS;
 
-    if(empty($LABELS[$this->language_]))
+    if(!defined("LABEL_FILE") || !file_exists(LABEL_FILE))
       {
 	return FALSE;
       }
     else
       {
+	require_once LABEL_FILE;
+
 	while (list($key, $value) = each ($LABELS[$this->language_]))
 	  {
 	    $this->messages_[$key] = $value;

@@ -7,6 +7,11 @@ $MESSAGE_HANDLER_CLASS = 'classes/class.MessageHandler.php';
 $ERROR_HANDLER_CLASS = 'classes/class.ErrorHandler.php';
 $LABEL_HANDLER_CLASS = 'classes/class.LabelHandler.php';
 $FORM_VALIDATOR_CLASS = 'classes/class.FormValidator.php';
+$AUTH_HANDLER_CLASS = 'classes/class.AuthHandler.php';
+
+define(FALSE, 'FALSE');
+define(TRUE, 'TRUE');
+
 
 
 
@@ -46,5 +51,9 @@ if(!defined("FORM_VALIDATOR_LOADED") && !empty($FORM_VALIDATOR_CLASS))
     include_once $FORM_VALIDATOR_CLASS;
   }
 
+if(!defined("AUTH_HANDLER_LOADED") && !empty($FORM_VALIDATOR_CLASS))
+  {
+    include_once $AUTH_HANDLER_CLASS;
+  }
 
 ?>

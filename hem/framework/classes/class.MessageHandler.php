@@ -18,7 +18,7 @@ class MessageHandler extends Handler
   {
     Handler::Handler($params);
 
-    $this->loadMessageCode();
+    return $this->loadMessageCode();
   }
 
 
@@ -39,14 +39,14 @@ class MessageHandler extends Handler
 
   function loadMessageCode()
   {
-    global $MESSAGES;
-
-    if(empty($MESSAGES[$this->language_]))
+    if(!defined("MESSAGE_FILE"))
       {
 	return FALSE;
       }
     else
       {
+	require_once MESSAGE_FILE;
+
 	while (list($key, $value) = each ($MESSAGES[$this->language_]))
 	  {
 	    $this->messages_[$key] = $value;

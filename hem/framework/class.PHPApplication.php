@@ -31,12 +31,14 @@ class PHPApplication
     $this->app_version_ = $this->setDefault($param['app_version'], null);
     $this->app_type_ = $this->setDefault($param['app_type'], null);
     $this->app_db_url_ = $this->setDefault($param['app_db_url'], null);
-    $this->app_debug_mode_ = $this->setDefault($param['app_debugger'], null);
+    $this->app_debug_mode_ = $this->setDefault($param['app_debugger'], $OFF);
     $this->auto_connect_ = $this->setDefault($param['app_auto_connect'], TRUE);
-    $this->auto_chk_session_ = $this->setDefault($param['app_auto_check_session'], TRUE);
-    $this->auto_authenticate_ = $this->setDefault($param['app_auto_authenticate'], TRUE);
+
+    // NOTE: Deprecated since we use LiveUser    
+    //    $this->auto_chk_session_ = $this->setDefault($param['app_auto_check_session'], TRUE);
+    //    $this->auto_authenticate_ = $this->setDefault($param['app_auto_authenticate'], TRUE);
     // TODO: check setting
-    $this->session_ok_ = $this->setDefault($param['app_auto_authenticate'], TRUE);
+    //    $this->session_ok_ = $this->setDefault($param['app_auto_authenticate'], TRUE);
     $this->error_ = array();
     $this->authorized_ = FALSE;
     $this->language_ = $DEFAULT_LANGUAGE;
@@ -44,7 +46,11 @@ class PHPApplication
     $this->app_path_ = $REL_APP_PATH;
     $this->template_dir_ = $TEMPLATE_DIR;
     $this->messages_ = $MESSAGES;
-
+    $this->user_auth_ = $this->setDefault($param['app_authentication'], FALSE);
+    $this->user_auto_auth_ = $this->setDefault($param['app_auto_authenticate'], FALSE);
+    $this->user_auth_dsn_ = $this->setDefault($param['app_auth_dsn'], FALSE);
+    $this->user_auth_logout_page_ = $this->setDefault($param['app_exit_point'], 'index.php');
+    $this->user_auth_session_name_ = $this->setDefault($param['app_session_name'], 'PHPSESSION');
 
     if (defined("DEBUGGER_LOADED") && $this->app_debug_mode_ == $ON)
       {
@@ -55,34 +61,67 @@ class PHPApplication
 	$this->debugger_ = new Debugger ( array(
 					       'color' => $param['debug_color'],
 					       'prefix' => $this->app_name_,
-					       'buffer' => $OFF));
+					       'buffer' => $OFF) );
+      }
+
+    if(!empty($_SERVER['HTTP_ACCEPT_LANGUAGE']))
+      {
+	$language_code = trim(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2));
+	if($language_code == 'de') $this->language_ = "DE";
+	switch ($language_code)
+	  {
+	  case 'en':
+	    $this->language_ = "US";
+	    break;
+	  case 'de':
+	    $this->language_ = "DE";
+	    break;
+	  default:
+	    break;
+	  }
+
       }
 
     $this->has_error_ = null;
 
     $this->setErrorHandler();
+    $this->setMessageHandler();
+    $this->setLabelHandler();
+
+
+    //    $this->debugArray($this);
+	
+    if(! empty($this->app_db_url_) && $this->auto_connect_ && !$this->connect())
+      {
+	$this->showPopup('APP_FAILED');
+      }	  
+    
+
+    //    $this->debugArray($param);
 
     if(strstr($this->getAppType(), 'WEB'))
       {
 
-	// TODO: Include LiveUser here!!!
-	session_start();
-	$this->user_id_ = (! empty($_SESSION['SESSION_USER_ID'])) ? $_SESSION['SESSION_USER_ID'] : null;
-	$this->user_name_ = (! empty($_SESSION['SESSION_USERNAME'])) ? $_SESSION['SESSION_USERNAME'] : null;
-	$this->user_email_ = (! empty($_SESSION['SESSION_USERNAME'])) ? $_SESSION['SESSION_USERNAME'] : null;
-	$this->setUrl();
+	// NOTE: Deprecated since we use LiveUser    
+	// session_start();
+	// $this->user_id_ = (! empty($_SESSION['SESSION_USER_ID'])) ? $_SESSION['SESSION_USER_ID'] : null;
+	// $this->user_name_ = (! empty($_SESSION['SESSION_USERNAME'])) ? $_SESSION['SESSION_USERNAME'] : null;
+	// $this->user_email_ = (! empty($_SESSION['SESSION_USERNAME'])) ? $_SESSION['SESSION_USERNAME'] : null;
+	// $this->setUrl();
 
-	if($this->auto_chk_session_) $this->checkSession();
-	
-	if(! empty($this->app_db_url_) && $this->auto_connect_ && !$this->connect())
+	// TODO: Include LiveUser here!!!
+
+
+	if(defined("AUTH_HANDLER_LOADED") && $this->user_auth_)
 	  {
-	    $this->showPopup('APP_FAILED');
-	  }	  
-	
-	if($this->auto_authenticate_ && !$this->authenticate())
+	    $this->setAuthHandler();
+	  }
+
+	/*	if($this->user_auth_ && !$this->authenticate())
 	  {
 	    $this->showPopup('UNAUTHORIZED_ACCESS');
-	  }
+	    }*/
+	if($this->user_auto_auth_ && !$this->isAuthenticated()) $this->reauthenticate();
       }
     
   }
@@ -101,6 +140,7 @@ class PHPApplication
 
   function setUID($uid = null)
   {
+    $this->setSessionField('SESSION_USER_ID', $uid);
     $this->user_id_ = $uid;
   }
 
@@ -109,9 +149,11 @@ class PHPApplication
     return $this->user_id_;
   }
 
-  function checkSession()
+
+  // NOTE: Deprectated through LiveUser
+  /*  function checkSession()
   {
-    if($this->session_ok_ == TRUE)
+    if(isset($this->session_ok_) && $this->session_ok_ == TRUE)
       {
 	return TRUE;
       }
@@ -127,7 +169,27 @@ class PHPApplication
       }
     
     return $this->session_ok_;
+    } */
+
+  function setAuthHandler()
+  {
+    // TODO: create conf here;
+    $conf = array(
+		  'auth_dsn' => $this->user_auth_dsn_,
+		  'auth_exit_page' =>  $this->user_auth_logout_page_,
+		  'auth_session_name' => $this->user_auth_session_name_ 
+		  );
+
+    
+    $this->auth_handler_ = new AuthHandler($conf);
+				
   }
+
+  function isAuthenticated()
+  {
+    return $this->auth_handler_->isAuthenticated();
+  }
+
 
   function reauthenticate()
   {
@@ -209,20 +271,24 @@ class PHPApplication
     exit;
   }
 
-  function authenticate($username = null)
+  /*  function authenticate($username = null)
   {
 
     // implement me!
 
-  }
+    }*/
 
 
   function setErrorHandler()
   {
     if(defined("ERROR_HANDLER_LOADED"))
       {
-	$this->err_handler_ = new ErrorHandler( array(
-						      'name' => $this->app_name_));
+	$this->err_handler_ = new ErrorHandler( 
+					       array(
+						     'name' => $this->app_name_,
+						     'language' => $this->language_
+						     )
+					       );
       }
   }
 
@@ -244,8 +310,12 @@ class PHPApplication
   {
     if(defined("MESSAGE_HANDLER_LOADED"))
       {
-	$this->msg_handler_ = new MessageHandler( array(
-						      'name' => $this->app_name_));
+	$this->msg_handler_ = new MessageHandler( 
+					       array(
+						     'name' => $this->app_name_,
+						     'language' => $this->language_
+						     )
+					       );
       }
   }
 
@@ -253,6 +323,25 @@ class PHPApplication
   {
     return $this->msg_handler_->getMessage($code);
   }
+
+ function setLabelHandler()
+  {
+    if(defined("MESSAGE_HANDLER_LOADED"))
+      {
+	$this->lbl_handler_ = new LabelHandler( 
+					       array(
+						     'name' => $this->app_name_,
+						     'language' => $this->language_
+						     )
+					       );
+      }
+  }
+
+  function getLabelText($code)
+  {
+    return $this->lbl_handler_->getMessage($code);
+  }
+
 
 
   // FIXME: check if really needed. Banner is printed automatically by debugger class
@@ -477,6 +566,11 @@ class PHPApplication
   function getSessionField($field, $default = null)
   {
     return (! empty($_SESSION[$field] )) ? $_SESSION[$field] : $default;
+  }
+
+  function setSessionField($field, $value = null)
+  {
+    $_SESSION[$field] = $value;
   }
 
   function setDefault($value, $default)

@@ -17,7 +17,9 @@ class Handler {
 
     global $DEFAULT_LANGUAGE;
 
-    $this->language_ = $DEFAULT_LANGUAGE;
+    $DEFAULT_LANGUAGE = (!empty($DEFAULT_LANGUAGE)) ? $DEFAULT_LANGUAGE : 'US';
+
+    $this->language_ = (!empty($params['language'])) ? $params['language'] : $DEFAULT_LANGUAGE;
     $this->caller_class_ = (!empty($params['caller'])) ? $params['caller'] : null ;
     $this->messages_ = array();
     }

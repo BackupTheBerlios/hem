@@ -7,15 +7,16 @@ $USER_DIR = '/martin';
 $PROJECT_NAME = '/hem';
 
 $APP_ROOT = $DOC_ROOT . $USER_DIR . $PROJECT_NAME;
+$APP_REL_ROOT =  $USER_DIR . $PROJECT_NAME;
 
 $PEAR_DIR = $APP_ROOT . '/pear';
 $APP_FRAMEWORK_DIR = $APP_ROOT . '/framework';
 
 
-$PATH = $PEAR_DIR.
+$PATH = $PEAR_DIR.":".
   $APP_FRAMEWORK_DIR;
 
-ini_set( ' include_path' , ':' . 
+ini_set( 'include_path' , ':' . 
 	 $PATH . ':' .
 	 ini_get( 'include_path' ));
 
@@ -30,7 +31,9 @@ $OFF = FALSE;
 
 $DEFAULT_LANGUAGE='US';
 
-$AUTHENTICATION_URL='login/login.php';
+$APP_AUTH_DSN = "mysql://test:test@localhost/testlu";
+
+$AUTHENTICATION_URL=$APP_REL_ROOT . "/" . 'login/run.login.php';
 
 $REL_TEMPLATE_DIR = 
   $USER_DIR.
