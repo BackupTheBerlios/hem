@@ -5,6 +5,7 @@
  * Uses PEAR::DB
  * from M.J.Kabir
  * adapted by Martin Loitzl
+ * 2004-06-08
  */
 
 
