@@ -1,0 +1,12 @@
+How to setup the examples
+
+For every example found in this directory you need to create a database
+and run the schema dumps first.
+
+The can be found in
+
+  PEAR_DATA_DIRECTORY/liveuser/misc/schema/
+  
+After those two steps you can run the dumps found in every "example" directory.
+
+THOSE DUMPS CONTAIN ONLY DATA AND WILL FAIL IF YOU DO NOT RUN THE SCHEMA DUMPS FIRST

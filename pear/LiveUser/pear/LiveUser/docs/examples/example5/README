@@ -1,0 +1,9 @@
+$Id: README,v 1.1 2004/07/16 13:59:09 mloitzl Exp $
+
+Yet another example on how to implement liveuser.
+
+This one uses the DB_Medium container and HTML_Template_IT
+for display.
+
+You just need to point to PEAR_Directory/docs/Liveuser/example5/
+and follow the instructions

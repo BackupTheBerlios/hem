@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>    
+<meta content="text/html; charset=utf-8" http-equiv="Content-type">
+<title>Blogger: Login</title>  
+<link href="hem.css" type="text/css" rel="stylesheet">   
+
+<style type="text/css"><!--
+#signin-u,#signin-p {padding-left:3px;}//--> </style> 
+
+<script type="text/javascript" language="Javascript"><!--
+
+          window.onload = function() {document.login.username.focus();}
+        //--> 
+</script>
+</head>         
+
+
+<body id="home"> <div id="header"> <div id="h2"><div id="h3" align="center"><strong id="logo"><img alt="HEM"  src="logo40.gif"> </strong><p><font size="6" color="#FFFFFF">Heuristic Evaluation Manager</p></font>
+ 
+
+<span class="r"></span> </div> </div> </div> 
+
+<div id="body"> 
+<div id="footer"> <div> <hr> <p> <a href="http://www.blogger.com/">{LABEL_HOME}</a> | 
+<a href="http://help.blogger.com/">{LABEL_HELP}</a> | <a href="http://www.blogger.com/developers">{LABEL_LOGIN}</a> </p>
+ </div> </div>   
+
+<div id="main"> 
+<div>{DOCUMENT}</div>
+<div id="m2"> <div id="m3"> <div id="primary"> 
+
+<form name="loginForm" action="{SELF_PATH}" method="post">
+
+<h2>{LABEL_SIGNIN}</h2> 
+
+<div> <label for="signin-u">{LABEL_USERNAME}</label><input type="text" name="handle" value="{USERNAME}" /></div> 
+<div> <label for="signin-p">{LABEL_PASSWORD}</label><input type="password" name="passwd" /> </div> 
+
+<div> <input type="submit" value="{LOGIN_BUTTON}" />
+	<input type="reset" value="{CANCEL_BUTTON}" />	
+	<input type="hidden" value="{REDIRECT_URL}" name="url" /></div>
+
+</form>  
+	<a href="{FORGOTTEN_PASSWORD_APP}">{LABEL_FORGOTTEN_PASSWORD}</a>
+</div>
+
+<div><p></p></div>
+
+<div>
+<!-- SEARCH -->
+	<form name="search" method="get" action="/bin/search.py">
+	<input type="hidden" name="type" value="f" />
+	  <p><input size="40" type="text" name="query" id="query" value="" class="field" style="width:70%" />
+	    <input type="submit" name="Action.Search" value="{SEARCH_BUTTON}" /></p>
+	</form>
+</div>
+
+ 
+
+</body></html>

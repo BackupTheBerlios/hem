@@ -1,0 +1,47 @@
+/*
+-----------------------------------------------
+blogger base style
+author:   douglas bowman
+version:  14 Jan 2004
+----------------------------------------------- */
+
+@import "blogger_main.css";
+
+
+/* Low-end styles
+----------------------------------------------- */
+body {
+  background:#E1D4C0;
+  }
+#header {
+  padding:5px;
+  background:#036;
+  border-width:1px;
+  border-style:none;
+  color:#369;
+  }
+#header a {
+  color:#9cf;
+  }
+a img {
+  border-width:0;
+  border-style:none;
+  color:#E1D4C0;
+  }
+#header a img {
+  color:#036;
+  }
+p {
+  color:#333;
+  }
+#header p {
+  color:#69c;
+  }
+
+
+
+/* Mid-pass filter (after styles)
+----------------------------------------------- */
+@media tty {
+  i{content:"\";/*" "*/}} @import 'blogger_ie5win.css'; /*";}
+}/* */

@@ -1,0 +1,67 @@
+Author: Helgi Þormar Þorbjörnsson <helgi@trance.is>
+For any bug reports on this use http://pear.php.net/bugs/search.php?cmd=display&status=Open&bug_type[]=LiveUser
+or send a email to the Mailinglist liveuser@lists.21st-hq.de
+
+This was a part of Example5, so the create_db.sql is almost indentical to example5 sql :)
+
+This has only been tested with mysql like you can see by the connection string,
+if you use something other then mysql then simply change the db connection string,
+and report if any errors came while using other then mysql.
+
+create_db.sql + perm_db.sql or perm_db_*.sql * = your db type  
+Those files are needed to test this example, you can find them in data/sql
+
+(you get perm_db.sql from /misc/schema)
+
+When you read through the config files, then you probly will notice something like this
+array('sequence_col_name' => 'id') in the MDB[2].
+This was made so MDB[2] could use sequences from DB, so if one is moving from DB to MDB[2]
+or something similar and couldn't change the SQL fields names then this would be a idle fix :)
+
+And in this example you'll probly be using the same DB to test all the 3 containers, so this is
+needed so no conflicts will come up.
+
+MDB 1.3 is needed for this sequence_col_name to work (at the time MDB2 doens't have this);
+
+Basiclly what this admin example does is making a new user, updating the user that was made before 
+that user (i.e. added user_id - 1) and removes user (i.e. added user_id - 2)
+
+Also this shows us info about the added user using getUser.
+Also searchUsers is shown and printed out.
+
+If you look at how we add the customFields:
+
+$custom = array(
+    array('name' => 'name',  'value' => 'asdf',             'type' => 'text'),
+    array('name' => 'email', 'value' => 'fleh@example.com', 'type' => 'text')
+);
+
+This is the MDB[2] way ... for the DB container you can skip the type part, but doesn't hurt to have it,
+DB simply ignores the type part.
+
+This is how we do it when we are adding or updating a user with customFields. (for furhter info look at the source)
+
+
+Now for getUser and searchUsers DB uses:
+
+$custom = array(
+    'name',
+    'email'
+);
+
+but MDB[2] uses:
+
+$custom = array(
+    array('name' => 'name', 'type' => 'text'),
+    array('name' => 'email', 'type' => 'text')
+);
+
+If you want that DB does it the same way. i.e.
+
+$custom = array(
+    'name' => 'name',
+    'name' => 'email'
+);
+
+(DB container never needs type)
+Then drop us a mail to our mailinglist (liveuser@lists.21st-hq.de)

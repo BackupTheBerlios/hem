@@ -1,0 +1,12 @@
+<?
+
+$LABELS['US']['SAMPLE_LBL_CODE'] = "Sample Button";
+$LABELS['US']['MISSING'] = "No message code was given";
+
+
+
+$LABELS['DE']['SAMPLE_LBL_CODE'] = "Beispiel Knopf";
+$LABELS['DE']['MISSING'] = "Es wurde kein Message Code uebergeben";
+
+
+?>

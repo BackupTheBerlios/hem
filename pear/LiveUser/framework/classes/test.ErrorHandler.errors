@@ -1,0 +1,11 @@
+<?
+
+$ERRORS['US']['SAMPLE_ERR_CODE'] = "This is an sample Error Message";
+$ERRORS['US']['MISSING'] = "An error occurred, but no error code was given";
+
+
+$ERRORS['DE']['SAMPLE_ERR_CODE'] = "Das ist eine TEST - Fehlermeldung";
+$ERRORS['DE']['MISSING'] = "Es ist ein Fehler aufgetreten, jedoch wurde kein Fehlercode uebergeben";
+
+
+?>
