@@ -1,5 +1,6 @@
 <?php
 
+$LABELS['US']['CHANGE_USER_TITLE'] = 'Change user Data';
 $LABELS['US']['FIRST_NAME'] = 'Firstname';
 $LABELS['US']['LAST_NAME'] = 'Lastname';
 $LABELS['US']['EMAIL'] = 'Email';
@@ -20,6 +21,7 @@ $LABELS['US']['LABEL_USERNAME'] = "Username:";
 $LABELS['US']['LABEL_PASSWORD'] = "Password:"; 
 
 
+$LABELS['DE']['CHANGE_USER_TITLE'] = '&Auml;ndern der Benutzerdaten';
 $LABELS['DE']['FIRST_NAME'] = 'Vorname';
 $LABELS['DE']['LAST_NAME'] = 'Nachname';
 $LABELS['DE']['EMAIL'] = 'Email';

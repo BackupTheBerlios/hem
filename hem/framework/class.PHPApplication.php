@@ -609,6 +609,47 @@ class PHPApplication
     $_SESSION[$field] = $value;
   }
 
+  function addSessionMessage($msg)
+  {
+    if(isset($_SESSION['MSG']) && !empty($_SESSION['MSG']))
+      {
+	$session_ser_msgs = $_SESSION['MSG'];
+	$msgs = unserialize(stripslashes($session_ser_msgs));
+	array_push($msgs, $msg);
+	//	print_r($msgs);
+	$ser_msgs = addslashes(serialize($msgs));
+	$_SESSION['MSG'] = $ser_msgs;
+      }
+    else
+      {
+	$msgs = array();
+	array_push($msgs, $msg);
+	// print_r($msgs);
+	$ser_msgs = addslashes(serialize($msgs));
+	$_SESSION['MSG'] = $ser_msgs;
+      }
+  }
+
+  function getAllSessionMessages()
+  {
+    if(isset($_SESSION['MSG']) && !empty($_SESSION['MSG']))
+      {
+	$return_msgs = array();
+	$session_ser_msgs = $_SESSION['MSG'];
+	$msgs = unserialize(stripslashes($session_ser_msgs));
+	while($msg = array_pop($msgs))
+	  {
+	    $return_msgs[] = $msg;
+	  }
+	$_SESSION['MSG'] = null;
+	return $return_msgs;
+      }
+    else
+      {
+	return FALSE;
+      }
+  }
+
   function setDefault($value, $default)
   {
     return (isset($value)) ? $value : $default ;

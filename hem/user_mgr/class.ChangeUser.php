@@ -23,7 +23,19 @@ class ChangeUser extends PHPApplication
 
     if($this->getPostRequestField('step', null) == '1')
       {
-	$this->changeUserData();
+	$submitted_data = $this->getPostRequestField('data', null);
+	if( $submitted_data['auth_user_id'] == $this->getUID())
+	  {
+	    $this->changeUserData();
+	  }
+	else if(0) // check if user is Admin
+	  {
+	    $this->changeUserData();
+	  }
+	else
+	  {
+	    $this->addSessionMessage("DO_NOT_CHANGE_OTHER_USER");
+	  }
       }
     else 
       {
@@ -50,6 +62,7 @@ class ChangeUser extends PHPApplication
 	if($this->getPostRequestField('url', null))
 	  {
 	    $this->debug($this->getPostRequestField('url', null));
+	    $this->addSessionMessage("USER_CHANGED");
 	    header("Location: ".$this->getPostRequestField('url', null)."");
 	  }
 	    else
@@ -59,7 +72,7 @@ class ChangeUser extends PHPApplication
     else
       {
 	// TODO: Drop a message, that something went wrong
-	print_r($this->getPostRequestField('data', null));
+	//	print_r($this->getPostRequestField('data', null));
       }
     
 
@@ -71,7 +84,25 @@ class ChangeUser extends PHPApplication
 
     $this->debug("Display Change Form");
 
+    $messages = $this->getAllSessionMessages();
+    $message_text = '';
+    if(is_array($messages))
+      {
+	while($msg = array_pop($messages))
+	  {
+	    $message_text.=$this->getMessageText($msg);
+	  }
+      }
+    
     $tpl->setCurrentBlock('main_block');
+
+
+
+    $tpl->setVar(array(
+		       'CHANGE_USER_DATA_TITLE' => $this->getLabelText('CHANGE_USER_TITLE'),
+		       'MESSAGES' => $message_text
+		       )
+		 );
 
     $tpl->setVar(array(
 		       'SELF_PATH' => $PHP_SELF,

@@ -154,6 +154,7 @@ class User
 	return $result;
 
       }
+    // TODO: Admin changes here!
     else
       return FALSE;
   }
