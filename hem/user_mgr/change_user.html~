@@ -1,0 +1,26 @@
+<div id="main-wrap">
+  <div id="main">
+    <div id="m2">
+      <div id="m3">
+	<!-- BEGIN main_block -->
+	<h2><strong>
+	    {CHANGE_USER_DATA_TITLE}
+	</strong></h2>
+	<script type="text/javascript" language="Javascript">
+	  <!--
+	      window.onload = function() {document.changeUserForm.handle.focus();}
+	    -->
+	</script>
+	<form name="changeUserForm" action="{SELF_PATH}" method="post">
+	  {LABEL_FIRSTNAME}<input type="text" name="fields['first_name']" value="{FIRST_NAME}" /><br/>
+	  {LABEL_LASTNAME}<input type="text" name="fields['last_name']" value="{LAST_NAME}" /><br/>
+	  <input type="submit" value="{LOGIN_BUTTON}" /><br/>
+	  <input type="reset" value="{CANCEL_BUTTON}" /><br/>
+	  <input type="hidden" value="{REDIRECT_URL}" name="url" />
+	</form>
+	<a href="{FORGOTTEN_PASSWORD_APP}">{LABEL_FORGOTTEN_PASSWORD}</a>
+	<!-- END main_block -->
+      </div>
+    </div>
+  </div>
+</div>
