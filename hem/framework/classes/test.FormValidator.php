@@ -34,12 +34,12 @@ echo "FormValidator Version " . $val->apiVersion() . " loaded <br/>";
 // Fieldname --> Fieldtype
 $field_type = array (
          "name" => "text",
-	 "date" => "text",
+	 "date" => "date",
 	 "amount" => "number");
 
 // Fieldname --> Fielddata
 $field_data = array (
-         "name" => "0Martin",
+         "name" => "Martin",
 	 "date" => "01.03.2004",
 	 "amount" => "s200");
 

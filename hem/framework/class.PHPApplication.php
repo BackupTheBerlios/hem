@@ -16,19 +16,16 @@
  *
  */
 
-if(!defined("DEBUGGER_LOADED") && !empty($DEBUGGER_CLASS))
-  {
-    include_once $DEBUGGER_CLASS;
-  }
 
+require_once('def.PHPApplication.php');
 
 class PHPApplication
 {
   function PHPApplication($param = null)
   {
-    global $ON, $OFF, $TEMPLATE_DIR;
+    global $ON, $OFF, $TEMPLATE_DIR, $DEFAULT_LANGUAGE;
     global $MESSAGES, $DEFAULT_MESSAGE, $REL_APP_PATH, 
-      $REL_TEMLPLATE_DIR;  //<-- TODO: check paths
+      $REL_TEMPLATE_DIR;  //<-- TODO: check paths
 
     $this->app_name_ = $this->setDefault($param['app_name'], null);
     $this->app_version_ = $this->setDefault($param['app_version'], null);
@@ -37,18 +34,19 @@ class PHPApplication
     $this->app_debug_mode_ = $this->setDefault($param['app_debugger'], null);
     $this->auto_connect_ = $this->setDefault($param['app_auto_connect'], TRUE);
     $this->auto_chk_session_ = $this->setDefault($param['app_auto_check_session'], TRUE);
-    $this->auto_authorize_ = $this->setDefault($param['app_auto_authorize'], TRUE);
+    $this->auto_authenticate_ = $this->setDefault($param['app_auto_authenticate'], TRUE);
     // TODO: check setting
-    $this->session_ok_ = $this->setDefault($param['app_auto_authorize'], TRUE);
+    $this->session_ok_ = $this->setDefault($param['app_auto_authenticate'], TRUE);
     $this->error_ = array();
     $this->authorized_ = FALSE;
     $this->language_ = $DEFAULT_LANGUAGE;
-    $this->base_url_ = sprintf("%s%s", $this->getServer, $REL_TEMPLATE_DIR);
+    $this->base_url_ = sprintf("%s%s", $this->getServer(), $REL_TEMPLATE_DIR);
     $this->app_path_ = $REL_APP_PATH;
     $this->template_dir_ = $TEMPLATE_DIR;
     $this->messages_ = $MESSAGES;
 
-    if (defined("DEBUGGER_LOADED") && $this->debug_mode_ == $ON)
+
+    if (defined("DEBUGGER_LOADED") && $this->app_debug_mode_ == $ON)
       {
 	if(empty($param['debug_color'])) 
 	  {
@@ -62,9 +60,9 @@ class PHPApplication
 
     $this->has_error_ = null;
 
-    $this->setErrorHanlder();
+    $this->setErrorHandler();
 
-    if(strstr($this->getType(), 'WEB'))
+    if(strstr($this->getAppType(), 'WEB'))
       {
 
 	// TODO: Include LiveUser here!!!
@@ -78,12 +76,12 @@ class PHPApplication
 	
 	if(! empty($this->app_db_url_) && $this->auto_connect_ && !$this->connect())
 	  {
-	    $this->alert('APP_FAILED');
+	    $this->showPopup('APP_FAILED');
 	  }	  
 	
-	if($this->auto_authorize_ && !$this->authorize())
+	if($this->auto_authenticate_ && !$this->authenticate())
 	  {
-	    $this->alert('UNAUTHORIZED_ACCESS');
+	    $this->showPopup('UNAUTHORIZED_ACCESS');
 	  }
       }
     
@@ -97,8 +95,18 @@ class PHPApplication
 
   function getUserName()
   {
-    list($name, $host) = explode('', $this->getUserEmail());
+    list($name, $host) = explode('@', $this->getUserEmail());
     return ucwords($name);
+  }
+
+  function setUID($uid = null)
+  {
+    $this->user_id_ = $uid;
+  }
+
+  function getUID()
+  {
+    return $this->user_id_;
   }
 
   function checkSession()
@@ -176,13 +184,12 @@ class PHPApplication
     $protocol = strtolower(substr($row_protocol, 0, strpos($row_protocol, '/')));
     $this->server_ = sprintf("%s://%s%s", 
 			     $protocol,
-			     $this->getEnvironment('HTTP_POST'),
-			     $port,
-			     $this->getEnvironment('REQUEST_URI'));
+			     $this->getEnvironment('SERVER_NAME'),
+			     $port);
 
     $this->self_url_ = sprintf("%s://%s%s%s", 
 			       $protocol,
-			       $this->getEnvironment('HTTP_POST'),
+			       $this->getEnvironment('SERVER_NAME'),
 			       $port,
 			       $this->getEnvironment('REQUEST_URI'));
 
@@ -253,7 +260,7 @@ class PHPApplication
   {
     global $ON;
     
-    if ( defined("DEBUGGER_LOADED") && $this->debug_mode_ == $ON)
+    if ( defined("DEBUGGER_LOADED") && $this->app_debug_mode_ == $ON)
       {
 	$this->debugger_->printBanner();
       }
@@ -264,7 +271,7 @@ class PHPApplication
   {
     global $ON;
     
-    if( defined("DEBUGGER_LOADED") && $this->debug_mode_ == $ON )
+    if( defined("DEBUGGER_LOADED") && $this->app_debug_mode_ == $ON )
     {
       $this->debugger_->setBuffer();
     }
@@ -276,7 +283,7 @@ class PHPApplication
   {
     global $ON;
 
-    if ( defined("DEBUGGER_LOADED") && $this->debug_mode_ == $ON)
+    if ( defined("DEBUGGER_LOADED") && $this->app_debug_mode_ == $ON)
       {
 	$this->debugger_->flushBuffer();
       }
@@ -286,12 +293,22 @@ class PHPApplication
   {
     global $ON;
     
-    if( defined("DEBUGGER_LOADED") &&  $this->debug_mode_ == $ON)
+    if( defined("DEBUGGER_LOADED") &&  $this->app_debug_mode_ == $ON)
       {
 	$this->debugger_->write($msg);
       }
   }
 
+
+  function debugArray($hash = null)
+  {
+    global $ON;
+    
+    if( defined("DEBUGGER_LOADED") &&  $this->app_debug_mode_ == $ON)
+      {
+	$this->debugger_->debugArray($hash);
+      }
+  }
 
   function run()
   {
@@ -384,7 +401,7 @@ class PHPApplication
   // FIXME: check id really needed, output of HTML is not wanted here!
   function dumpArray($a)
   {
-    if(strstr($this->getType(), 'WEB'))
+    if(strstr($this->getAppType(), 'WEB'))
       {
 	echo "<pre>";
 	print_r($a);
@@ -399,7 +416,7 @@ class PHPApplication
 
   function dump()
   {
-    if(strstr($this->getType(), 'WEB'))
+    if(strstr($this->getAppType(), 'WEB'))
       {
 	echo "<pre>";
 	print_r($this);
@@ -412,6 +429,71 @@ class PHPApplication
   }
 
 
+  function writeln($msg = null)
+  {
+    global $WWW_NEWLINE;
+    global $NEWINE;
 
+    echo $msg.(strstr($this->app_type_, 'WEB')) ? $WWW_NEWLINE : $NEWLINE;
+
+  }
+
+
+  function showStatus($msg = null, $returnURL = null)
+  {
+    global $STATUS_TEMPLATE;
+    $tpl =& new HTML_Template_IT($this->template_dir_);
+  
+    $tpl->loadTemplatefile($STATUS_TEMPLATE, true, true);
+
+    $tpl->setVariable('STATUS_MESSAGE', $msg );
+
+    if(!preg_match('/^http:/', $returnURL) && (!preg_match('/^\//', $returnURL)))
+      {
+	$appPath = sprintf("%s/%s", $this->app_path_, $retrunURL);
+      }
+    else
+      {
+	$appPath = $returnURL;
+      }
+
+    $tpl->setVariable('RETURN_URL', $app_path);
+    $tpl->setVariable('BASE_URL', $this->getBaseUrl());
+
+    $tpl->get();
+  }
+
+
+  function getEnvironment($key)
+  {
+    return !empty($_SERVER[$key]) ? $_SERVER[$key] : null;
+  }
+
+  function getRequestField($field, $default = null)
+  {
+    return (! empty($_REQUEST[$field] )) ? $_REQUEST[$field] : $default;
+  }
+
+  function getSessionField($field, $default = null)
+  {
+    return (! empty($_SESSION[$field] )) ? $_SESSION[$field] : $default;
+  }
+
+  function setDefault($value, $default)
+  {
+    return (isset($value)) ? $value : $default ;
+  }
+
+  function getFileExtension($filename)
+  {
+    return substr(basename($filename), strpos(basename($filename), ".") + 1);
+  }
+
+  function showScreen()
+  {
+    $menu_template =& new HTML_Template_IT($this->template_dir_);
+    
+  }
+  
 }
 ?>

@@ -47,6 +47,8 @@ $field_required = array (
 
 define('FORM_VALIDATOR_LOADED', TRUE);
 
+// TODO: Implement validation functions!!!
+
 
 class FormValidator
 {
@@ -103,12 +105,18 @@ class FormValidator
 
   function text($data)
   {
-    return is_string($data);
+    return !is_numeric($data);
   }
 
   function number($data)
   {
     return is_numeric($data);
+  }
+
+
+  function date($data)
+  {
+    return TRUE;
   }
 
 
