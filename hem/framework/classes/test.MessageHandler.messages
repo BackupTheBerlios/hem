@@ -1,0 +1,11 @@
+<?
+
+$MESSAGES['US']['SAMPLE_MSG_CODE'] = "This is an sample Message";
+$MESSAGES['US']['MISSING'] = "No message code was given";
+
+
+$MESSAGES['DE']['SAMPLE_MSG_CODE'] = "Das ist eine TEST Meldung";
+$MESSAGES['DE']['MISSING'] = "Es wurde kein Message Code uebergeben";
+
+
+?>

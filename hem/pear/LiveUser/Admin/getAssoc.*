@@ -1,0 +1,1410 @@
+Auth/Container/DB.php:            $authId = $this->dbc->nextId($this->authTable, true);
+Auth/Container/DB.php:            $val[] = $this->dbc->quoteSmart($active);
+Auth/Container/DB.php:                $val[] = $this->dbc->quoteSmart($v['value']);
+Auth/Container/DB.php:                ' . $this->dbc->quoteSmart($authId) . ',
+Auth/Container/DB.php:                ' . $this->dbc->quoteSmart($handle) . ',
+Auth/Container/DB.php:                ' . $this->dbc->quoteSmart($this->encryptPW($password)) . '
+Auth/Container/DB.php:        $result = $this->dbc->query($query);
+Auth/Container/DB.php:                auth_user_id = '.$this->dbc->quoteSmart($authId);
+Auth/Container/DB.php:        $result = $this->dbc->query($query);
+Auth/Container/DB.php:                $this->authTableCols['handle'] . ' = ' . $this->dbc->quoteSmart($handle);
+Auth/Container/DB.php:                    . $this->dbc->quoteSmart($this->encryptPW($password));
+Auth/Container/DB.php:                $this->authTableCols['is_active'] . ' = ' . $this->dbc->quoteSmart($active);
+Auth/Container/DB.php:                    $v['name'] . ' = ' . $this->dbc->quoteSmart($v['value']);
+Auth/Container/DB.php:            ' . $this->authTableCols['user_id'] . ' = ' . $this->dbc->quoteSmart($authId);
+Auth/Container/DB.php:        $result = $this->dbc->query($query);
+Auth/Container/DB.php:                    $where .= " $f" . $v['op'] . $this->dbc->quoteSmart($v['value']) . $cond;
+Auth/Container/DB.php:            $res = $this->dbc->getAssoc($query, false, array(), DB_FETCHMODE_ASSOC);
+Auth/Container/DB.php:            $res = $this->dbc->getAll($query, array(), DB_FETCHMODE_ASSOC);
+Auth/Container/MDB.php:            $authId = $this->dbc->nextId($this->authTable, true);
+Auth/Container/MDB.php:            $val[] = $this->dbc->getValue($this->authTableCols['is_active']['type'], $active);
+Auth/Container/MDB.php:            $val[] = $this->dbc->getValue($this->authTableCols['owner_user_id']['type'], $owner_user_id);
+Auth/Container/MDB.php:            $val[] = $this->dbc->getValue($this->authTableCols['owner_group_id']['type'], $owner_group_id);
+Auth/Container/MDB.php:                $val[] = $this->dbc->getValue($v['type'], $v['value']);
+Auth/Container/MDB.php:                ' . $this->dbc->getValue($this->authTableCols['user_id']['type'], $authId) . ',
+Auth/Container/MDB.php:                ' . $this->dbc->getValue($this->authTableCols['handle']['type'], $handle) . ',
+Auth/Container/MDB.php:                ' . $this->dbc->getValue($this->authTableCols['passwd']['type'], $this->encryptPW($password)) . '
+Auth/Container/MDB.php:        $result = $this->dbc->query($query);
+Auth/Container/MDB.php:                auth_user_id = ' . $this->dbc->getValue($this->authTableCols['user_id']['type'], $authId);
+Auth/Container/MDB.php:        $result = $this->dbc->query($query);
+Auth/Container/MDB.php:                $this->authTableCols['handle']['name'] . ' = ' . $this->dbc->getValue($this->authTableCols['handle']['type'], $handle);
+Auth/Container/MDB.php:                $this->authTableCols['passwd']['name'] . ' = ' . $this->dbc->getValue($this->authTableCols['passwd']['type'], $this->encryptPW($password));
+Auth/Container/MDB.php:                $this->authTableCols['is_active']['name'] . ' = ' . $this->dbc->getValue($this->authTableCols['is_active']['type'], $active);
+Auth/Container/MDB.php:                $this->authTableCols['owner_user_id'] . ' = ' . $this->dbc->getValue($this->authTableCols['owner_user_id']['type'], $owner_user_id);
+Auth/Container/MDB.php:                $this->authTableCols['owner_group_id'] . ' = ' . $this->dbc->getValue($this->authTableCols['owner_group_id']['type'], $owner_group_id);
+Auth/Container/MDB.php:                        $this->dbc->getValue($v['type'], $v['value']);
+Auth/Container/MDB.php:            ' . $this->authTableCols['user_id']['name'] . '=' . $this->dbc->getValue($this->authTableCols['user_id']['type'], $authId);
+Auth/Container/MDB.php:        $result = $this->dbc->query($query);
+Auth/Container/MDB.php:                    $where .= " $f" . $v['op'] . $this->dbc->getValue($v['type'], $v['value']) . $cond;
+Auth/Container/MDB.php:        $res = $this->dbc->queryAll($query, $types, MDB_FETCHMODE_ASSOC, $rekey);
+Auth/Container/MDB2.php:            $authId = $this->dbc->nextId($this->authTable, true);
+Auth/Container/MDB2.php:            $val[] = $this->dbc->quote($active, $this->authTableCols['is_active']['type']);
+Auth/Container/MDB2.php:            $val[] = $this->dbc->quote($owner_user_id, $this->authTableCols['owner_user_id']['type']);
+Auth/Container/MDB2.php:            $val[] = $this->dbc->quote($owner_group_id, $this->authTableCols['owner_group_id']['type']);
+Auth/Container/MDB2.php:                $val[] = $this->dbc->quote($v, $customFields[$k]['type']);
+Auth/Container/MDB2.php:                ' . $this->dbc->quote($authId, $this->authTableCols['user_id']['type']) . ',
+Auth/Container/MDB2.php:                ' . $this->dbc->quote($handle, $this->authTableCols['handle']['type']) . ',
+Auth/Container/MDB2.php:                ' . $this->dbc->quote($this->encryptPW($password), $this->authTableCols['passwd']['type']) . '
+Auth/Container/MDB2.php:        $result = $this->dbc->query($query);
+Auth/Container/MDB2.php:                auth_user_id = ' . $this->dbc->quote($authId, $this->authTableCols['user_id']['type']);
+Auth/Container/MDB2.php:        $result = $this->dbc->query($query);
+Auth/Container/MDB2.php:                $this->authTableCols['handle']['name'] . ' = ' . $this->dbc->quote($handle, $this->authTableCols['handle']['type']);
+Auth/Container/MDB2.php:                $this->authTableCols['passwd']['name'] . ' = ' . $this->dbc->quote($this->encryptPW($password), $this->authTableCols['passwd']['type']);
+Auth/Container/MDB2.php:                $this->authTableCols['is_active']['name'] . ' = ' . $this->dbc->quote($active, $this->authTableCols['is_active']['type']);
+Auth/Container/MDB2.php:                $this->authTableCols['owner_user_id'] . ' = ' . $this->dbc->quote($owner_user_id, $this->authTableCols['owner_user_id']['type']);
+Auth/Container/MDB2.php:                $this->authTableCols['owner_group_id'] . ' = ' . $this->dbc->quote($owner_group_id, $this->authTableCols['owner_group_id']['type']);
+Auth/Container/MDB2.php:                        $this->dbc->quote($v['value'], $v['type']);
+Auth/Container/MDB2.php:            ' . $this->authTableCols['user_id']['name'] . '=' . $this->dbc->quote($authId, $this->authTableCols['user_id']['type']);
+Auth/Container/MDB2.php:        $result = $this->dbc->query($query);
+Auth/Container/MDB2.php:                    $where .= " $f" . $v['op'] . $this->dbc->quote($v['value'], $v['type']) . $cond;
+Auth/Container/MDB2.php:        $res = $this->dbc->queryAll($query, $types, MDB2_FETCHMODE_ASSOC, $rekey);
+Perm/Container/DB_Complex.php:        if (!is_null($this->dbc->getOne($query))) {
+Perm/Container/DB_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Complex.php:            $result = $this->dbc->getCol($query);
+Perm/Container/DB_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Complex.php:        $group_id = $this->dbc->getOne($query);
+Perm/Container/DB_Complex.php:        $count = $this->dbc->getOne($query);
+Perm/Container/DB_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Complex.php:        $groups = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+Perm/Container/DB_Complex.php:        $subgroups = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+Perm/Container/DB_Complex.php:        $rights = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+Perm/Container/DB_Complex.php:        $implied_rights = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+Perm/Container/DB_Complex.php:        $groups = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+Perm/Container/DB_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Complex.php:        $usercount = $this->dbc->getOne($query);
+Perm/Container/DB_Complex.php:        $groupcount = $this->dbc->getOne($query);
+Perm/Container/DB_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Complex.php:        $count = $this->dbc->getOne($query);
+Perm/Container/DB_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Complex.php:        $count = $this->dbc->getOne($query);
+Perm/Container/DB_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Medium.php:        $group_id = $this->dbc->nextId($this->prefix . 'groups', true);
+Perm/Container/DB_Medium.php:                $val[] = $this->dbc->quoteSmart($v['value']);
+Perm/Container/DB_Medium.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Medium.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Medium.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Medium.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Medium.php:                'is_active = ' . $this->dbc->quoteSmart($active);
+Perm/Container/DB_Medium.php:                        $v['name'] . ' = ' . $this->dbc->quoteSmart($v['value']);
+Perm/Container/DB_Medium.php:            $result = $this->dbc->query($query);
+Perm/Container/DB_Medium.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Medium.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Medium.php:        $count = $this->dbc->getOne($query);
+Perm/Container/DB_Medium.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Medium.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Medium.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Medium.php:        $res = $this->dbc->getOne($query);
+Perm/Container/DB_Medium.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Medium.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Medium.php:        $groups = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+Perm/Container/DB_Simple.php:                auth_user_id = ' . $this->dbc->quoteSmart($authId).'
+Perm/Container/DB_Simple.php:                auth_container_name = '.$this->dbc->quoteSmart($authName);
+Perm/Container/DB_Simple.php:        $permId = $this->dbc->getOne($query);
+Perm/Container/DB_Simple.php:                perm_user_id = '.$this->dbc->quoteSmart($permId);
+Perm/Container/DB_Simple.php:                $authId = $this->dbc->getRow($query, DB_FETCHMODE_ASSOC);
+Perm/Container/DB_Simple.php:            $langs = $this->dbc->getAssoc($query);
+Perm/Container/DB_Simple.php:                    ' . $this->dbc->quoteSmart($name) . ',
+Perm/Container/DB_Simple.php:                    ' . (($description === null) ? 'null' : $this->dbc->quoteSmart($description)) . '
+Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php:                  name        = ' . $this->dbc->quoteSmart($name) . ',
+Perm/Container/DB_Simple.php:                  description = ' . (($description === null) ? 'null' : $this->dbc->quoteSmart($description)) . '
+Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php:        $translation = $this->dbc->getRow($query, DB_FETCHMODE_ASSOC);
+Perm/Container/DB_Simple.php:        $language_id = $this->dbc->nextId($this->prefix . 'languages', true);
+Perm/Container/DB_Simple.php:                    ' . $this->dbc->quoteSmart($two_letter_code) . ',
+Perm/Container/DB_Simple.php:                    ' . $this->dbc->quoteSmart($native_name) . '
+Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php:                  native_name     = ' . $this->dbc->quoteSmart($native_name) . '
+Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php:        $application_id = $this->dbc->nextId($this->prefix . 'applications', true);
+Perm/Container/DB_Simple.php:                    ' . $this->dbc->quoteSmart($define_name) . '
+Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php:        $area_id = $this->dbc->nextId($this->prefix . 'areas', true);
+Perm/Container/DB_Simple.php:                    ' . $this->dbc->quoteSmart($define_name) . ',
+Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php:        $areas = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php:        $result = $this->dbc->getCol($query);
+Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php:                  application_define_name = ' . $this->dbc->quoteSmart($define_name) . '
+Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php:                  area_define_name = ' . $this->dbc->quoteSmart($define_name) . '
+Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php:        $right_id = $this->dbc->nextId($this->prefix . 'rights', true);
+Perm/Container/DB_Simple.php:                    ' . $this->dbc->quoteSmart($define_name) . '
+Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php:                  right_define_name = ' . $this->dbc->quoteSmart($define_name) . '
+Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php:            $permId = $this->dbc->nextId($this->prefix . 'perm_users', true);
+Perm/Container/DB_Simple.php:                ' . $this->dbc->quoteSmart($authId) . ',
+Perm/Container/DB_Simple.php:                ' . $this->dbc->quoteSmart($authName) . '
+Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php:            $query .= ' auth_container_name=' . $this->dbc->quoteSmart($authName) . ',';
+Perm/Container/DB_Simple.php:                auth_user_id=' . $this->dbc->quoteSmart($authId) . '
+Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php:        $count = $this->dbc->getOne($query);
+Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php:        $applications = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+Perm/Container/DB_Simple.php:        $areas = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+Perm/Container/DB_Simple.php:        $langs = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+Perm/Container/DB_Simple.php:            $trans = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+Perm/Container/DB_Simple.php:        $rights = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php:            $res = $this->dbc->getAssoc($query, false, array(), DB_FETCHMODE_ASSOC);
+Perm/Container/DB_Simple.php:            $res = $this->dbc->getAll($query, array(), DB_FETCHMODE_ASSOC);
+Perm/Container/DB_Simple.php~:                auth_user_id = ' . $this->dbc->quoteSmart($authId).'
+Perm/Container/DB_Simple.php~:                auth_container_name = '.$this->dbc->quoteSmart($authName);
+Perm/Container/DB_Simple.php~:        $permId = $this->dbc->getOne($query);
+Perm/Container/DB_Simple.php~:                perm_user_id = '.$this->dbc->quoteSmart($permId);
+Perm/Container/DB_Simple.php~:                $authId = $this->dbc->getRow($query, DB_FETCHMODE_ASSOC);
+Perm/Container/DB_Simple.php~:            $langs = $this->dbc->getAssoc($query);
+Perm/Container/DB_Simple.php~:                    ' . $this->dbc->quoteSmart($name) . ',
+Perm/Container/DB_Simple.php~:                    ' . (($description === null) ? 'null' : $this->dbc->quoteSmart($description)) . '
+Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php~:                  name        = ' . $this->dbc->quoteSmart($name) . ',
+Perm/Container/DB_Simple.php~:                  description = ' . (($description === null) ? 'null' : $this->dbc->quoteSmart($description)) . '
+Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php~:        $translation = $this->dbc->getRow($query, DB_FETCHMODE_ASSOC);
+Perm/Container/DB_Simple.php~:        $language_id = $this->dbc->nextId($this->prefix . 'languages', true);
+Perm/Container/DB_Simple.php~:                    ' . $this->dbc->quoteSmart($two_letter_code) . ',
+Perm/Container/DB_Simple.php~:                    ' . $this->dbc->quoteSmart($native_name) . '
+Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php~:                  native_name     = ' . $this->dbc->quoteSmart($native_name) . '
+Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php~:        $application_id = $this->dbc->nextId($this->prefix . 'applications', true);
+Perm/Container/DB_Simple.php~:                    ' . $this->dbc->quoteSmart($define_name) . '
+Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php~:        $area_id = $this->dbc->nextId($this->prefix . 'areas', true);
+Perm/Container/DB_Simple.php~:                    ' . $this->dbc->quoteSmart($define_name) . ',
+Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php~:        $areas = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php~:        $result = $this->dbc->getCol($query);
+Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php~:                  application_define_name = ' . $this->dbc->quoteSmart($define_name) . '
+Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php~:                  area_define_name = ' . $this->dbc->quoteSmart($define_name) . '
+Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php~:        $right_id = $this->dbc->nextId($this->prefix . 'rights', true);
+Perm/Container/DB_Simple.php~:                    ' . $this->dbc->quoteSmart($define_name) . '
+Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php~:                  right_define_name = ' . $this->dbc->quoteSmart($define_name) . '
+Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php~:            $permId = $this->dbc->nextId($this->prefix . 'perm_users', true);
+Perm/Container/DB_Simple.php~:                ' . $this->dbc->quoteSmart($authId) . ',
+Perm/Container/DB_Simple.php~:                ' . $this->dbc->quoteSmart($authName) . '
+Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php~:            $query .= ' auth_container_name=' . $this->dbc->quoteSmart($authName) . ',';
+Perm/Container/DB_Simple.php~:                auth_user_id=' . $this->dbc->quoteSmart($authId) . '
+Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php~:        $count = $this->dbc->getOne($query);
+Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php~:        $applications = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+Perm/Container/DB_Simple.php~:        $areas = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+Perm/Container/DB_Simple.php~:        $langs = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+Perm/Container/DB_Simple.php~:            $trans = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+Perm/Container/DB_Simple.php~:        $rights = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+Perm/Container/DB_Simple.php~:            $res = $this->dbc->getAssoc($query, false, array(), DB_FETCHMODE_ASSOC);
+Perm/Container/DB_Simple.php~:            $res = $this->dbc->getAll($query, array(), DB_FETCHMODE_ASSOC);
+Perm/Container/MDB2_Complex.php:                  WHERE subgroup_id=' . $this->dbc->quote($subgroup_id, 'integer');
+Perm/Container/MDB2_Complex.php:        if (!is_null($this->dbc->queryOne($query))) {
+Perm/Container/MDB2_Complex.php:                    ' . $this->dbc->quote($group_id, 'integer') . ',
+Perm/Container/MDB2_Complex.php:                    ' . $this->dbc->quote($subgroup_id, 'integer') . '
+Perm/Container/MDB2_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Complex.php:                  WHERE subgroup_id=' . $this->dbc->quote($subgroup_id, 'integer');
+Perm/Container/MDB2_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Complex.php:                      group_id = ' . $this->dbc->quote($group_id, 'integer');
+Perm/Container/MDB2_Complex.php:            $result = $this->dbc->queryCol($query);
+Perm/Container/MDB2_Complex.php:                  group_id = ' . $this->dbc->quote($group_id, 'integer') . ' OR
+Perm/Container/MDB2_Complex.php:                  subgroup_id = ' . $this->dbc->quote($group_id, 'integer');
+Perm/Container/MDB2_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Complex.php:        $group_id = $this->dbc->queryOne($query);
+Perm/Container/MDB2_Complex.php:                  right_id = ' . $this->dbc->quote($right_id, 'integer');
+Perm/Container/MDB2_Complex.php:        $count = $this->dbc->queryOne($query);
+Perm/Container/MDB2_Complex.php:                  has_implied = ' . $this->dbc->quote(($count > 0), 'boolean') . '
+Perm/Container/MDB2_Complex.php:                  right_id = ' . $this->dbc->quote($right_id, 'integer');
+Perm/Container/MDB2_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Complex.php:                    ' . $this->dbc->quote($right_id, 'integer') . ',
+Perm/Container/MDB2_Complex.php:                    ' . $this->dbc->quote($implied_right_id, 'integer') . '
+Perm/Container/MDB2_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Complex.php:                  right_id         = ' . $this->dbc->quote($right_id, 'integer') . ' AND
+Perm/Container/MDB2_Complex.php:                  implied_right_id = ' . $this->dbc->quote($implied_right_id, 'integer');
+Perm/Container/MDB2_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Complex.php:                  right_id         = ' . $this->dbc->quote($right_id, 'integer');
+Perm/Container/MDB2_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Complex.php:            $query .= ' groupusers.perm_user_id = ' . $this->dbc->quote($options['where_user_id'], 'integer') . ' AND
+Perm/Container/MDB2_Complex.php:            $query .= ' groups.group_id = ' . $this->dbc->quote($options['where_group_id'], 'integer') . ' AND';
+Perm/Container/MDB2_Complex.php:            $query .= ' groups.owner_user_id = ' . $this->dbc->quote($options['where_owner_user_id'], 'integer') . ' AND';
+Perm/Container/MDB2_Complex.php:            $query .= ' groups.owner_group_id = ' . $this->dbc->quote($options['where_owner_group_id'], 'integer') . ' AND';
+Perm/Container/MDB2_Complex.php:                    translations.language_id = ' . $this->dbc->quote($this->_langs[$this->getCurrentLanguage()], 'integer');
+Perm/Container/MDB2_Complex.php:        $groups = $this->dbc->queryAll($query, null, MDB2_FETCHMODE_ASSOC);
+Perm/Container/MDB2_Complex.php:        $subgroups = $this->dbc->queryAll($query, null, MDB2_FETCHMODE_ASSOC);
+Perm/Container/MDB2_Complex.php:                . $this->dbc->quote($options['where_right_id'], 'integer') . ' AND';
+Perm/Container/MDB2_Complex.php:                . $this->dbc->quote($options['where_area_id'], 'integer') . ' AND';
+Perm/Container/MDB2_Complex.php:                . $this->dbc->quote($options['where_application_id'], 'integer') . ' AND';
+Perm/Container/MDB2_Complex.php:                . $this->dbc->quote($options['where_user_id'], 'integer') . ' AND
+Perm/Container/MDB2_Complex.php:                . $this->dbc->quote($options['where_group_id'], 'integer') . ' AND
+Perm/Container/MDB2_Complex.php:                    . $this->dbc->quote(($this->_langs[$this->getCurrentLanguage()]), 'integer') . '
+Perm/Container/MDB2_Complex.php:        $rights = $this->dbc->queryAll($query, null, MDB2_FETCHMODE_ASSOC);
+Perm/Container/MDB2_Complex.php:        $implied_rights = $this->dbc->queryAll($query, null, MDB2_FETCHMODE_ASSOC);
+Perm/Container/MDB2_Complex.php:                     WHERE groupusers.perm_user_id = ' . $this->dbc->quote($options['where_user_id'], 'integer');
+Perm/Container/MDB2_Complex.php:        $groups = $this->dbc->queryAll($query, null, MDB2_FETCHMODE_ASSOC);
+Perm/Container/MDB2_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Complex.php:                  right_id = ' . $this->dbc->quote($right_id, 'integer') . ' AND
+Perm/Container/MDB2_Complex.php:        $usercount = $this->dbc->queryOne($query);
+Perm/Container/MDB2_Complex.php:                  right_id = ' . $this->dbc->quote($right_id, 'integer') . ' AND
+Perm/Container/MDB2_Complex.php:        $groupcount = $this->dbc->queryOne($query);
+Perm/Container/MDB2_Complex.php:                  has_level = ' . $this->dbc->quote(($count > 0), 'boolean') . '
+Perm/Container/MDB2_Complex.php:                  right_id = ' . $this->dbc->quote($right_id, 'integer');
+Perm/Container/MDB2_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Complex.php:                  right_id      = ' . $this->dbc->quote($right_id, 'integer');
+Perm/Container/MDB2_Complex.php:        $count = $this->dbc->queryOne($query);
+Perm/Container/MDB2_Complex.php:                    ' . $this->dbc->quote($right_id, 'integer') . ',
+Perm/Container/MDB2_Complex.php:                    ' . $this->dbc->quote($right_level, 'integer') . '
+Perm/Container/MDB2_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Complex.php:                  group_id = ' . $this->dbc->quote($group_id, 'integer') . ' AND
+Perm/Container/MDB2_Complex.php:                  right_id = ' . $this->dbc->quote($right_id, 'integer');
+Perm/Container/MDB2_Complex.php:        $count = $this->dbc->queryOne($query);quote($right_level, 'integer');
+Perm/Container/MDB2_Complex.php:                    ' . $this->dbc->quote($group_id, 'integer') . ',
+Perm/Container/MDB2_Complex.php:                    ' . $this->dbc->quote($right_id, 'integer') . ',
+Perm/Container/MDB2_Complex.php:                    ' . $this->dbc->quote($right_level, 'integer') . '
+Perm/Container/MDB2_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Medium.php:        $group_id = $this->dbc->nextId($this->prefix . 'groups', true);
+Perm/Container/MDB2_Medium.php:                $val[] = $this->dbc->quoteSmart($v['value']);
+Perm/Container/MDB2_Medium.php:                    ' . $this->dbc->quote($group_id, 'integer') . ',
+Perm/Container/MDB2_Medium.php:                    ' . $this->dbc->quote($active, 'boolean') . '
+Perm/Container/MDB2_Medium.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Medium.php:                  group_id = ' . $this->dbc->quote($group_id, 'integer');
+Perm/Container/MDB2_Medium.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Medium.php:                  group_id = ' . $this->dbc->quote($group_id, 'integer');
+Perm/Container/MDB2_Medium.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Medium.php:                  group_id = ' . $this->dbc->quote($group_id, 'integer');
+Perm/Container/MDB2_Medium.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Medium.php:                      'is_active = ' . $this->dbc->quote($active, 'boolean');
+Perm/Container/MDB2_Medium.php:                        $v['name'] . ' = ' . $this->dbc->quoteSmart($v['value']);
+Perm/Container/MDB2_Medium.php:                        group_id = ' . $this->dbc->quote($group_id, 'integer');
+Perm/Container/MDB2_Medium.php:            $result = $this->dbc->query($query);
+Perm/Container/MDB2_Medium.php:                  is_active = '.$this->dbc->quote(true, 'boolean').'
+Perm/Container/MDB2_Medium.php:                  group_id = ' . $this->dbc->quote($group_id, 'integer');
+Perm/Container/MDB2_Medium.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Medium.php:                  is_active = ' . $this->dbc->quote(false, 'boolean') . '
+Perm/Container/MDB2_Medium.php:                  group_id = ' . $this->dbc->quote($group_id, 'integer');
+Perm/Container/MDB2_Medium.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Medium.php:                  group_id = ' . $this->dbc->quote($group_id, 'integer') . ' AND
+Perm/Container/MDB2_Medium.php:                  right_id = ' . $this->dbc->quote($right_id, 'integer');
+Perm/Container/MDB2_Medium.php:        $count = $this->dbc->queryOne($query);
+Perm/Container/MDB2_Medium.php:                    ' . $this->dbc->quote($group_id, 'integer') . ',
+Perm/Container/MDB2_Medium.php:                    ' . $this->dbc->quote($right_id, 'integer') . ', '.LIVEUSER_MAX_LEVEL.'
+Perm/Container/MDB2_Medium.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Medium.php:                  group_id = ' . $this->dbc->quote($group_id, 'integer');
+Perm/Container/MDB2_Medium.php:              right_id = ' . $this->dbc->quote($right_id, 'integer');
+Perm/Container/MDB2_Medium.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Medium.php:                  right_level = ' . $this->dbc->quote($right_level, 'integer') . '
+Perm/Container/MDB2_Medium.php:                  group_id = ' . $this->dbc->quote($group_id, 'integer') . ' AND
+Perm/Container/MDB2_Medium.php:                  right_id = ' . $this->dbc->quote($right_id, 'integer');
+Perm/Container/MDB2_Medium.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Medium.php:                    perm_user_id=' . $this->dbc->quote($permId, 'integer') . '
+Perm/Container/MDB2_Medium.php:                    group_id=' . $this->dbc->quote($group_id, 'integer');
+Perm/Container/MDB2_Medium.php:        $res = $this->dbc->queryOne($query);
+Perm/Container/MDB2_Medium.php:                    ' . $this->dbc->quote($group_id, 'integer') . ',
+Perm/Container/MDB2_Medium.php:                    ' . $this->dbc->quote($permId, 'integer') . '
+Perm/Container/MDB2_Medium.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Medium.php:                  perm_user_id  = ' . $this->dbc->quote($permId, 'integer');
+Perm/Container/MDB2_Medium.php:            $query =' AND group_id = ' . $this->dbc->quote($group_id, 'integer');
+Perm/Container/MDB2_Medium.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Medium.php:                      . $this->dbc->quote($options['where_user_id'], 'integer') . ' AND
+Perm/Container/MDB2_Medium.php:            $query .= ' groups.group_id = ' . $this->dbc->quote($options['where_group_id'], 'integer') . ' AND';
+Perm/Container/MDB2_Medium.php:            $query .= ' groups.owner_user_id = ' . $this->dbc->quote($options['where_owner_user_id'], 'integer') . ' AND';
+Perm/Container/MDB2_Medium.php:            $query .= ' groups.owner_group_id = ' . $this->dbc->quote($options['where_owner_group_id'], 'integer') . ' AND';
+Perm/Container/MDB2_Medium.php:                  translations.language_id = ' . $this->dbc->quote($this->_langs[$this->getCurrentLanguage()], 'integer');
+Perm/Container/MDB2_Medium.php:        $groups = $this->dbc->queryAll($query, null, MDB2_FETCHMODE_ASSOC);
+Perm/Container/MDB2_Simple.php:                auth_user_id = '.$this->dbc->quote($authId, 'text').'
+Perm/Container/MDB2_Simple.php:                auth_container_name = '.$this->dbc->quote($authName, 'text');
+Perm/Container/MDB2_Simple.php:        $permId = $this->dbc->queryOne($query);
+Perm/Container/MDB2_Simple.php:                perm_user_id = '.$this->dbc->quote($permId, 'text');
+Perm/Container/MDB2_Simple.php:                $authId = $this->dbc->queryRow($query, array('text', 'text'), MDB2_FETCHMODE_ASSOC);
+Perm/Container/MDB2_Simple.php:            $langs = $this->dbc->queryAll($query, null, MDB2_FETCHMODE_ASSOC, true);
+Perm/Container/MDB2_Simple.php:                    ' . $this->dbc->quote($section_id, 'integer') . ',
+Perm/Container/MDB2_Simple.php:                    ' . $this->dbc->quote($section_type, 'integer') . ',
+Perm/Container/MDB2_Simple.php:                    ' . $this->dbc->quote($this->_langs[$language], 'integer') . ',
+Perm/Container/MDB2_Simple.php:                    ' . $this->dbc->quote($name, 'text') . ',
+Perm/Container/MDB2_Simple.php:                    ' . $this->dbc->quote($description, 'text') . '
+Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Simple.php:                  name        = ' . $this->dbc->quote($name, 'text') . ',
+Perm/Container/MDB2_Simple.php:                  description = ' . $this->dbc->quote($description, 'text') . '
+Perm/Container/MDB2_Simple.php:                  section_id    = ' . $this->dbc->quote($section_id, 'integer') . ' AND
+Perm/Container/MDB2_Simple.php:                  section_type  = ' . $this->dbc->quote($section_type, 'integer') . ' AND
+Perm/Container/MDB2_Simple.php:                  language_id   = ' . $this->dbc->quote($this->_langs[$language], 'integer');
+Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Simple.php:                  section_id    = ' . $this->dbc->quote($section_id, 'integer') . ' AND
+Perm/Container/MDB2_Simple.php:                  section_type  = ' . $this->dbc->quote($section_type, 'integer');
+Perm/Container/MDB2_Simple.php:            $query .= ' AND language_id = ' . $this->dbc->quote($this->_langs[$language], 'integer');
+Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Simple.php:                  section_id    = ' . $this->dbc->quote($section_id, 'integer') . ' AND
+Perm/Container/MDB2_Simple.php:                  section_type  = ' . $this->dbc->quote($section_type, 'integer');
+Perm/Container/MDB2_Simple.php:        $translation = $this->dbc->queryRow($query, null, MDB2_FETCHMODE_ASSOC);
+Perm/Container/MDB2_Simple.php:        $language_id = $this->dbc->nextId($this->prefix . 'languages', true);
+Perm/Container/MDB2_Simple.php:                    ' . $this->dbc->quote($two_letter_code, 'text') . ',
+Perm/Container/MDB2_Simple.php:                    ' . $this->dbc->quote($native_name, 'text') . '
+Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Simple.php:                  language_id = ' . $this->dbc->quote($this->_langs[$language], 'integer');
+Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Simple.php:                  native_name     = ' . $this->dbc->quote($native_name, 'text') . '
+Perm/Container/MDB2_Simple.php:                  language_id     = ' . $this->dbc->quote($this->_langs[$language], 'integer');
+Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Simple.php:        $application_id = $this->dbc->nextId($this->prefix . 'applications', true);
+Perm/Container/MDB2_Simple.php:                    ' . $this->dbc->quote($application_id, 'integer') . ',
+Perm/Container/MDB2_Simple.php:                    ' . $this->dbc->quote($define_name, 'text') . '
+Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Simple.php:        $area_id = $this->dbc->nextId($this->prefix . 'areas', true);
+Perm/Container/MDB2_Simple.php:                    ' . $this->dbc->quote($area_id, 'integer') . ',
+Perm/Container/MDB2_Simple.php:                    ' . $this->dbc->quote($define_name, 'text') . ',
+Perm/Container/MDB2_Simple.php:                    ' . $this->dbc->quote($application_id, 'integer') . '
+Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Simple.php:                application_id=' . $this->dbc->quote($application_id, 'integer');
+Perm/Container/MDB2_Simple.php:        $areas = $this->dbc->queryAll($query, null, MDB2_FETCHMODE_ASSOC);
+Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Simple.php:        $result = $this->dbc->queryCol($query);
+Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Simple.php:                  area_id = ' . $this->dbc->quote($area_id, 'integer');
+Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Simple.php:                  application_define_name = ' . $this->dbc->quote($define_name, 'text') . '
+Perm/Container/MDB2_Simple.php:                  application_id = ' . $this->dbc->quote($application_id, 'integer');
+Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Simple.php:                  application_id   = ' . $this->dbc->quote($application_id, 'integer') . ',
+Perm/Container/MDB2_Simple.php:                  area_define_name = ' . $this->dbc->quote($define_name, 'text') . '
+Perm/Container/MDB2_Simple.php:                  area_id = ' . $this->dbc->quote($area_id, 'integer');
+Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Simple.php:        $right_id = $this->dbc->nextId($this->prefix . 'rights', true);
+Perm/Container/MDB2_Simple.php:                    ' . $this->dbc->quote($right_id, 'integer') . ',
+Perm/Container/MDB2_Simple.php:                    ' . $this->dbc->quote($area_id, 'integer') . ',
+Perm/Container/MDB2_Simple.php:                    ' . $this->dbc->quote($define_name, 'text') . '
+Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Simple.php:                  right_id = ' . $this->dbc->quote($right_id, 'integer');
+Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Simple.php:                  right_id = ' . $this->dbc->quote($right_id, 'integer');
+Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Simple.php:                  right_id = ' . $this->dbc->quote($right_id, 'integer');
+Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Simple.php:                  area_id           = ' . $this->dbc->quote($area_id, 'integer') . ',
+Perm/Container/MDB2_Simple.php:                  right_define_name = ' . $this->dbc->quote($define_name, 'text') . '
+Perm/Container/MDB2_Simple.php:                  right_id = ' . $this->dbc->quote($right_id, 'integer');
+Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Simple.php:            $permId = $this->dbc->nextId($this->prefix . 'perm_users', true);
+Perm/Container/MDB2_Simple.php:                ' . $this->dbc->quote($permId, 'integer') . ',
+Perm/Container/MDB2_Simple.php:                ' . $this->dbc->quote($authId, 'text') . ',
+Perm/Container/MDB2_Simple.php:                ' . $this->dbc->quote($type, 'integer') . ',
+Perm/Container/MDB2_Simple.php:                ' . $this->dbc->quote($authName, 'text') . '
+Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Simple.php:            $query .= ' auth_container_name=' . $this->dbc->quote($authName, 'text') . ',';
+Perm/Container/MDB2_Simple.php:                auth_user_id=' . $this->dbc->quote($authId, 'text') . '
+Perm/Container/MDB2_Simple.php:                perm_user_id=' . $this->dbc->quote($permId, 'integer');
+Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Simple.php:                  perm_user_id = ' . $this->dbc->quote($right_id, 'integer') . '
+Perm/Container/MDB2_Simple.php:                  right_id     = ' . $this->dbc->quote($right_id, 'integer');
+Perm/Container/MDB2_Simple.php:        $count = $this->dbc->queryOne($query);
+Perm/Container/MDB2_Simple.php:                    ' . $this->dbc->quote($permId, 'integer') . ',
+Perm/Container/MDB2_Simple.php:                    ' . $this->dbc->quote($right_id, 'integer') . ', '.LIVEUSER_MAX_LEVEL.'
+Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Simple.php:                  right_level = ' . $this->dbc->quote($right_level, 'integer') . '
+Perm/Container/MDB2_Simple.php:                  perm_user_id = ' . $this->dbc->quote($permId, 'integer') . '
+Perm/Container/MDB2_Simple.php:                  right_id = ' . $this->dbc->quote($right_id, 'integer');
+Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Simple.php:                  perm_user_id = ' . $this->dbc->quote($permId, 'integer');
+Perm/Container/MDB2_Simple.php:              right_id = ' . $this->dbc->quote($right_id, 'integer');
+Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Simple.php:                . $this->dbc->quote($options['where_application_id'], 'integer') . ' AND ';
+Perm/Container/MDB2_Simple.php:                    . $this->dbc->quote($this->_langs[$this->getCurrentLanguage()], 'integer') . '
+Perm/Container/MDB2_Simple.php:        $applications = $this->dbc->queryAll($query, null, MDB2_FETCHMODE_ASSOC);
+Perm/Container/MDB2_Simple.php:                  $query .= ' areas.area_id=' . $this->dbc->quote($options['where_area_id'], 'integer') . ' AND';
+Perm/Container/MDB2_Simple.php:                  $query .= ' areas.application_id=' . $this->dbc->quote($options['where_application_id'], 'integer') . ' AND';
+Perm/Container/MDB2_Simple.php:                  translations.language_id = ' . $this->dbc->quote($this->_langs[$this->getCurrentLanguage()], 'integer') . '
+Perm/Container/MDB2_Simple.php:        $areas = $this->dbc->queryAll($query, null, MDB2_FETCHMODE_ASSOC);
+Perm/Container/MDB2_Simple.php:            $query .= ' WHERE languages.language_id = ' . $this->dbc->quote($options['where_language_id'], 'integer');
+Perm/Container/MDB2_Simple.php:        $langs = $this->dbc->queryAll($query, null, MDB2_FETCHMODE_ASSOC);
+Perm/Container/MDB2_Simple.php:            $trans = $this->dbc->queryAll($query, null, MDB2_FETCHMODE_ASSOC);
+Perm/Container/MDB2_Simple.php:                . $this->dbc->quote($options['where_right_id'], 'integer') . ' AND';
+Perm/Container/MDB2_Simple.php:                . $this->dbc->quote($options['where_area_id'], 'integer') . ' AND';
+Perm/Container/MDB2_Simple.php:                . $this->dbc->quote($options['where_application_id'], 'integer') . ' AND';
+Perm/Container/MDB2_Simple.php:                . $this->dbc->quote($options['where_user_id'], 'integer') . ' AND
+Perm/Container/MDB2_Simple.php:                . $this->dbc->quote($options['where_group_id'], 'integer') . ' AND
+Perm/Container/MDB2_Simple.php:                    . $this->dbc->quote($this->_langs[$this->getCurrentLanguage()], 'integer') . '
+Perm/Container/MDB2_Simple.php:        $rights = $this->dbc->queryAll($query, null, MDB2_FETCHMODE_ASSOC);
+Perm/Container/MDB2_Simple.php:                ' . $permId . ', ' . $this->dbc->quote($area_id, 'integer') . '
+Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Simple.php:                area_id= ' . $this->dbc->quote($area_id, 'integer');
+Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB2_Simple.php:            $filter_array[] = 'groupusers.group_id IN (' . $this->dbc->datatype->implodeArray($filters['group_id'], 'integer') . ')';
+Perm/Container/MDB2_Simple.php:        $res = $this->dbc->queryAll($query, $types, MDB2_FETCHMODE_ASSOC, $rekey);
+Perm/Container/MDB_Complex.php:                  WHERE subgroup_id=' . $this->dbc->getValue('integer', $subgroup_id);
+Perm/Container/MDB_Complex.php:        if (!is_null($this->dbc->queryOne($query))) {
+Perm/Container/MDB_Complex.php:                    ' . $this->dbc->getValue('integer', $group_id) . ',
+Perm/Container/MDB_Complex.php:                    ' . $this->dbc->getValue('integer', $subgroup_id) . '
+Perm/Container/MDB_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Complex.php:                  WHERE subgroup_id=' . $this->dbc->getValue('integer', $subgroup_id);
+Perm/Container/MDB_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Complex.php:                      group_id = ' . $this->dbc->getValue('integer', $group_id);
+Perm/Container/MDB_Complex.php:            $result = $this->dbc->queryCol($query);
+Perm/Container/MDB_Complex.php:                  group_id = ' . $this->dbc->getValue('integer', $group_id) . ' OR
+Perm/Container/MDB_Complex.php:                  subgroup_id = ' . $this->dbc->getValue('integer', $group_id);
+Perm/Container/MDB_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Complex.php:        $group_id = $this->dbc->queryOne($query);
+Perm/Container/MDB_Complex.php:                  right_id = ' . $this->dbc->getValue('integer', $right_id);
+Perm/Container/MDB_Complex.php:        $count = $this->dbc->queryOne($query);
+Perm/Container/MDB_Complex.php:                  has_implied = ' . $this->dbc->getValue('boolean', ($count > 0)) . '
+Perm/Container/MDB_Complex.php:                  right_id = ' . $this->dbc->getValue('integer', $right_id);
+Perm/Container/MDB_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Complex.php:                    ' . $this->dbc->getValue('integer', $right_id) . ',
+Perm/Container/MDB_Complex.php:                    ' . $this->dbc->getValue('integer', $implied_right_id) . '
+Perm/Container/MDB_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Complex.php:                  right_id         = ' . $this->dbc->getValue('integer', $right_id) . ' AND
+Perm/Container/MDB_Complex.php:                  implied_right_id = ' . $this->dbc->getValue('integer', $implied_right_id);
+Perm/Container/MDB_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Complex.php:                  right_id         = ' . $this->dbc->getValue('integer', $right_id);
+Perm/Container/MDB_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Complex.php:            $query .= ' groupusers.perm_user_id = ' . $this->dbc->getValue('integer', $options['where_user_id']) . ' AND
+Perm/Container/MDB_Complex.php:            $query .= ' groups.group_id = ' . $this->dbc->getValue('integer', $options['where_group_id']) . ' AND';
+Perm/Container/MDB_Complex.php:            $query .= ' groups.owner_user_id = ' . $this->dbc->getValue('integer', $options['where_owner_user_id']) . ' AND';
+Perm/Container/MDB_Complex.php:            $query .= ' groups.owner_group_id = ' . $this->dbc->getValue('integer', $options['where_owner_group_id']) . ' AND';
+Perm/Container/MDB_Complex.php:                    translations.language_id = ' . $this->dbc->getValue('integer', $this->_langs[$this->getCurrentLanguage()]);
+Perm/Container/MDB_Complex.php:        $groups = $this->dbc->queryAll($query, null, MDB_FETCHMODE_ASSOC);
+Perm/Container/MDB_Complex.php:        $subgroups = $this->dbc->queryAll($query, null, MDB_FETCHMODE_ASSOC);
+Perm/Container/MDB_Complex.php:                . $this->dbc->getValue('integer', $options['where_right_id']) . ' AND';
+Perm/Container/MDB_Complex.php:                . $this->dbc->getValue('integer', $options['where_area_id']) . ' AND';
+Perm/Container/MDB_Complex.php:                . $this->dbc->getValue('integer', $options['where_application_id']) . ' AND';
+Perm/Container/MDB_Complex.php:                . $this->dbc->getValue('integer', $options['where_user_id']) . ' AND
+Perm/Container/MDB_Complex.php:                . $this->dbc->getValue('integer', $options['where_group_id']) . ' AND
+Perm/Container/MDB_Complex.php:                    . $this->dbc->getValue('integer', ($this->_langs[$this->getCurrentLanguage()])) . '
+Perm/Container/MDB_Complex.php:        $rights = $this->dbc->queryAll($query, null, MDB_FETCHMODE_ASSOC);
+Perm/Container/MDB_Complex.php:        $implied_rights = $this->dbc->queryAll($query, null, MDB_FETCHMODE_ASSOC);
+Perm/Container/MDB_Complex.php:                     WHERE groupusers.perm_user_id = ' . $this->dbc->getValue('integer', $options['where_user_id']);
+Perm/Container/MDB_Complex.php:        $groups = $this->dbc->queryAll($query, null, MDB_FETCHMODE_ASSOC);
+Perm/Container/MDB_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Complex.php:                  right_id = ' . $this->dbc->getValue('integer', $right_id) . ' AND
+Perm/Container/MDB_Complex.php:        $usercount = $this->dbc->queryOne($query);
+Perm/Container/MDB_Complex.php:                  right_id = ' . $this->dbc->getValue('integer', $right_id) . ' AND
+Perm/Container/MDB_Complex.php:        $groupcount = $this->dbc->queryOne($query);
+Perm/Container/MDB_Complex.php:                  has_level = ' . $this->dbc->getValue('boolean', ($count > 0)) . '
+Perm/Container/MDB_Complex.php:                  right_id = ' . $this->dbc->getValue('integer', $right_id);
+Perm/Container/MDB_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Complex.php:                  right_id      = ' . $this->dbc->getValue('integer', $right_id);
+Perm/Container/MDB_Complex.php:        $count = $this->dbc->queryOne($query);
+Perm/Container/MDB_Complex.php:                    ' . $this->dbc->getValue('integer', $right_id) . ',
+Perm/Container/MDB_Complex.php:                    ' . $this->dbc->getValue('integer', $right_level) . '
+Perm/Container/MDB_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Complex.php:                  group_id = ' . $this->dbc->getValue('integer', $group_id) . ' AND
+Perm/Container/MDB_Complex.php:                  right_id = ' . $this->dbc->getValue('integer', $right_id);
+Perm/Container/MDB_Complex.php:        $count = $this->dbc->queryOne($query);
+Perm/Container/MDB_Complex.php:                    ' . $this->dbc->getValue('integer', $group_id) . ',
+Perm/Container/MDB_Complex.php:                    ' . $this->dbc->getValue('integer', $right_id) . ',
+Perm/Container/MDB_Complex.php:                    ' . $this->dbc->getValue('integer', $right_level) . '
+Perm/Container/MDB_Complex.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Medium.php:        $group_id = $this->dbc->nextId($this->prefix . 'groups', true);
+Perm/Container/MDB_Medium.php:                $val[] = $this->dbc->quoteSmart($v['value']);
+Perm/Container/MDB_Medium.php:                    ' . $this->dbc->getValue('integer', $group_id) . ',
+Perm/Container/MDB_Medium.php:                    ' . $this->dbc->getValue('boolean', $active) . '
+Perm/Container/MDB_Medium.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Medium.php:                  group_id = ' . $this->dbc->getValue('integer', $group_id);
+Perm/Container/MDB_Medium.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Medium.php:                  group_id = ' . $this->dbc->getValue('integer', $group_id);
+Perm/Container/MDB_Medium.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Medium.php:                  group_id = ' . $this->dbc->getValue('integer', $group_id);
+Perm/Container/MDB_Medium.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Medium.php:                      'is_active      = ' . $this->dbc->getValue('boolean', $active) ;
+Perm/Container/MDB_Medium.php:                        $v['name'] . ' = ' . $this->dbc->quoteSmart($v['value']);
+Perm/Container/MDB_Medium.php:                        group_id = ' . $this->dbc->getValue('integer', $group_id);
+Perm/Container/MDB_Medium.php:            $result = $this->dbc->query($query);
+Perm/Container/MDB_Medium.php:                  is_active = '.$this->dbc->getValue('boolean', true).'
+Perm/Container/MDB_Medium.php:                  group_id = ' . $this->dbc->getValue('integer', $group_id);
+Perm/Container/MDB_Medium.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Medium.php:                  is_active = ' . $this->dbc->getValue('boolean', false) . '
+Perm/Container/MDB_Medium.php:                  group_id = ' . $this->dbc->getValue('integer', $group_id);
+Perm/Container/MDB_Medium.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Medium.php:                  group_id = ' . $this->dbc->getValue('integer', $group_id) . ' AND
+Perm/Container/MDB_Medium.php:                  right_id = ' . $this->dbc->getValue('integer', $right_id);
+Perm/Container/MDB_Medium.php:        $count = $this->dbc->queryOne($query);
+Perm/Container/MDB_Medium.php:                    ' . $this->dbc->getValue('integer', $group_id) . ',
+Perm/Container/MDB_Medium.php:                    ' . $this->dbc->getValue('integer', $right_id) . ', '.LIVEUSER_MAX_LEVEL.'
+Perm/Container/MDB_Medium.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Medium.php:                  group_id = ' . $this->dbc->getValue('integer', $group_id);
+Perm/Container/MDB_Medium.php:              right_id = ' . $this->dbc->getValue('integer', $right_id);
+Perm/Container/MDB_Medium.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Medium.php:                  right_level = ' . $this->dbc->getValue('integer', $right_level) . '
+Perm/Container/MDB_Medium.php:                  group_id = ' . $this->dbc->getValue('integer', $group_id) . ' AND
+Perm/Container/MDB_Medium.php:                  right_id = ' . $this->dbc->getValue('integer', $right_id);
+Perm/Container/MDB_Medium.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Medium.php:                    perm_user_id=' . $this->dbc->getValue('integer', $permId) . '
+Perm/Container/MDB_Medium.php:                    group_id=' . $this->dbc->getValue('integer', $group_id);
+Perm/Container/MDB_Medium.php:        $res = $this->dbc->queryOne($query);
+Perm/Container/MDB_Medium.php:                    ' . $this->dbc->getValue('integer', $group_id) . ',
+Perm/Container/MDB_Medium.php:                    ' . $this->dbc->getValue('integer', $permId) . '
+Perm/Container/MDB_Medium.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Medium.php:                  perm_user_id  = ' . $this->dbc->getValue('integer', $permId);
+Perm/Container/MDB_Medium.php:            $query =' AND group_id = ' . $this->dbc->getValue('integer', $group_id);
+Perm/Container/MDB_Medium.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Medium.php:                      . $this->dbc->getValue('integer', $options['where_user_id']) . ' AND
+Perm/Container/MDB_Medium.php:            $query .= ' groups.group_id = ' . $this->dbc->getValue('integer', $options['where_group_id']) . ' AND';
+Perm/Container/MDB_Medium.php:            $query .= ' groups.owner_user_id = ' . $this->dbc->getValue('integer', $options['where_owner_user_id']) . ' AND';
+Perm/Container/MDB_Medium.php:            $query .= ' groups.owner_group_id = ' . $this->dbc->getValue('integer', $options['where_owner_group_id']) . ' AND';
+Perm/Container/MDB_Medium.php:                  translations.language_id = ' . $this->dbc->getValue('integer', $this->_langs[$this->getCurrentLanguage()]);
+Perm/Container/MDB_Medium.php:        $groups = $this->dbc->queryAll($query, null, MDB_FETCHMODE_ASSOC);
+Perm/Container/MDB_Simple.php:                auth_user_id = '.$this->dbc->getValue('text', $authId).'
+Perm/Container/MDB_Simple.php:                auth_container_name = '.$this->dbc->getValue('text', $authName);
+Perm/Container/MDB_Simple.php:        $permId = $this->dbc->queryOne($query);
+Perm/Container/MDB_Simple.php:                perm_user_id = '.$this->dbc->getValue('text', $permId);
+Perm/Container/MDB_Simple.php:                $authId = $this->dbc->queryRow($query, array('text', 'text'), MDB_FETCHMODE_ASSOC);
+Perm/Container/MDB_Simple.php:            $langs = $this->dbc->queryAll($query, null, MDB_FETCHMODE_ASSOC, true);
+Perm/Container/MDB_Simple.php:                    ' . $this->dbc->getValue('integer', $section_id) . ',
+Perm/Container/MDB_Simple.php:                    ' . $this->dbc->getValue('integer', $section_type) . ',
+Perm/Container/MDB_Simple.php:                    ' . $this->dbc->getValue('integer', $this->_langs[$language]) . ',
+Perm/Container/MDB_Simple.php:                    ' . $this->dbc->getValue('text', $name) . ',
+Perm/Container/MDB_Simple.php:                    ' . $this->dbc->getValue('text', $description) . '
+Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Simple.php:                  name        = ' . $this->dbc->getValue('text', $name) . ',
+Perm/Container/MDB_Simple.php:                  description = ' . $this->dbc->getValue('text', $description) . '
+Perm/Container/MDB_Simple.php:                  section_id    = ' . $this->dbc->getValue('integer', $section_id) . ' AND
+Perm/Container/MDB_Simple.php:                  section_type  = ' . $this->dbc->getValue('integer', $section_type) . ' AND
+Perm/Container/MDB_Simple.php:                  language_id   = ' . $this->dbc->getValue('integer', $this->_langs[$language]);
+Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Simple.php:                  section_id    = ' . $this->dbc->getValue('integer', $section_id) . ' AND
+Perm/Container/MDB_Simple.php:                  section_type  = ' . $this->dbc->getValue('integer', $section_type);
+Perm/Container/MDB_Simple.php:            $query .= ' AND language_id = ' . $this->dbc->getValue('integer', $this->_langs[$language]);
+Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Simple.php:                  section_id    = ' . $this->dbc->getValue('integer', $section_id) . ' AND
+Perm/Container/MDB_Simple.php:                  section_type  = ' . $this->dbc->getValue('integer', $section_type);
+Perm/Container/MDB_Simple.php:        $translation = $this->dbc->queryRow($query, null, MDB_FETCHMODE_ASSOC);
+Perm/Container/MDB_Simple.php:        $language_id = $this->dbc->nextId($this->prefix . 'languages', true);
+Perm/Container/MDB_Simple.php:                    ' . $this->dbc->getValue('text', $two_letter_code) . ',
+Perm/Container/MDB_Simple.php:                    ' . $this->dbc->getValue('text', $native_name) . '
+Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Simple.php:                  language_id = ' . $this->dbc->getValue('integer', $this->_langs[$language]);
+Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Simple.php:                  native_name     = ' . $this->dbc->getValue('text', $native_name) . '
+Perm/Container/MDB_Simple.php:                  language_id     = ' . $this->dbc->getValue('integer', $this->_langs[$language]);
+Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Simple.php:        $application_id = $this->dbc->nextId($this->prefix . 'applications', true);
+Perm/Container/MDB_Simple.php:                    ' . $this->dbc->getValue('integer', $application_id) . ',
+Perm/Container/MDB_Simple.php:                    ' . $this->dbc->getValue('text', $define_name) . '
+Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Simple.php:        $area_id = $this->dbc->nextId($this->prefix . 'areas', true);
+Perm/Container/MDB_Simple.php:                    ' . $this->dbc->getValue('integer', $area_id) . ',
+Perm/Container/MDB_Simple.php:                    ' . $this->dbc->getValue('text', $define_name) . ',
+Perm/Container/MDB_Simple.php:                    ' . $this->dbc->getValue('integer', $application_id) . '
+Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Simple.php:                application_id=' . $this->dbc->getValue('integer', $application_id);
+Perm/Container/MDB_Simple.php:        $areas = $this->dbc->queryAll($query, null, MDB_FETCHMODE_ASSOC);
+Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Simple.php:        $result = $this->dbc->queryCol($query);
+Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Simple.php:                  area_id = ' . $this->dbc->getValue('integer', $area_id);
+Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Simple.php:                  application_define_name = ' . $this->dbc->getValue('text', $define_name) . '
+Perm/Container/MDB_Simple.php:                  application_id = ' . $this->dbc->getValue('integer', $application_id);
+Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Simple.php:                  application_id   = ' . $this->dbc->getValue('integer', $application_id) . ',
+Perm/Container/MDB_Simple.php:                  area_define_name = ' . $this->dbc->getValue('text', $define_name) . '
+Perm/Container/MDB_Simple.php:                  area_id = ' . $this->dbc->getValue('integer', $area_id);
+Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Simple.php:        $right_id = $this->dbc->nextId($this->prefix . 'rights', true);
+Perm/Container/MDB_Simple.php:                    ' . $this->dbc->getValue('integer', $right_id) . ',
+Perm/Container/MDB_Simple.php:                    ' . $this->dbc->getValue('integer', $area_id) . ',
+Perm/Container/MDB_Simple.php:                    ' . $this->dbc->getValue('text', $define_name) . '
+Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Simple.php:                  right_id = ' . $this->dbc->getValue('integer', $right_id);
+Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Simple.php:                  right_id = ' . $this->dbc->getValue('integer', $right_id);
+Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Simple.php:                  right_id = ' . $this->dbc->getValue('integer', $right_id);
+Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Simple.php:                  area_id           = ' . $this->dbc->getValue('integer', $area_id) . ',
+Perm/Container/MDB_Simple.php:                  right_define_name = ' . $this->dbc->getValue('text', $define_name) . '
+Perm/Container/MDB_Simple.php:                  right_id = ' . $this->dbc->getValue('integer', $right_id);
+Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Simple.php:            $permId = $this->dbc->nextId($this->prefix . 'perm_users', true);
+Perm/Container/MDB_Simple.php:                ' . $this->dbc->getValue('integer', $permId) . ',
+Perm/Container/MDB_Simple.php:                ' . $this->dbc->getValue('text', $authId) . ',
+Perm/Container/MDB_Simple.php:                ' . $this->dbc->getValue('integer', $type) . ',
+Perm/Container/MDB_Simple.php:                ' . $this->dbc->getValue('text', $authName) . '
+Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Simple.php:            $query .= ' auth_container_name=' . $this->dbc->getValue('text', $authName) . ',';
+Perm/Container/MDB_Simple.php:                auth_user_id=' . $this->dbc->getValue('text', $authId) . '
+Perm/Container/MDB_Simple.php:                perm_user_id=' . $this->dbc->getValue('integer', $permId);
+Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Simple.php:                  perm_user_id = ' . $this->dbc->getValue('integer', $right_id) . '
+Perm/Container/MDB_Simple.php:                  right_id     = ' . $this->dbc->getValue('integer', $right_id);
+Perm/Container/MDB_Simple.php:        $count = $this->dbc->queryOne($query);
+Perm/Container/MDB_Simple.php:                    ' . $this->dbc->getValue('integer', $permId) . ',
+Perm/Container/MDB_Simple.php:                    ' . $this->dbc->getValue('integer', $right_id) . ', '.LIVEUSER_MAX_LEVEL.'
+Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Simple.php:                  right_level = ' . $this->dbc->getValue('integer', $right_level) . '
+Perm/Container/MDB_Simple.php:                  perm_user_id = ' . $this->dbc->getValue('integer', $permId) . '
+Perm/Container/MDB_Simple.php:                  right_id = ' . $this->dbc->getValue('integer', $right_id);
+Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Simple.php:                  perm_user_id = ' . $this->dbc->getValue('integer', $permId);
+Perm/Container/MDB_Simple.php:              right_id = ' . $this->dbc->getValue('integer', $right_id);
+Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Simple.php:                . $this->dbc->getValue('integer', $options['where_application_id']) . ' AND ';
+Perm/Container/MDB_Simple.php:                    . $this->dbc->getValue('integer', $this->_langs[$this->getCurrentLanguage()]) . '
+Perm/Container/MDB_Simple.php:        $applications = $this->dbc->queryAll($query, null, MDB_FETCHMODE_ASSOC);
+Perm/Container/MDB_Simple.php:                  $query .= ' areas.area_id=' . $this->dbc->getValue('integer', $options['where_area_id']) . ' AND';
+Perm/Container/MDB_Simple.php:                  $query .= ' areas.application_id=' . $this->dbc->getValue('integer', $options['where_application_id']) . ' AND';
+Perm/Container/MDB_Simple.php:                  translations.language_id = ' . $this->dbc->getValue('integer', $this->_langs[$this->getCurrentLanguage()]) . '
+Perm/Container/MDB_Simple.php:        $areas = $this->dbc->queryAll($query, null, MDB_FETCHMODE_ASSOC);
+Perm/Container/MDB_Simple.php:            $query .= ' WHERE languages.language_id = ' . $this->dbc->getValue('integer', $options['where_language_id']);
+Perm/Container/MDB_Simple.php:        $langs = $this->dbc->queryAll($query, null, MDB_FETCHMODE_ASSOC);
+Perm/Container/MDB_Simple.php:            $trans = $this->dbc->queryAll($query, null, MDB_FETCHMODE_ASSOC);
+Perm/Container/MDB_Simple.php:                . $this->dbc->getValue('integer', $options['where_right_id']) . ' AND';
+Perm/Container/MDB_Simple.php:                . $this->dbc->getValue('integer', $options['where_area_id']) . ' AND';
+Perm/Container/MDB_Simple.php:                . $this->dbc->getValue('integer', $options['where_application_id']) . ' AND';
+Perm/Container/MDB_Simple.php:                . $this->dbc->getValue('integer', $options['where_user_id']) . ' AND
+Perm/Container/MDB_Simple.php:                . $this->dbc->getValue('integer', $options['where_group_id']) . ' AND
+Perm/Container/MDB_Simple.php:                    . $this->dbc->getValue('integer', $this->_langs[$this->getCurrentLanguage()]) . '
+Perm/Container/MDB_Simple.php:        $rights = $this->dbc->queryAll($query, null, MDB_FETCHMODE_ASSOC);
+Perm/Container/MDB_Simple.php:                ' . $permId . ', ' . $this->dbc->getValue('integer', $area_id) . '
+Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Simple.php:                area_id= ' . $this->dbc->getValue('integer', $area_id);
+Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+Perm/Container/MDB_Simple.php:        $res = $this->dbc->queryAll($query, $types, MDB_FETCHMODE_ASSOC, $rekey);
+getAssoc:Auth/Container/DB.php:            $authId = $this->dbc->nextId($this->authTable, true);
+getAssoc:Auth/Container/DB.php:            $val[] = $this->dbc->quoteSmart($active);
+getAssoc:Auth/Container/DB.php:                $val[] = $this->dbc->quoteSmart($v['value']);
+getAssoc:Auth/Container/DB.php:                ' . $this->dbc->quoteSmart($authId) . ',
+getAssoc:Auth/Container/DB.php:                ' . $this->dbc->quoteSmart($handle) . ',
+getAssoc:Auth/Container/DB.php:                ' . $this->dbc->quoteSmart($this->encryptPW($password)) . '
+getAssoc:Auth/Container/DB.php:        $result = $this->dbc->query($query);
+getAssoc:Auth/Container/DB.php:                auth_user_id = '.$this->dbc->quoteSmart($authId);
+getAssoc:Auth/Container/DB.php:        $result = $this->dbc->query($query);
+getAssoc:Auth/Container/DB.php:                $this->authTableCols['handle'] . ' = ' . $this->dbc->quoteSmart($handle);
+getAssoc:Auth/Container/DB.php:                    . $this->dbc->quoteSmart($this->encryptPW($password));
+getAssoc:Auth/Container/DB.php:                $this->authTableCols['is_active'] . ' = ' . $this->dbc->quoteSmart($active);
+getAssoc:Auth/Container/DB.php:                    $v['name'] . ' = ' . $this->dbc->quoteSmart($v['value']);
+getAssoc:Auth/Container/DB.php:            ' . $this->authTableCols['user_id'] . ' = ' . $this->dbc->quoteSmart($authId);
+getAssoc:Auth/Container/DB.php:        $result = $this->dbc->query($query);
+getAssoc:Auth/Container/DB.php:                    $where .= " $f" . $v['op'] . $this->dbc->quoteSmart($v['value']) . $cond;
+getAssoc:Auth/Container/DB.php:            $res = $this->dbc->getAssoc($query, false, array(), DB_FETCHMODE_ASSOC);
+getAssoc:Auth/Container/DB.php:            $res = $this->dbc->getAll($query, array(), DB_FETCHMODE_ASSOC);
+getAssoc:Auth/Container/MDB.php:            $authId = $this->dbc->nextId($this->authTable, true);
+getAssoc:Auth/Container/MDB.php:            $val[] = $this->dbc->getValue($this->authTableCols['is_active']['type'], $active);
+getAssoc:Auth/Container/MDB.php:            $val[] = $this->dbc->getValue($this->authTableCols['owner_user_id']['type'], $owner_user_id);
+getAssoc:Auth/Container/MDB.php:            $val[] = $this->dbc->getValue($this->authTableCols['owner_group_id']['type'], $owner_group_id);
+getAssoc:Auth/Container/MDB.php:                $val[] = $this->dbc->getValue($v['type'], $v['value']);
+getAssoc:Auth/Container/MDB.php:                ' . $this->dbc->getValue($this->authTableCols['user_id']['type'], $authId) . ',
+getAssoc:Auth/Container/MDB.php:                ' . $this->dbc->getValue($this->authTableCols['handle']['type'], $handle) . ',
+getAssoc:Auth/Container/MDB.php:                ' . $this->dbc->getValue($this->authTableCols['passwd']['type'], $this->encryptPW($password)) . '
+getAssoc:Auth/Container/MDB.php:        $result = $this->dbc->query($query);
+getAssoc:Auth/Container/MDB.php:                auth_user_id = ' . $this->dbc->getValue($this->authTableCols['user_id']['type'], $authId);
+getAssoc:Auth/Container/MDB.php:        $result = $this->dbc->query($query);
+getAssoc:Auth/Container/MDB.php:                $this->authTableCols['handle']['name'] . ' = ' . $this->dbc->getValue($this->authTableCols['handle']['type'], $handle);
+getAssoc:Auth/Container/MDB.php:                $this->authTableCols['passwd']['name'] . ' = ' . $this->dbc->getValue($this->authTableCols['passwd']['type'], $this->encryptPW($password));
+getAssoc:Auth/Container/MDB.php:                $this->authTableCols['is_active']['name'] . ' = ' . $this->dbc->getValue($this->authTableCols['is_active']['type'], $active);
+getAssoc:Auth/Container/MDB.php:                $this->authTableCols['owner_user_id'] . ' = ' . $this->dbc->getValue($this->authTableCols['owner_user_id']['type'], $owner_user_id);
+getAssoc:Auth/Container/MDB.php:                $this->authTableCols['owner_group_id'] . ' = ' . $this->dbc->getValue($this->authTableCols['owner_group_id']['type'], $owner_group_id);
+getAssoc:Auth/Container/MDB.php:                        $this->dbc->getValue($v['type'], $v['value']);
+getAssoc:Auth/Container/MDB.php:            ' . $this->authTableCols['user_id']['name'] . '=' . $this->dbc->getValue($this->authTableCols['user_id']['type'], $authId);
+getAssoc:Auth/Container/MDB.php:        $result = $this->dbc->query($query);
+getAssoc:Auth/Container/MDB.php:                    $where .= " $f" . $v['op'] . $this->dbc->getValue($v['type'], $v['value']) . $cond;
+getAssoc:Auth/Container/MDB.php:        $res = $this->dbc->queryAll($query, $types, MDB_FETCHMODE_ASSOC, $rekey);
+getAssoc:Auth/Container/MDB2.php:            $authId = $this->dbc->nextId($this->authTable, true);
+getAssoc:Auth/Container/MDB2.php:            $val[] = $this->dbc->quote($active, $this->authTableCols['is_active']['type']);
+getAssoc:Auth/Container/MDB2.php:            $val[] = $this->dbc->quote($owner_user_id, $this->authTableCols['owner_user_id']['type']);
+getAssoc:Auth/Container/MDB2.php:            $val[] = $this->dbc->quote($owner_group_id, $this->authTableCols['owner_group_id']['type']);
+getAssoc:Auth/Container/MDB2.php:                $val[] = $this->dbc->quote($v, $customFields[$k]['type']);
+getAssoc:Auth/Container/MDB2.php:                ' . $this->dbc->quote($authId, $this->authTableCols['user_id']['type']) . ',
+getAssoc:Auth/Container/MDB2.php:                ' . $this->dbc->quote($handle, $this->authTableCols['handle']['type']) . ',
+getAssoc:Auth/Container/MDB2.php:                ' . $this->dbc->quote($this->encryptPW($password), $this->authTableCols['passwd']['type']) . '
+getAssoc:Auth/Container/MDB2.php:        $result = $this->dbc->query($query);
+getAssoc:Auth/Container/MDB2.php:                auth_user_id = ' . $this->dbc->quote($authId, $this->authTableCols['user_id']['type']);
+getAssoc:Auth/Container/MDB2.php:        $result = $this->dbc->query($query);
+getAssoc:Auth/Container/MDB2.php:                $this->authTableCols['handle']['name'] . ' = ' . $this->dbc->quote($handle, $this->authTableCols['handle']['type']);
+getAssoc:Auth/Container/MDB2.php:                $this->authTableCols['passwd']['name'] . ' = ' . $this->dbc->quote($this->encryptPW($password), $this->authTableCols['passwd']['type']);
+getAssoc:Auth/Container/MDB2.php:                $this->authTableCols['is_active']['name'] . ' = ' . $this->dbc->quote($active, $this->authTableCols['is_active']['type']);
+getAssoc:Auth/Container/MDB2.php:                $this->authTableCols['owner_user_id'] . ' = ' . $this->dbc->quote($owner_user_id, $this->authTableCols['owner_user_id']['type']);
+getAssoc:Auth/Container/MDB2.php:                $this->authTableCols['owner_group_id'] . ' = ' . $this->dbc->quote($owner_group_id, $this->authTableCols['owner_group_id']['type']);
+getAssoc:Auth/Container/MDB2.php:                        $this->dbc->quote($v['value'], $v['type']);
+getAssoc:Auth/Container/MDB2.php:            ' . $this->authTableCols['user_id']['name'] . '=' . $this->dbc->quote($authId, $this->authTableCols['user_id']['type']);
+getAssoc:Auth/Container/MDB2.php:        $result = $this->dbc->query($query);
+getAssoc:Auth/Container/MDB2.php:                    $where .= " $f" . $v['op'] . $this->dbc->quote($v['value'], $v['type']) . $cond;
+getAssoc:Auth/Container/MDB2.php:        $res = $this->dbc->queryAll($query, $types, MDB2_FETCHMODE_ASSOC, $rekey);
+getAssoc:Perm/Container/DB_Complex.php:        if (!is_null($this->dbc->getOne($query))) {
+getAssoc:Perm/Container/DB_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Complex.php:            $result = $this->dbc->getCol($query);
+getAssoc:Perm/Container/DB_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Complex.php:        $group_id = $this->dbc->getOne($query);
+getAssoc:Perm/Container/DB_Complex.php:        $count = $this->dbc->getOne($query);
+getAssoc:Perm/Container/DB_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Complex.php:        $groups = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/DB_Complex.php:        $subgroups = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/DB_Complex.php:        $rights = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/DB_Complex.php:        $implied_rights = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/DB_Complex.php:        $groups = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/DB_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Complex.php:        $usercount = $this->dbc->getOne($query);
+getAssoc:Perm/Container/DB_Complex.php:        $groupcount = $this->dbc->getOne($query);
+getAssoc:Perm/Container/DB_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Complex.php:        $count = $this->dbc->getOne($query);
+getAssoc:Perm/Container/DB_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Complex.php:        $count = $this->dbc->getOne($query);
+getAssoc:Perm/Container/DB_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Medium.php:        $group_id = $this->dbc->nextId($this->prefix . 'groups', true);
+getAssoc:Perm/Container/DB_Medium.php:                $val[] = $this->dbc->quoteSmart($v['value']);
+getAssoc:Perm/Container/DB_Medium.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Medium.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Medium.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Medium.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Medium.php:                'is_active = ' . $this->dbc->quoteSmart($active);
+getAssoc:Perm/Container/DB_Medium.php:                        $v['name'] . ' = ' . $this->dbc->quoteSmart($v['value']);
+getAssoc:Perm/Container/DB_Medium.php:            $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Medium.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Medium.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Medium.php:        $count = $this->dbc->getOne($query);
+getAssoc:Perm/Container/DB_Medium.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Medium.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Medium.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Medium.php:        $res = $this->dbc->getOne($query);
+getAssoc:Perm/Container/DB_Medium.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Medium.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Medium.php:        $groups = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/DB_Simple.php:                auth_user_id = ' . $this->dbc->quoteSmart($authId).'
+getAssoc:Perm/Container/DB_Simple.php:                auth_container_name = '.$this->dbc->quoteSmart($authName);
+getAssoc:Perm/Container/DB_Simple.php:        $permId = $this->dbc->getOne($query);
+getAssoc:Perm/Container/DB_Simple.php:                perm_user_id = '.$this->dbc->quoteSmart($permId);
+getAssoc:Perm/Container/DB_Simple.php:                $authId = $this->dbc->getRow($query, DB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/DB_Simple.php:            $langs = $this->dbc->getAssoc($query);
+getAssoc:Perm/Container/DB_Simple.php:                    ' . $this->dbc->quoteSmart($name) . ',
+getAssoc:Perm/Container/DB_Simple.php:                    ' . (($description === null) ? 'null' : $this->dbc->quoteSmart($description)) . '
+getAssoc:Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php:                  name        = ' . $this->dbc->quoteSmart($name) . ',
+getAssoc:Perm/Container/DB_Simple.php:                  description = ' . (($description === null) ? 'null' : $this->dbc->quoteSmart($description)) . '
+getAssoc:Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php:        $translation = $this->dbc->getRow($query, DB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/DB_Simple.php:        $language_id = $this->dbc->nextId($this->prefix . 'languages', true);
+getAssoc:Perm/Container/DB_Simple.php:                    ' . $this->dbc->quoteSmart($two_letter_code) . ',
+getAssoc:Perm/Container/DB_Simple.php:                    ' . $this->dbc->quoteSmart($native_name) . '
+getAssoc:Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php:                  native_name     = ' . $this->dbc->quoteSmart($native_name) . '
+getAssoc:Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php:        $application_id = $this->dbc->nextId($this->prefix . 'applications', true);
+getAssoc:Perm/Container/DB_Simple.php:                    ' . $this->dbc->quoteSmart($define_name) . '
+getAssoc:Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php:        $area_id = $this->dbc->nextId($this->prefix . 'areas', true);
+getAssoc:Perm/Container/DB_Simple.php:                    ' . $this->dbc->quoteSmart($define_name) . ',
+getAssoc:Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php:        $areas = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php:        $result = $this->dbc->getCol($query);
+getAssoc:Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php:                  application_define_name = ' . $this->dbc->quoteSmart($define_name) . '
+getAssoc:Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php:                  area_define_name = ' . $this->dbc->quoteSmart($define_name) . '
+getAssoc:Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php:        $right_id = $this->dbc->nextId($this->prefix . 'rights', true);
+getAssoc:Perm/Container/DB_Simple.php:                    ' . $this->dbc->quoteSmart($define_name) . '
+getAssoc:Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php:                  right_define_name = ' . $this->dbc->quoteSmart($define_name) . '
+getAssoc:Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php:            $permId = $this->dbc->nextId($this->prefix . 'perm_users', true);
+getAssoc:Perm/Container/DB_Simple.php:                ' . $this->dbc->quoteSmart($authId) . ',
+getAssoc:Perm/Container/DB_Simple.php:                ' . $this->dbc->quoteSmart($authName) . '
+getAssoc:Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php:            $query .= ' auth_container_name=' . $this->dbc->quoteSmart($authName) . ',';
+getAssoc:Perm/Container/DB_Simple.php:                auth_user_id=' . $this->dbc->quoteSmart($authId) . '
+getAssoc:Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php:        $count = $this->dbc->getOne($query);
+getAssoc:Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php:        $applications = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/DB_Simple.php:        $areas = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/DB_Simple.php:        $langs = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/DB_Simple.php:            $trans = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/DB_Simple.php:        $rights = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php:            $res = $this->dbc->getAssoc($query, false, array(), DB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/DB_Simple.php:            $res = $this->dbc->getAll($query, array(), DB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/DB_Simple.php~:                auth_user_id = ' . $this->dbc->quoteSmart($authId).'
+getAssoc:Perm/Container/DB_Simple.php~:                auth_container_name = '.$this->dbc->quoteSmart($authName);
+getAssoc:Perm/Container/DB_Simple.php~:        $permId = $this->dbc->getOne($query);
+getAssoc:Perm/Container/DB_Simple.php~:                perm_user_id = '.$this->dbc->quoteSmart($permId);
+getAssoc:Perm/Container/DB_Simple.php~:                $authId = $this->dbc->getRow($query, DB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/DB_Simple.php~:            $langs = $this->dbc->getAssoc($query);
+getAssoc:Perm/Container/DB_Simple.php~:                    ' . $this->dbc->quoteSmart($name) . ',
+getAssoc:Perm/Container/DB_Simple.php~:                    ' . (($description === null) ? 'null' : $this->dbc->quoteSmart($description)) . '
+getAssoc:Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php~:                  name        = ' . $this->dbc->quoteSmart($name) . ',
+getAssoc:Perm/Container/DB_Simple.php~:                  description = ' . (($description === null) ? 'null' : $this->dbc->quoteSmart($description)) . '
+getAssoc:Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php~:        $translation = $this->dbc->getRow($query, DB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/DB_Simple.php~:        $language_id = $this->dbc->nextId($this->prefix . 'languages', true);
+getAssoc:Perm/Container/DB_Simple.php~:                    ' . $this->dbc->quoteSmart($two_letter_code) . ',
+getAssoc:Perm/Container/DB_Simple.php~:                    ' . $this->dbc->quoteSmart($native_name) . '
+getAssoc:Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php~:                  native_name     = ' . $this->dbc->quoteSmart($native_name) . '
+getAssoc:Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php~:        $application_id = $this->dbc->nextId($this->prefix . 'applications', true);
+getAssoc:Perm/Container/DB_Simple.php~:                    ' . $this->dbc->quoteSmart($define_name) . '
+getAssoc:Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php~:        $area_id = $this->dbc->nextId($this->prefix . 'areas', true);
+getAssoc:Perm/Container/DB_Simple.php~:                    ' . $this->dbc->quoteSmart($define_name) . ',
+getAssoc:Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php~:        $areas = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php~:        $result = $this->dbc->getCol($query);
+getAssoc:Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php~:                  application_define_name = ' . $this->dbc->quoteSmart($define_name) . '
+getAssoc:Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php~:                  area_define_name = ' . $this->dbc->quoteSmart($define_name) . '
+getAssoc:Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php~:        $right_id = $this->dbc->nextId($this->prefix . 'rights', true);
+getAssoc:Perm/Container/DB_Simple.php~:                    ' . $this->dbc->quoteSmart($define_name) . '
+getAssoc:Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php~:                  right_define_name = ' . $this->dbc->quoteSmart($define_name) . '
+getAssoc:Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php~:            $permId = $this->dbc->nextId($this->prefix . 'perm_users', true);
+getAssoc:Perm/Container/DB_Simple.php~:                ' . $this->dbc->quoteSmart($authId) . ',
+getAssoc:Perm/Container/DB_Simple.php~:                ' . $this->dbc->quoteSmart($authName) . '
+getAssoc:Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php~:            $query .= ' auth_container_name=' . $this->dbc->quoteSmart($authName) . ',';
+getAssoc:Perm/Container/DB_Simple.php~:                auth_user_id=' . $this->dbc->quoteSmart($authId) . '
+getAssoc:Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php~:        $count = $this->dbc->getOne($query);
+getAssoc:Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php~:        $applications = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/DB_Simple.php~:        $areas = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/DB_Simple.php~:        $langs = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/DB_Simple.php~:            $trans = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/DB_Simple.php~:        $rights = $this->dbc->getAll($query, null, DB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php~:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/DB_Simple.php~:            $res = $this->dbc->getAssoc($query, false, array(), DB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/DB_Simple.php~:            $res = $this->dbc->getAll($query, array(), DB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/MDB2_Complex.php:                  WHERE subgroup_id=' . $this->dbc->quote($subgroup_id, 'integer');
+getAssoc:Perm/Container/MDB2_Complex.php:        if (!is_null($this->dbc->queryOne($query))) {
+getAssoc:Perm/Container/MDB2_Complex.php:                    ' . $this->dbc->quote($group_id, 'integer') . ',
+getAssoc:Perm/Container/MDB2_Complex.php:                    ' . $this->dbc->quote($subgroup_id, 'integer') . '
+getAssoc:Perm/Container/MDB2_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Complex.php:                  WHERE subgroup_id=' . $this->dbc->quote($subgroup_id, 'integer');
+getAssoc:Perm/Container/MDB2_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Complex.php:                      group_id = ' . $this->dbc->quote($group_id, 'integer');
+getAssoc:Perm/Container/MDB2_Complex.php:            $result = $this->dbc->queryCol($query);
+getAssoc:Perm/Container/MDB2_Complex.php:                  group_id = ' . $this->dbc->quote($group_id, 'integer') . ' OR
+getAssoc:Perm/Container/MDB2_Complex.php:                  subgroup_id = ' . $this->dbc->quote($group_id, 'integer');
+getAssoc:Perm/Container/MDB2_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Complex.php:        $group_id = $this->dbc->queryOne($query);
+getAssoc:Perm/Container/MDB2_Complex.php:                  right_id = ' . $this->dbc->quote($right_id, 'integer');
+getAssoc:Perm/Container/MDB2_Complex.php:        $count = $this->dbc->queryOne($query);
+getAssoc:Perm/Container/MDB2_Complex.php:                  has_implied = ' . $this->dbc->quote(($count > 0), 'boolean') . '
+getAssoc:Perm/Container/MDB2_Complex.php:                  right_id = ' . $this->dbc->quote($right_id, 'integer');
+getAssoc:Perm/Container/MDB2_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Complex.php:                    ' . $this->dbc->quote($right_id, 'integer') . ',
+getAssoc:Perm/Container/MDB2_Complex.php:                    ' . $this->dbc->quote($implied_right_id, 'integer') . '
+getAssoc:Perm/Container/MDB2_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Complex.php:                  right_id         = ' . $this->dbc->quote($right_id, 'integer') . ' AND
+getAssoc:Perm/Container/MDB2_Complex.php:                  implied_right_id = ' . $this->dbc->quote($implied_right_id, 'integer');
+getAssoc:Perm/Container/MDB2_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Complex.php:                  right_id         = ' . $this->dbc->quote($right_id, 'integer');
+getAssoc:Perm/Container/MDB2_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Complex.php:            $query .= ' groupusers.perm_user_id = ' . $this->dbc->quote($options['where_user_id'], 'integer') . ' AND
+getAssoc:Perm/Container/MDB2_Complex.php:            $query .= ' groups.group_id = ' . $this->dbc->quote($options['where_group_id'], 'integer') . ' AND';
+getAssoc:Perm/Container/MDB2_Complex.php:            $query .= ' groups.owner_user_id = ' . $this->dbc->quote($options['where_owner_user_id'], 'integer') . ' AND';
+getAssoc:Perm/Container/MDB2_Complex.php:            $query .= ' groups.owner_group_id = ' . $this->dbc->quote($options['where_owner_group_id'], 'integer') . ' AND';
+getAssoc:Perm/Container/MDB2_Complex.php:                    translations.language_id = ' . $this->dbc->quote($this->_langs[$this->getCurrentLanguage()], 'integer');
+getAssoc:Perm/Container/MDB2_Complex.php:        $groups = $this->dbc->queryAll($query, null, MDB2_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/MDB2_Complex.php:        $subgroups = $this->dbc->queryAll($query, null, MDB2_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/MDB2_Complex.php:                . $this->dbc->quote($options['where_right_id'], 'integer') . ' AND';
+getAssoc:Perm/Container/MDB2_Complex.php:                . $this->dbc->quote($options['where_area_id'], 'integer') . ' AND';
+getAssoc:Perm/Container/MDB2_Complex.php:                . $this->dbc->quote($options['where_application_id'], 'integer') . ' AND';
+getAssoc:Perm/Container/MDB2_Complex.php:                . $this->dbc->quote($options['where_user_id'], 'integer') . ' AND
+getAssoc:Perm/Container/MDB2_Complex.php:                . $this->dbc->quote($options['where_group_id'], 'integer') . ' AND
+getAssoc:Perm/Container/MDB2_Complex.php:                    . $this->dbc->quote(($this->_langs[$this->getCurrentLanguage()]), 'integer') . '
+getAssoc:Perm/Container/MDB2_Complex.php:        $rights = $this->dbc->queryAll($query, null, MDB2_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/MDB2_Complex.php:        $implied_rights = $this->dbc->queryAll($query, null, MDB2_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/MDB2_Complex.php:                     WHERE groupusers.perm_user_id = ' . $this->dbc->quote($options['where_user_id'], 'integer');
+getAssoc:Perm/Container/MDB2_Complex.php:        $groups = $this->dbc->queryAll($query, null, MDB2_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/MDB2_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Complex.php:                  right_id = ' . $this->dbc->quote($right_id, 'integer') . ' AND
+getAssoc:Perm/Container/MDB2_Complex.php:        $usercount = $this->dbc->queryOne($query);
+getAssoc:Perm/Container/MDB2_Complex.php:                  right_id = ' . $this->dbc->quote($right_id, 'integer') . ' AND
+getAssoc:Perm/Container/MDB2_Complex.php:        $groupcount = $this->dbc->queryOne($query);
+getAssoc:Perm/Container/MDB2_Complex.php:                  has_level = ' . $this->dbc->quote(($count > 0), 'boolean') . '
+getAssoc:Perm/Container/MDB2_Complex.php:                  right_id = ' . $this->dbc->quote($right_id, 'integer');
+getAssoc:Perm/Container/MDB2_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Complex.php:                  right_id      = ' . $this->dbc->quote($right_id, 'integer');
+getAssoc:Perm/Container/MDB2_Complex.php:        $count = $this->dbc->queryOne($query);
+getAssoc:Perm/Container/MDB2_Complex.php:                    ' . $this->dbc->quote($right_id, 'integer') . ',
+getAssoc:Perm/Container/MDB2_Complex.php:                    ' . $this->dbc->quote($right_level, 'integer') . '
+getAssoc:Perm/Container/MDB2_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Complex.php:                  group_id = ' . $this->dbc->quote($group_id, 'integer') . ' AND
+getAssoc:Perm/Container/MDB2_Complex.php:                  right_id = ' . $this->dbc->quote($right_id, 'integer');
+getAssoc:Perm/Container/MDB2_Complex.php:        $count = $this->dbc->queryOne($query);quote($right_level, 'integer');
+getAssoc:Perm/Container/MDB2_Complex.php:                    ' . $this->dbc->quote($group_id, 'integer') . ',
+getAssoc:Perm/Container/MDB2_Complex.php:                    ' . $this->dbc->quote($right_id, 'integer') . ',
+getAssoc:Perm/Container/MDB2_Complex.php:                    ' . $this->dbc->quote($right_level, 'integer') . '
+getAssoc:Perm/Container/MDB2_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Medium.php:        $group_id = $this->dbc->nextId($this->prefix . 'groups', true);
+getAssoc:Perm/Container/MDB2_Medium.php:                $val[] = $this->dbc->quoteSmart($v['value']);
+getAssoc:Perm/Container/MDB2_Medium.php:                    ' . $this->dbc->quote($group_id, 'integer') . ',
+getAssoc:Perm/Container/MDB2_Medium.php:                    ' . $this->dbc->quote($active, 'boolean') . '
+getAssoc:Perm/Container/MDB2_Medium.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Medium.php:                  group_id = ' . $this->dbc->quote($group_id, 'integer');
+getAssoc:Perm/Container/MDB2_Medium.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Medium.php:                  group_id = ' . $this->dbc->quote($group_id, 'integer');
+getAssoc:Perm/Container/MDB2_Medium.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Medium.php:                  group_id = ' . $this->dbc->quote($group_id, 'integer');
+getAssoc:Perm/Container/MDB2_Medium.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Medium.php:                      'is_active = ' . $this->dbc->quote($active, 'boolean');
+getAssoc:Perm/Container/MDB2_Medium.php:                        $v['name'] . ' = ' . $this->dbc->quoteSmart($v['value']);
+getAssoc:Perm/Container/MDB2_Medium.php:                        group_id = ' . $this->dbc->quote($group_id, 'integer');
+getAssoc:Perm/Container/MDB2_Medium.php:            $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Medium.php:                  is_active = '.$this->dbc->quote(true, 'boolean').'
+getAssoc:Perm/Container/MDB2_Medium.php:                  group_id = ' . $this->dbc->quote($group_id, 'integer');
+getAssoc:Perm/Container/MDB2_Medium.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Medium.php:                  is_active = ' . $this->dbc->quote(false, 'boolean') . '
+getAssoc:Perm/Container/MDB2_Medium.php:                  group_id = ' . $this->dbc->quote($group_id, 'integer');
+getAssoc:Perm/Container/MDB2_Medium.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Medium.php:                  group_id = ' . $this->dbc->quote($group_id, 'integer') . ' AND
+getAssoc:Perm/Container/MDB2_Medium.php:                  right_id = ' . $this->dbc->quote($right_id, 'integer');
+getAssoc:Perm/Container/MDB2_Medium.php:        $count = $this->dbc->queryOne($query);
+getAssoc:Perm/Container/MDB2_Medium.php:                    ' . $this->dbc->quote($group_id, 'integer') . ',
+getAssoc:Perm/Container/MDB2_Medium.php:                    ' . $this->dbc->quote($right_id, 'integer') . ', '.LIVEUSER_MAX_LEVEL.'
+getAssoc:Perm/Container/MDB2_Medium.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Medium.php:                  group_id = ' . $this->dbc->quote($group_id, 'integer');
+getAssoc:Perm/Container/MDB2_Medium.php:              right_id = ' . $this->dbc->quote($right_id, 'integer');
+getAssoc:Perm/Container/MDB2_Medium.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Medium.php:                  right_level = ' . $this->dbc->quote($right_level, 'integer') . '
+getAssoc:Perm/Container/MDB2_Medium.php:                  group_id = ' . $this->dbc->quote($group_id, 'integer') . ' AND
+getAssoc:Perm/Container/MDB2_Medium.php:                  right_id = ' . $this->dbc->quote($right_id, 'integer');
+getAssoc:Perm/Container/MDB2_Medium.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Medium.php:                    perm_user_id=' . $this->dbc->quote($permId, 'integer') . '
+getAssoc:Perm/Container/MDB2_Medium.php:                    group_id=' . $this->dbc->quote($group_id, 'integer');
+getAssoc:Perm/Container/MDB2_Medium.php:        $res = $this->dbc->queryOne($query);
+getAssoc:Perm/Container/MDB2_Medium.php:                    ' . $this->dbc->quote($group_id, 'integer') . ',
+getAssoc:Perm/Container/MDB2_Medium.php:                    ' . $this->dbc->quote($permId, 'integer') . '
+getAssoc:Perm/Container/MDB2_Medium.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Medium.php:                  perm_user_id  = ' . $this->dbc->quote($permId, 'integer');
+getAssoc:Perm/Container/MDB2_Medium.php:            $query =' AND group_id = ' . $this->dbc->quote($group_id, 'integer');
+getAssoc:Perm/Container/MDB2_Medium.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Medium.php:                      . $this->dbc->quote($options['where_user_id'], 'integer') . ' AND
+getAssoc:Perm/Container/MDB2_Medium.php:            $query .= ' groups.group_id = ' . $this->dbc->quote($options['where_group_id'], 'integer') . ' AND';
+getAssoc:Perm/Container/MDB2_Medium.php:            $query .= ' groups.owner_user_id = ' . $this->dbc->quote($options['where_owner_user_id'], 'integer') . ' AND';
+getAssoc:Perm/Container/MDB2_Medium.php:            $query .= ' groups.owner_group_id = ' . $this->dbc->quote($options['where_owner_group_id'], 'integer') . ' AND';
+getAssoc:Perm/Container/MDB2_Medium.php:                  translations.language_id = ' . $this->dbc->quote($this->_langs[$this->getCurrentLanguage()], 'integer');
+getAssoc:Perm/Container/MDB2_Medium.php:        $groups = $this->dbc->queryAll($query, null, MDB2_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/MDB2_Simple.php:                auth_user_id = '.$this->dbc->quote($authId, 'text').'
+getAssoc:Perm/Container/MDB2_Simple.php:                auth_container_name = '.$this->dbc->quote($authName, 'text');
+getAssoc:Perm/Container/MDB2_Simple.php:        $permId = $this->dbc->queryOne($query);
+getAssoc:Perm/Container/MDB2_Simple.php:                perm_user_id = '.$this->dbc->quote($permId, 'text');
+getAssoc:Perm/Container/MDB2_Simple.php:                $authId = $this->dbc->queryRow($query, array('text', 'text'), MDB2_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/MDB2_Simple.php:            $langs = $this->dbc->queryAll($query, null, MDB2_FETCHMODE_ASSOC, true);
+getAssoc:Perm/Container/MDB2_Simple.php:                    ' . $this->dbc->quote($section_id, 'integer') . ',
+getAssoc:Perm/Container/MDB2_Simple.php:                    ' . $this->dbc->quote($section_type, 'integer') . ',
+getAssoc:Perm/Container/MDB2_Simple.php:                    ' . $this->dbc->quote($this->_langs[$language], 'integer') . ',
+getAssoc:Perm/Container/MDB2_Simple.php:                    ' . $this->dbc->quote($name, 'text') . ',
+getAssoc:Perm/Container/MDB2_Simple.php:                    ' . $this->dbc->quote($description, 'text') . '
+getAssoc:Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Simple.php:                  name        = ' . $this->dbc->quote($name, 'text') . ',
+getAssoc:Perm/Container/MDB2_Simple.php:                  description = ' . $this->dbc->quote($description, 'text') . '
+getAssoc:Perm/Container/MDB2_Simple.php:                  section_id    = ' . $this->dbc->quote($section_id, 'integer') . ' AND
+getAssoc:Perm/Container/MDB2_Simple.php:                  section_type  = ' . $this->dbc->quote($section_type, 'integer') . ' AND
+getAssoc:Perm/Container/MDB2_Simple.php:                  language_id   = ' . $this->dbc->quote($this->_langs[$language], 'integer');
+getAssoc:Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Simple.php:                  section_id    = ' . $this->dbc->quote($section_id, 'integer') . ' AND
+getAssoc:Perm/Container/MDB2_Simple.php:                  section_type  = ' . $this->dbc->quote($section_type, 'integer');
+getAssoc:Perm/Container/MDB2_Simple.php:            $query .= ' AND language_id = ' . $this->dbc->quote($this->_langs[$language], 'integer');
+getAssoc:Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Simple.php:                  section_id    = ' . $this->dbc->quote($section_id, 'integer') . ' AND
+getAssoc:Perm/Container/MDB2_Simple.php:                  section_type  = ' . $this->dbc->quote($section_type, 'integer');
+getAssoc:Perm/Container/MDB2_Simple.php:        $translation = $this->dbc->queryRow($query, null, MDB2_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/MDB2_Simple.php:        $language_id = $this->dbc->nextId($this->prefix . 'languages', true);
+getAssoc:Perm/Container/MDB2_Simple.php:                    ' . $this->dbc->quote($two_letter_code, 'text') . ',
+getAssoc:Perm/Container/MDB2_Simple.php:                    ' . $this->dbc->quote($native_name, 'text') . '
+getAssoc:Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Simple.php:                  language_id = ' . $this->dbc->quote($this->_langs[$language], 'integer');
+getAssoc:Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Simple.php:                  native_name     = ' . $this->dbc->quote($native_name, 'text') . '
+getAssoc:Perm/Container/MDB2_Simple.php:                  language_id     = ' . $this->dbc->quote($this->_langs[$language], 'integer');
+getAssoc:Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Simple.php:        $application_id = $this->dbc->nextId($this->prefix . 'applications', true);
+getAssoc:Perm/Container/MDB2_Simple.php:                    ' . $this->dbc->quote($application_id, 'integer') . ',
+getAssoc:Perm/Container/MDB2_Simple.php:                    ' . $this->dbc->quote($define_name, 'text') . '
+getAssoc:Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Simple.php:        $area_id = $this->dbc->nextId($this->prefix . 'areas', true);
+getAssoc:Perm/Container/MDB2_Simple.php:                    ' . $this->dbc->quote($area_id, 'integer') . ',
+getAssoc:Perm/Container/MDB2_Simple.php:                    ' . $this->dbc->quote($define_name, 'text') . ',
+getAssoc:Perm/Container/MDB2_Simple.php:                    ' . $this->dbc->quote($application_id, 'integer') . '
+getAssoc:Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Simple.php:                application_id=' . $this->dbc->quote($application_id, 'integer');
+getAssoc:Perm/Container/MDB2_Simple.php:        $areas = $this->dbc->queryAll($query, null, MDB2_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Simple.php:        $result = $this->dbc->queryCol($query);
+getAssoc:Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Simple.php:                  area_id = ' . $this->dbc->quote($area_id, 'integer');
+getAssoc:Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Simple.php:                  application_define_name = ' . $this->dbc->quote($define_name, 'text') . '
+getAssoc:Perm/Container/MDB2_Simple.php:                  application_id = ' . $this->dbc->quote($application_id, 'integer');
+getAssoc:Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Simple.php:                  application_id   = ' . $this->dbc->quote($application_id, 'integer') . ',
+getAssoc:Perm/Container/MDB2_Simple.php:                  area_define_name = ' . $this->dbc->quote($define_name, 'text') . '
+getAssoc:Perm/Container/MDB2_Simple.php:                  area_id = ' . $this->dbc->quote($area_id, 'integer');
+getAssoc:Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Simple.php:        $right_id = $this->dbc->nextId($this->prefix . 'rights', true);
+getAssoc:Perm/Container/MDB2_Simple.php:                    ' . $this->dbc->quote($right_id, 'integer') . ',
+getAssoc:Perm/Container/MDB2_Simple.php:                    ' . $this->dbc->quote($area_id, 'integer') . ',
+getAssoc:Perm/Container/MDB2_Simple.php:                    ' . $this->dbc->quote($define_name, 'text') . '
+getAssoc:Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Simple.php:                  right_id = ' . $this->dbc->quote($right_id, 'integer');
+getAssoc:Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Simple.php:                  right_id = ' . $this->dbc->quote($right_id, 'integer');
+getAssoc:Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Simple.php:                  right_id = ' . $this->dbc->quote($right_id, 'integer');
+getAssoc:Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Simple.php:                  area_id           = ' . $this->dbc->quote($area_id, 'integer') . ',
+getAssoc:Perm/Container/MDB2_Simple.php:                  right_define_name = ' . $this->dbc->quote($define_name, 'text') . '
+getAssoc:Perm/Container/MDB2_Simple.php:                  right_id = ' . $this->dbc->quote($right_id, 'integer');
+getAssoc:Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Simple.php:            $permId = $this->dbc->nextId($this->prefix . 'perm_users', true);
+getAssoc:Perm/Container/MDB2_Simple.php:                ' . $this->dbc->quote($permId, 'integer') . ',
+getAssoc:Perm/Container/MDB2_Simple.php:                ' . $this->dbc->quote($authId, 'text') . ',
+getAssoc:Perm/Container/MDB2_Simple.php:                ' . $this->dbc->quote($type, 'integer') . ',
+getAssoc:Perm/Container/MDB2_Simple.php:                ' . $this->dbc->quote($authName, 'text') . '
+getAssoc:Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Simple.php:            $query .= ' auth_container_name=' . $this->dbc->quote($authName, 'text') . ',';
+getAssoc:Perm/Container/MDB2_Simple.php:                auth_user_id=' . $this->dbc->quote($authId, 'text') . '
+getAssoc:Perm/Container/MDB2_Simple.php:                perm_user_id=' . $this->dbc->quote($permId, 'integer');
+getAssoc:Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Simple.php:                  perm_user_id = ' . $this->dbc->quote($right_id, 'integer') . '
+getAssoc:Perm/Container/MDB2_Simple.php:                  right_id     = ' . $this->dbc->quote($right_id, 'integer');
+getAssoc:Perm/Container/MDB2_Simple.php:        $count = $this->dbc->queryOne($query);
+getAssoc:Perm/Container/MDB2_Simple.php:                    ' . $this->dbc->quote($permId, 'integer') . ',
+getAssoc:Perm/Container/MDB2_Simple.php:                    ' . $this->dbc->quote($right_id, 'integer') . ', '.LIVEUSER_MAX_LEVEL.'
+getAssoc:Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Simple.php:                  right_level = ' . $this->dbc->quote($right_level, 'integer') . '
+getAssoc:Perm/Container/MDB2_Simple.php:                  perm_user_id = ' . $this->dbc->quote($permId, 'integer') . '
+getAssoc:Perm/Container/MDB2_Simple.php:                  right_id = ' . $this->dbc->quote($right_id, 'integer');
+getAssoc:Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Simple.php:                  perm_user_id = ' . $this->dbc->quote($permId, 'integer');
+getAssoc:Perm/Container/MDB2_Simple.php:              right_id = ' . $this->dbc->quote($right_id, 'integer');
+getAssoc:Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Simple.php:                . $this->dbc->quote($options['where_application_id'], 'integer') . ' AND ';
+getAssoc:Perm/Container/MDB2_Simple.php:                    . $this->dbc->quote($this->_langs[$this->getCurrentLanguage()], 'integer') . '
+getAssoc:Perm/Container/MDB2_Simple.php:        $applications = $this->dbc->queryAll($query, null, MDB2_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/MDB2_Simple.php:                  $query .= ' areas.area_id=' . $this->dbc->quote($options['where_area_id'], 'integer') . ' AND';
+getAssoc:Perm/Container/MDB2_Simple.php:                  $query .= ' areas.application_id=' . $this->dbc->quote($options['where_application_id'], 'integer') . ' AND';
+getAssoc:Perm/Container/MDB2_Simple.php:                  translations.language_id = ' . $this->dbc->quote($this->_langs[$this->getCurrentLanguage()], 'integer') . '
+getAssoc:Perm/Container/MDB2_Simple.php:        $areas = $this->dbc->queryAll($query, null, MDB2_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/MDB2_Simple.php:            $query .= ' WHERE languages.language_id = ' . $this->dbc->quote($options['where_language_id'], 'integer');
+getAssoc:Perm/Container/MDB2_Simple.php:        $langs = $this->dbc->queryAll($query, null, MDB2_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/MDB2_Simple.php:            $trans = $this->dbc->queryAll($query, null, MDB2_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/MDB2_Simple.php:                . $this->dbc->quote($options['where_right_id'], 'integer') . ' AND';
+getAssoc:Perm/Container/MDB2_Simple.php:                . $this->dbc->quote($options['where_area_id'], 'integer') . ' AND';
+getAssoc:Perm/Container/MDB2_Simple.php:                . $this->dbc->quote($options['where_application_id'], 'integer') . ' AND';
+getAssoc:Perm/Container/MDB2_Simple.php:                . $this->dbc->quote($options['where_user_id'], 'integer') . ' AND
+getAssoc:Perm/Container/MDB2_Simple.php:                . $this->dbc->quote($options['where_group_id'], 'integer') . ' AND
+getAssoc:Perm/Container/MDB2_Simple.php:                    . $this->dbc->quote($this->_langs[$this->getCurrentLanguage()], 'integer') . '
+getAssoc:Perm/Container/MDB2_Simple.php:        $rights = $this->dbc->queryAll($query, null, MDB2_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/MDB2_Simple.php:                ' . $permId . ', ' . $this->dbc->quote($area_id, 'integer') . '
+getAssoc:Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Simple.php:                area_id= ' . $this->dbc->quote($area_id, 'integer');
+getAssoc:Perm/Container/MDB2_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB2_Simple.php:            $filter_array[] = 'groupusers.group_id IN (' . $this->dbc->datatype->implodeArray($filters['group_id'], 'integer') . ')';
+getAssoc:Perm/Container/MDB2_Simple.php:        $res = $this->dbc->queryAll($query, $types, MDB2_FETCHMODE_ASSOC, $rekey);
+getAssoc:Perm/Container/MDB_Complex.php:                  WHERE subgroup_id=' . $this->dbc->getValue('integer', $subgroup_id);
+getAssoc:Perm/Container/MDB_Complex.php:        if (!is_null($this->dbc->queryOne($query))) {
+getAssoc:Perm/Container/MDB_Complex.php:                    ' . $this->dbc->getValue('integer', $group_id) . ',
+getAssoc:Perm/Container/MDB_Complex.php:                    ' . $this->dbc->getValue('integer', $subgroup_id) . '
+getAssoc:Perm/Container/MDB_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Complex.php:                  WHERE subgroup_id=' . $this->dbc->getValue('integer', $subgroup_id);
+getAssoc:Perm/Container/MDB_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Complex.php:                      group_id = ' . $this->dbc->getValue('integer', $group_id);
+getAssoc:Perm/Container/MDB_Complex.php:            $result = $this->dbc->queryCol($query);
+getAssoc:Perm/Container/MDB_Complex.php:                  group_id = ' . $this->dbc->getValue('integer', $group_id) . ' OR
+getAssoc:Perm/Container/MDB_Complex.php:                  subgroup_id = ' . $this->dbc->getValue('integer', $group_id);
+getAssoc:Perm/Container/MDB_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Complex.php:        $group_id = $this->dbc->queryOne($query);
+getAssoc:Perm/Container/MDB_Complex.php:                  right_id = ' . $this->dbc->getValue('integer', $right_id);
+getAssoc:Perm/Container/MDB_Complex.php:        $count = $this->dbc->queryOne($query);
+getAssoc:Perm/Container/MDB_Complex.php:                  has_implied = ' . $this->dbc->getValue('boolean', ($count > 0)) . '
+getAssoc:Perm/Container/MDB_Complex.php:                  right_id = ' . $this->dbc->getValue('integer', $right_id);
+getAssoc:Perm/Container/MDB_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Complex.php:                    ' . $this->dbc->getValue('integer', $right_id) . ',
+getAssoc:Perm/Container/MDB_Complex.php:                    ' . $this->dbc->getValue('integer', $implied_right_id) . '
+getAssoc:Perm/Container/MDB_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Complex.php:                  right_id         = ' . $this->dbc->getValue('integer', $right_id) . ' AND
+getAssoc:Perm/Container/MDB_Complex.php:                  implied_right_id = ' . $this->dbc->getValue('integer', $implied_right_id);
+getAssoc:Perm/Container/MDB_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Complex.php:                  right_id         = ' . $this->dbc->getValue('integer', $right_id);
+getAssoc:Perm/Container/MDB_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Complex.php:            $query .= ' groupusers.perm_user_id = ' . $this->dbc->getValue('integer', $options['where_user_id']) . ' AND
+getAssoc:Perm/Container/MDB_Complex.php:            $query .= ' groups.group_id = ' . $this->dbc->getValue('integer', $options['where_group_id']) . ' AND';
+getAssoc:Perm/Container/MDB_Complex.php:            $query .= ' groups.owner_user_id = ' . $this->dbc->getValue('integer', $options['where_owner_user_id']) . ' AND';
+getAssoc:Perm/Container/MDB_Complex.php:            $query .= ' groups.owner_group_id = ' . $this->dbc->getValue('integer', $options['where_owner_group_id']) . ' AND';
+getAssoc:Perm/Container/MDB_Complex.php:                    translations.language_id = ' . $this->dbc->getValue('integer', $this->_langs[$this->getCurrentLanguage()]);
+getAssoc:Perm/Container/MDB_Complex.php:        $groups = $this->dbc->queryAll($query, null, MDB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/MDB_Complex.php:        $subgroups = $this->dbc->queryAll($query, null, MDB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/MDB_Complex.php:                . $this->dbc->getValue('integer', $options['where_right_id']) . ' AND';
+getAssoc:Perm/Container/MDB_Complex.php:                . $this->dbc->getValue('integer', $options['where_area_id']) . ' AND';
+getAssoc:Perm/Container/MDB_Complex.php:                . $this->dbc->getValue('integer', $options['where_application_id']) . ' AND';
+getAssoc:Perm/Container/MDB_Complex.php:                . $this->dbc->getValue('integer', $options['where_user_id']) . ' AND
+getAssoc:Perm/Container/MDB_Complex.php:                . $this->dbc->getValue('integer', $options['where_group_id']) . ' AND
+getAssoc:Perm/Container/MDB_Complex.php:                    . $this->dbc->getValue('integer', ($this->_langs[$this->getCurrentLanguage()])) . '
+getAssoc:Perm/Container/MDB_Complex.php:        $rights = $this->dbc->queryAll($query, null, MDB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/MDB_Complex.php:        $implied_rights = $this->dbc->queryAll($query, null, MDB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/MDB_Complex.php:                     WHERE groupusers.perm_user_id = ' . $this->dbc->getValue('integer', $options['where_user_id']);
+getAssoc:Perm/Container/MDB_Complex.php:        $groups = $this->dbc->queryAll($query, null, MDB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/MDB_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Complex.php:                  right_id = ' . $this->dbc->getValue('integer', $right_id) . ' AND
+getAssoc:Perm/Container/MDB_Complex.php:        $usercount = $this->dbc->queryOne($query);
+getAssoc:Perm/Container/MDB_Complex.php:                  right_id = ' . $this->dbc->getValue('integer', $right_id) . ' AND
+getAssoc:Perm/Container/MDB_Complex.php:        $groupcount = $this->dbc->queryOne($query);
+getAssoc:Perm/Container/MDB_Complex.php:                  has_level = ' . $this->dbc->getValue('boolean', ($count > 0)) . '
+getAssoc:Perm/Container/MDB_Complex.php:                  right_id = ' . $this->dbc->getValue('integer', $right_id);
+getAssoc:Perm/Container/MDB_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Complex.php:                  right_id      = ' . $this->dbc->getValue('integer', $right_id);
+getAssoc:Perm/Container/MDB_Complex.php:        $count = $this->dbc->queryOne($query);
+getAssoc:Perm/Container/MDB_Complex.php:                    ' . $this->dbc->getValue('integer', $right_id) . ',
+getAssoc:Perm/Container/MDB_Complex.php:                    ' . $this->dbc->getValue('integer', $right_level) . '
+getAssoc:Perm/Container/MDB_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Complex.php:                  group_id = ' . $this->dbc->getValue('integer', $group_id) . ' AND
+getAssoc:Perm/Container/MDB_Complex.php:                  right_id = ' . $this->dbc->getValue('integer', $right_id);
+getAssoc:Perm/Container/MDB_Complex.php:        $count = $this->dbc->queryOne($query);
+getAssoc:Perm/Container/MDB_Complex.php:                    ' . $this->dbc->getValue('integer', $group_id) . ',
+getAssoc:Perm/Container/MDB_Complex.php:                    ' . $this->dbc->getValue('integer', $right_id) . ',
+getAssoc:Perm/Container/MDB_Complex.php:                    ' . $this->dbc->getValue('integer', $right_level) . '
+getAssoc:Perm/Container/MDB_Complex.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Medium.php:        $group_id = $this->dbc->nextId($this->prefix . 'groups', true);
+getAssoc:Perm/Container/MDB_Medium.php:                $val[] = $this->dbc->quoteSmart($v['value']);
+getAssoc:Perm/Container/MDB_Medium.php:                    ' . $this->dbc->getValue('integer', $group_id) . ',
+getAssoc:Perm/Container/MDB_Medium.php:                    ' . $this->dbc->getValue('boolean', $active) . '
+getAssoc:Perm/Container/MDB_Medium.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Medium.php:                  group_id = ' . $this->dbc->getValue('integer', $group_id);
+getAssoc:Perm/Container/MDB_Medium.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Medium.php:                  group_id = ' . $this->dbc->getValue('integer', $group_id);
+getAssoc:Perm/Container/MDB_Medium.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Medium.php:                  group_id = ' . $this->dbc->getValue('integer', $group_id);
+getAssoc:Perm/Container/MDB_Medium.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Medium.php:                      'is_active      = ' . $this->dbc->getValue('boolean', $active) ;
+getAssoc:Perm/Container/MDB_Medium.php:                        $v['name'] . ' = ' . $this->dbc->quoteSmart($v['value']);
+getAssoc:Perm/Container/MDB_Medium.php:                        group_id = ' . $this->dbc->getValue('integer', $group_id);
+getAssoc:Perm/Container/MDB_Medium.php:            $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Medium.php:                  is_active = '.$this->dbc->getValue('boolean', true).'
+getAssoc:Perm/Container/MDB_Medium.php:                  group_id = ' . $this->dbc->getValue('integer', $group_id);
+getAssoc:Perm/Container/MDB_Medium.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Medium.php:                  is_active = ' . $this->dbc->getValue('boolean', false) . '
+getAssoc:Perm/Container/MDB_Medium.php:                  group_id = ' . $this->dbc->getValue('integer', $group_id);
+getAssoc:Perm/Container/MDB_Medium.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Medium.php:                  group_id = ' . $this->dbc->getValue('integer', $group_id) . ' AND
+getAssoc:Perm/Container/MDB_Medium.php:                  right_id = ' . $this->dbc->getValue('integer', $right_id);
+getAssoc:Perm/Container/MDB_Medium.php:        $count = $this->dbc->queryOne($query);
+getAssoc:Perm/Container/MDB_Medium.php:                    ' . $this->dbc->getValue('integer', $group_id) . ',
+getAssoc:Perm/Container/MDB_Medium.php:                    ' . $this->dbc->getValue('integer', $right_id) . ', '.LIVEUSER_MAX_LEVEL.'
+getAssoc:Perm/Container/MDB_Medium.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Medium.php:                  group_id = ' . $this->dbc->getValue('integer', $group_id);
+getAssoc:Perm/Container/MDB_Medium.php:              right_id = ' . $this->dbc->getValue('integer', $right_id);
+getAssoc:Perm/Container/MDB_Medium.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Medium.php:                  right_level = ' . $this->dbc->getValue('integer', $right_level) . '
+getAssoc:Perm/Container/MDB_Medium.php:                  group_id = ' . $this->dbc->getValue('integer', $group_id) . ' AND
+getAssoc:Perm/Container/MDB_Medium.php:                  right_id = ' . $this->dbc->getValue('integer', $right_id);
+getAssoc:Perm/Container/MDB_Medium.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Medium.php:                    perm_user_id=' . $this->dbc->getValue('integer', $permId) . '
+getAssoc:Perm/Container/MDB_Medium.php:                    group_id=' . $this->dbc->getValue('integer', $group_id);
+getAssoc:Perm/Container/MDB_Medium.php:        $res = $this->dbc->queryOne($query);
+getAssoc:Perm/Container/MDB_Medium.php:                    ' . $this->dbc->getValue('integer', $group_id) . ',
+getAssoc:Perm/Container/MDB_Medium.php:                    ' . $this->dbc->getValue('integer', $permId) . '
+getAssoc:Perm/Container/MDB_Medium.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Medium.php:                  perm_user_id  = ' . $this->dbc->getValue('integer', $permId);
+getAssoc:Perm/Container/MDB_Medium.php:            $query =' AND group_id = ' . $this->dbc->getValue('integer', $group_id);
+getAssoc:Perm/Container/MDB_Medium.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Medium.php:                      . $this->dbc->getValue('integer', $options['where_user_id']) . ' AND
+getAssoc:Perm/Container/MDB_Medium.php:            $query .= ' groups.group_id = ' . $this->dbc->getValue('integer', $options['where_group_id']) . ' AND';
+getAssoc:Perm/Container/MDB_Medium.php:            $query .= ' groups.owner_user_id = ' . $this->dbc->getValue('integer', $options['where_owner_user_id']) . ' AND';
+getAssoc:Perm/Container/MDB_Medium.php:            $query .= ' groups.owner_group_id = ' . $this->dbc->getValue('integer', $options['where_owner_group_id']) . ' AND';
+getAssoc:Perm/Container/MDB_Medium.php:                  translations.language_id = ' . $this->dbc->getValue('integer', $this->_langs[$this->getCurrentLanguage()]);
+getAssoc:Perm/Container/MDB_Medium.php:        $groups = $this->dbc->queryAll($query, null, MDB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/MDB_Simple.php:                auth_user_id = '.$this->dbc->getValue('text', $authId).'
+getAssoc:Perm/Container/MDB_Simple.php:                auth_container_name = '.$this->dbc->getValue('text', $authName);
+getAssoc:Perm/Container/MDB_Simple.php:        $permId = $this->dbc->queryOne($query);
+getAssoc:Perm/Container/MDB_Simple.php:                perm_user_id = '.$this->dbc->getValue('text', $permId);
+getAssoc:Perm/Container/MDB_Simple.php:                $authId = $this->dbc->queryRow($query, array('text', 'text'), MDB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/MDB_Simple.php:            $langs = $this->dbc->queryAll($query, null, MDB_FETCHMODE_ASSOC, true);
+getAssoc:Perm/Container/MDB_Simple.php:                    ' . $this->dbc->getValue('integer', $section_id) . ',
+getAssoc:Perm/Container/MDB_Simple.php:                    ' . $this->dbc->getValue('integer', $section_type) . ',
+getAssoc:Perm/Container/MDB_Simple.php:                    ' . $this->dbc->getValue('integer', $this->_langs[$language]) . ',
+getAssoc:Perm/Container/MDB_Simple.php:                    ' . $this->dbc->getValue('text', $name) . ',
+getAssoc:Perm/Container/MDB_Simple.php:                    ' . $this->dbc->getValue('text', $description) . '
+getAssoc:Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Simple.php:                  name        = ' . $this->dbc->getValue('text', $name) . ',
+getAssoc:Perm/Container/MDB_Simple.php:                  description = ' . $this->dbc->getValue('text', $description) . '
+getAssoc:Perm/Container/MDB_Simple.php:                  section_id    = ' . $this->dbc->getValue('integer', $section_id) . ' AND
+getAssoc:Perm/Container/MDB_Simple.php:                  section_type  = ' . $this->dbc->getValue('integer', $section_type) . ' AND
+getAssoc:Perm/Container/MDB_Simple.php:                  language_id   = ' . $this->dbc->getValue('integer', $this->_langs[$language]);
+getAssoc:Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Simple.php:                  section_id    = ' . $this->dbc->getValue('integer', $section_id) . ' AND
+getAssoc:Perm/Container/MDB_Simple.php:                  section_type  = ' . $this->dbc->getValue('integer', $section_type);
+getAssoc:Perm/Container/MDB_Simple.php:            $query .= ' AND language_id = ' . $this->dbc->getValue('integer', $this->_langs[$language]);
+getAssoc:Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Simple.php:                  section_id    = ' . $this->dbc->getValue('integer', $section_id) . ' AND
+getAssoc:Perm/Container/MDB_Simple.php:                  section_type  = ' . $this->dbc->getValue('integer', $section_type);
+getAssoc:Perm/Container/MDB_Simple.php:        $translation = $this->dbc->queryRow($query, null, MDB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/MDB_Simple.php:        $language_id = $this->dbc->nextId($this->prefix . 'languages', true);
+getAssoc:Perm/Container/MDB_Simple.php:                    ' . $this->dbc->getValue('text', $two_letter_code) . ',
+getAssoc:Perm/Container/MDB_Simple.php:                    ' . $this->dbc->getValue('text', $native_name) . '
+getAssoc:Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Simple.php:                  language_id = ' . $this->dbc->getValue('integer', $this->_langs[$language]);
+getAssoc:Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Simple.php:                  native_name     = ' . $this->dbc->getValue('text', $native_name) . '
+getAssoc:Perm/Container/MDB_Simple.php:                  language_id     = ' . $this->dbc->getValue('integer', $this->_langs[$language]);
+getAssoc:Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Simple.php:        $application_id = $this->dbc->nextId($this->prefix . 'applications', true);
+getAssoc:Perm/Container/MDB_Simple.php:                    ' . $this->dbc->getValue('integer', $application_id) . ',
+getAssoc:Perm/Container/MDB_Simple.php:                    ' . $this->dbc->getValue('text', $define_name) . '
+getAssoc:Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Simple.php:        $area_id = $this->dbc->nextId($this->prefix . 'areas', true);
+getAssoc:Perm/Container/MDB_Simple.php:                    ' . $this->dbc->getValue('integer', $area_id) . ',
+getAssoc:Perm/Container/MDB_Simple.php:                    ' . $this->dbc->getValue('text', $define_name) . ',
+getAssoc:Perm/Container/MDB_Simple.php:                    ' . $this->dbc->getValue('integer', $application_id) . '
+getAssoc:Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Simple.php:                application_id=' . $this->dbc->getValue('integer', $application_id);
+getAssoc:Perm/Container/MDB_Simple.php:        $areas = $this->dbc->queryAll($query, null, MDB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Simple.php:        $result = $this->dbc->queryCol($query);
+getAssoc:Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Simple.php:                  area_id = ' . $this->dbc->getValue('integer', $area_id);
+getAssoc:Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Simple.php:                  application_define_name = ' . $this->dbc->getValue('text', $define_name) . '
+getAssoc:Perm/Container/MDB_Simple.php:                  application_id = ' . $this->dbc->getValue('integer', $application_id);
+getAssoc:Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Simple.php:                  application_id   = ' . $this->dbc->getValue('integer', $application_id) . ',
+getAssoc:Perm/Container/MDB_Simple.php:                  area_define_name = ' . $this->dbc->getValue('text', $define_name) . '
+getAssoc:Perm/Container/MDB_Simple.php:                  area_id = ' . $this->dbc->getValue('integer', $area_id);
+getAssoc:Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Simple.php:        $right_id = $this->dbc->nextId($this->prefix . 'rights', true);
+getAssoc:Perm/Container/MDB_Simple.php:                    ' . $this->dbc->getValue('integer', $right_id) . ',
+getAssoc:Perm/Container/MDB_Simple.php:                    ' . $this->dbc->getValue('integer', $area_id) . ',
+getAssoc:Perm/Container/MDB_Simple.php:                    ' . $this->dbc->getValue('text', $define_name) . '
+getAssoc:Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Simple.php:                  right_id = ' . $this->dbc->getValue('integer', $right_id);
+getAssoc:Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Simple.php:                  right_id = ' . $this->dbc->getValue('integer', $right_id);
+getAssoc:Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Simple.php:                  right_id = ' . $this->dbc->getValue('integer', $right_id);
+getAssoc:Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Simple.php:                  area_id           = ' . $this->dbc->getValue('integer', $area_id) . ',
+getAssoc:Perm/Container/MDB_Simple.php:                  right_define_name = ' . $this->dbc->getValue('text', $define_name) . '
+getAssoc:Perm/Container/MDB_Simple.php:                  right_id = ' . $this->dbc->getValue('integer', $right_id);
+getAssoc:Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Simple.php:            $permId = $this->dbc->nextId($this->prefix . 'perm_users', true);
+getAssoc:Perm/Container/MDB_Simple.php:                ' . $this->dbc->getValue('integer', $permId) . ',
+getAssoc:Perm/Container/MDB_Simple.php:                ' . $this->dbc->getValue('text', $authId) . ',
+getAssoc:Perm/Container/MDB_Simple.php:                ' . $this->dbc->getValue('integer', $type) . ',
+getAssoc:Perm/Container/MDB_Simple.php:                ' . $this->dbc->getValue('text', $authName) . '
+getAssoc:Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Simple.php:            $query .= ' auth_container_name=' . $this->dbc->getValue('text', $authName) . ',';
+getAssoc:Perm/Container/MDB_Simple.php:                auth_user_id=' . $this->dbc->getValue('text', $authId) . '
+getAssoc:Perm/Container/MDB_Simple.php:                perm_user_id=' . $this->dbc->getValue('integer', $permId);
+getAssoc:Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Simple.php:                  perm_user_id = ' . $this->dbc->getValue('integer', $right_id) . '
+getAssoc:Perm/Container/MDB_Simple.php:                  right_id     = ' . $this->dbc->getValue('integer', $right_id);
+getAssoc:Perm/Container/MDB_Simple.php:        $count = $this->dbc->queryOne($query);
+getAssoc:Perm/Container/MDB_Simple.php:                    ' . $this->dbc->getValue('integer', $permId) . ',
+getAssoc:Perm/Container/MDB_Simple.php:                    ' . $this->dbc->getValue('integer', $right_id) . ', '.LIVEUSER_MAX_LEVEL.'
+getAssoc:Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Simple.php:                  right_level = ' . $this->dbc->getValue('integer', $right_level) . '
+getAssoc:Perm/Container/MDB_Simple.php:                  perm_user_id = ' . $this->dbc->getValue('integer', $permId) . '
+getAssoc:Perm/Container/MDB_Simple.php:                  right_id = ' . $this->dbc->getValue('integer', $right_id);
+getAssoc:Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Simple.php:                  perm_user_id = ' . $this->dbc->getValue('integer', $permId);
+getAssoc:Perm/Container/MDB_Simple.php:              right_id = ' . $this->dbc->getValue('integer', $right_id);
+getAssoc:Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Simple.php:                . $this->dbc->getValue('integer', $options['where_application_id']) . ' AND ';
+getAssoc:Perm/Container/MDB_Simple.php:                    . $this->dbc->getValue('integer', $this->_langs[$this->getCurrentLanguage()]) . '
+getAssoc:Perm/Container/MDB_Simple.php:        $applications = $this->dbc->queryAll($query, null, MDB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/MDB_Simple.php:                  $query .= ' areas.area_id=' . $this->dbc->getValue('integer', $options['where_area_id']) . ' AND';
+getAssoc:Perm/Container/MDB_Simple.php:                  $query .= ' areas.application_id=' . $this->dbc->getValue('integer', $options['where_application_id']) . ' AND';
+getAssoc:Perm/Container/MDB_Simple.php:                  translations.language_id = ' . $this->dbc->getValue('integer', $this->_langs[$this->getCurrentLanguage()]) . '
+getAssoc:Perm/Container/MDB_Simple.php:        $areas = $this->dbc->queryAll($query, null, MDB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/MDB_Simple.php:            $query .= ' WHERE languages.language_id = ' . $this->dbc->getValue('integer', $options['where_language_id']);
+getAssoc:Perm/Container/MDB_Simple.php:        $langs = $this->dbc->queryAll($query, null, MDB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/MDB_Simple.php:            $trans = $this->dbc->queryAll($query, null, MDB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/MDB_Simple.php:                . $this->dbc->getValue('integer', $options['where_right_id']) . ' AND';
+getAssoc:Perm/Container/MDB_Simple.php:                . $this->dbc->getValue('integer', $options['where_area_id']) . ' AND';
+getAssoc:Perm/Container/MDB_Simple.php:                . $this->dbc->getValue('integer', $options['where_application_id']) . ' AND';
+getAssoc:Perm/Container/MDB_Simple.php:                . $this->dbc->getValue('integer', $options['where_user_id']) . ' AND
+getAssoc:Perm/Container/MDB_Simple.php:                . $this->dbc->getValue('integer', $options['where_group_id']) . ' AND
+getAssoc:Perm/Container/MDB_Simple.php:                    . $this->dbc->getValue('integer', $this->_langs[$this->getCurrentLanguage()]) . '
+getAssoc:Perm/Container/MDB_Simple.php:        $rights = $this->dbc->queryAll($query, null, MDB_FETCHMODE_ASSOC);
+getAssoc:Perm/Container/MDB_Simple.php:                ' . $permId . ', ' . $this->dbc->getValue('integer', $area_id) . '
+getAssoc:Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Simple.php:                area_id= ' . $this->dbc->getValue('integer', $area_id);
+getAssoc:Perm/Container/MDB_Simple.php:        $result = $this->dbc->query($query);
+getAssoc:Perm/Container/MDB_Simple.php:        $res = $this->dbc->queryAll($query, $types, MDB_FETCHMODE_ASSOC, $rekey);

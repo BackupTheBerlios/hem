@@ -1,0 +1,269 @@
+#!/usr/local/bin/php -q
+<?php
+/**
+ * DefineGenerator.php
+ *
+ * Description:
+ * So you've decided to use LiveUser in your application - good for you :-)
+ * But - it's a pain to manually make all the constant definitions for authareas
+ * and authrights that your application needs. That´s where this script comes
+ * in handy. Currently, you can only call it from the commandline.
+ * Once the GUI is ready, you´ll be able to generate define() files from there.
+ *
+ * Syntax:
+ * DefineGenerator [options]
+
+ * ...where [options] can be:
+ * -h --help      : Shows this list of options
+ *
+ * -d --dsn (required) : Defines the PEAR::DB DSN to connect to the database.
+ *             Example: --dsn=mysql://user:passwd@hostname/databasename
+ *                   or -d "mysql://user:passwd@hostname/databasename"
+ *
+ * -o --output (required) : Defines the output file.
+ *             Example: --output=/path/to/output/file
+ *                   or - o "/path/to/output/file"
+ *
+ * -q --app (optional) : Defines the name of the application for which to generate the
+ *             constant definitions.
+ *             Example: --app=MyApplication
+ *                   or -q "MyApplication"
+ *
+ * -a --area (optional) : Defines the AuthArea to be used. If not set, this script will
+ *             generate constants for all AuthAreas within the chosen
+ *             application.
+ *             Example: --area=MyArea
+ *                   or -a "MyArea"
+ *
+ * -p --prefix (optional) : Prefix to use for naming the constants.
+ *             Example: --prefix=LIVEUSER (prefixes all constant names with
+ *             LIVEUSER_, i.e. LIVEUSER_ADMINAREA_ADMINRIGHT)
+ *             Defaults to none.
+ *                   or -p "Prefix"
+ *
+ * -n --naming (optional) : Defines the way how the constants are being named. Can be a
+ *             number between 1 and 3. Examples for naming schemes:
+ *             --naming=1 : PREFIX_RIGHTNAME
+ *             --naming=2 : PREFIX_AREANAME_RIGHTNAME
+ *             --naming=3 : PREFIX_APPLICATIONNAME_AREANAME_RIGHTNAME
+ *             Defaults to 1.
+ *                   or -n "1"
+ *
+ * @author  Markus Wolff <wolff@21st.de>
+ * @author  Arnaud Limbourg <arnaud@limbourg.com>
+ * @version $Id: DefineGenerator,v 1.1 2004/06/08 11:42:57 mloitzl Exp $
+ */
+$msg = <<<EOD
+
+    Please use the admin classes which now contain an outputRightsConstants
+    method with more options until this script is updated to take use it.
+
+EOD;
+
+echo $msg;
+
+exit();
+
+require_once 'Console/Getopt.php';
+
+$argv = Console_Getopt::readPHPArgv();
+
+$shortoptions = "h?d:o:a::q::p::n::";
+
+$longoptions = array('output=', 'dsn=', 'app==',
+                     'help', 'prefix==', 'naming==', 'area==');
+
+// Initialize variables
+$naming = '1';
+$area = $output = $dsn = $application = $prefix = '';
+
+$con  = new Console_Getopt;
+$args = $con->readPHPArgv();
+array_shift($args);
+$options = $con->getopt($args, $shortoptions, $longoptions);
+
+if (PEAR::isError($options)) {
+    printHelp($options);
+}
+
+$options = $options[0];
+var_dump($options);exit;
+foreach ($options as $opt) {
+    switch ($opt[0]) {
+        case 'd':
+        case '--dsn':
+            $dsn = $opt[1];
+            break;
+        case 'n':
+        case '--naming':
+            $naming = $opt[1];
+            break;
+        case 'p':
+        case '--prefix':
+            $prefix = strtoupper($opt[1]);
+            break;
+        case 'a':
+        case '--area':
+            $area = $opt[1];
+            break;
+        case 'q':
+        case '--app':
+            $application = $opt[1];
+            break;
+        case 'o':
+        case '--output':
+            $output = $opt[1];
+            break;
+        case 'h':
+        case '--help':
+            printHelp();
+            break;
+    }
+}
+
+/******************************************************************
+ Begin sanity checks on arguments
+******************************************************************/
+if ($dsn == '' && $output == '') {
+    printHelp();
+}
+/******************************************************************
+ End sanity checks on arguments
+******************************************************************/
+
+// Import PEAR::DB
+require_once 'DB.php';
+
+// Connect to database
+$db = DB::connect($dsn);
+
+if (DB::isError($db)) {
+    die("DefineGenerator: Database connection failed.\n" . $db->toString() . "\n");
+}
+
+echo "Successfully connected to database.\nFetching rights... ";
+
+$sql = "SELECT * FROM liveuser_rights R, liveuser_areas A WHERE R.area_id=A.area_id";
+
+if ($area != '') {
+    $sql .= " AND A.area_define_name='$area'";
+}
+
+$res = $db->query($sql);
+
+if (DB::isError($res)) {
+    die("DefineGenerator: Database query failed.\n" . $res->toString() . "\n");
+}
+
+$strDef      = "<?php\n";
+$foundrights = '';
+
+while($res->fetchInto($row, DB_FETCHMODE_ASSOC)) {
+    switch($naming) {
+        case 2:
+            $strDef .= sprintf("define('%s_%s_%s', %s);\n",
+                               $prefix,
+                               strtoupper($row['area_define_name']),
+                               strtoupper($row['right_define_name']),
+                               $row['right_id']
+                              );
+            $foundrights .= sprintf("define('%s_%s_%s', %s);\n",
+                               $prefix,
+                               strtoupper($row['area_define_name']),
+                               strtoupper($row['right_define_name']),
+                               $row['right_id']
+                              );
+            break;
+        case 3:
+            $strDef .= sprintf("define('%s_%s_%s_%s', %s);\n",
+                               $prefix,
+                               strtoupper($application),
+                               strtoupper($row['area_define_name']),
+                               strtoupper($row['right_define_name']),
+                               $row['right_id']
+                              );
+            $foundrights .= sprintf("define('%s_%s_%s_%s', %s);\n",
+                               $prefix,
+                               strtoupper($application),
+                               strtoupper($row['area_define_name']),
+                               strtoupper($row['right_define_name']),
+                               $row['right_id']
+                              );
+            break;
+        default:
+            $strDef .= sprintf("define('%s', %s);\n",
+                               $prefix.strtoupper($row['right_define_name']),
+                               $row['right_id']
+                              );
+            $foundrights .= sprintf("define('%s', %s);\n",
+                               $prefix.strtoupper($row['right_define_name']),
+                               $row['right_id']
+                              );
+    }
+
+}
+
+$strDef .= '?>';
+
+printf("done (%s rights found).\n\n", $res->numRows());
+
+$res->free();
+$db->disconnect();
+
+echo ("Result:\n\n$foundrights");
+
+
+/***** Write result to file *****/
+
+
+echo ("\nWriting file...");
+
+$fp = @fopen($output, 'w') or die("Could not write to file $output");
+fputs($fp, $strDef);
+fclose($fp);
+
+echo ("done!\n");
+
+/**
+ * printHelp()
+ *
+ * @return void
+ * @desc Prints out a list of commandline options
+ */
+function printHelp()
+{
+    echo ('
+Syntax:
+DefineGenerator [options]
+
+...where [options] can be:
+-h --help      : Shows this list of options
+
+-d --dsn (required) : Defines the PEAR::DB DSN to connect to the database.
+             Example: --dsn=mysql://user:passwd@hostname/databasename
+
+-o --output (required) : Defines the output file. Example: --output=/path/to/output/file
+
+-q --app (optional) : Defines the name of the application for which to generate the
+             constant definitions. Example: --app=MyApplication
+
+-a --area (optional) : Defines the AuthArea to be used. If not set, this script will
+             generate constants for all AuthAreas within the chosen
+             application. Example: --area=MyArea
+
+-p --prefix (optional) : Prefix to use for naming the constants.
+             Example: --prefix=LIVEUSER (prefixes all constant names with
+             LIVEUSER_, i.e. LIVEUSER_ADMINAREA_ADMINRIGHT)
+             Defaults to none.
+
+-n --naming (optional) : Defines the way how the constants are being named. Can be a
+             number between 1 and 3. Examples for naming schemes:
+             --naming=1 : PREFIX_RIGHTNAME
+             --naming=2 : PREFIX_AREANAME_RIGHTNAME
+             --naming=3 : PREFIX_APPLICATIONNAME_AREANAME_RIGHTNAME
+             Defaults to 1.
+
+');
+exit;
+}
+?>
