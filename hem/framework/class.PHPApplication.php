@@ -1,10 +1,25 @@
 <?
 
+/**
+ * Include the classes used by the framework
+ */
+require_once('def.PHPApplication.php');
 
-/*
- * Abstract PHP Application Class
- * by M.J.Kabir
- * adopted by Martin Loitzl
+
+/**
+ * PHP Application Framework Class
+ *
+ * TODO: Decribe me!
+ * TODO: Check the config stuff created by kabir
+ *       Should be done with a unique method (via globals, or via $params array)
+ *       We want to differentiate betwwen Proj wide Conf and App conf
+ *       App conf should be hidden from user
+ *
+ * Errormessages:
+ * APP_FAILED -> Very bad, no database connection
+ *
+ * @author M.J.Kabir
+ * @author Martin Loitzl <martin@loitzl.com>
  *
  */
 
@@ -12,13 +27,8 @@
 /* Errormessages used:
  *
  * APP_FAILED
- * UNAUTHORIZED_ACCESS
  *
  */
-
-
-require_once('def.PHPApplication.php');
-
 class PHPApplication
 {
   function PHPApplication($param = null)
@@ -51,6 +61,8 @@ class PHPApplication
     $this->user_auth_dsn_ = $this->setDefault($param['app_auth_dsn'], FALSE);
     $this->user_auth_logout_page_ = $this->setDefault($param['app_exit_point'], 'index.php');
     $this->user_auth_session_name_ = $this->setDefault($param['app_session_name'], 'PHPSESSION');
+    
+    $this->app_themes_ = $this->setDefault($param['app_themes'], FALSE);
 
     if (defined("DEBUGGER_LOADED") && $this->app_debug_mode_ == $ON)
       {
@@ -528,6 +540,7 @@ class PHPApplication
   }
 
 
+  // TODO: check if we really need this, should be done by the planned Session Messaging tool
   function showStatus($msg = null, $returnURL = null)
   {
     global $STATUS_TEMPLATE;
@@ -583,10 +596,44 @@ class PHPApplication
     return substr(basename($filename), strpos(basename($filename), ".") + 1);
   }
 
-  function showScreen()
+  function showScreen($template_file, $func = null, $app_name)
   {
-    $menu_template =& new HTML_Template_IT($this->template_dir_);
     
+    $template =new TemplateHandler($this->template_dir_);
+    $this->setupScreen($template, $template_file);
+
+    if ($func != null)
+      {
+	$this->debug("Calling Display function");
+	$status = $this->$func($template);
+      }
+    if($status == TRUE)
+      {
+	$this->debug("Showing Page");
+	$this->showPage($template->get());
+      }
+  }
+
+  function setupScreen(&$t, $template_file)
+  {
+    $t->loadTemplatefile($template_file, true, false);
+  }
+
+
+  // TODO: implement th whole Theme Story! This one just does nothing!
+  function showPage($content = null)
+  {
+
+    if($this->app_themes_ == TRUE)
+      {
+	// TODO: Theme stuff goes here
+      }
+    else
+      {
+	echo $content;
+      }
+
+
   }
   
 }

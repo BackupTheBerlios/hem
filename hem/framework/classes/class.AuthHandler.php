@@ -15,10 +15,10 @@ class AuthHandler
   function AuthHandler($conf)
   {
    
-    $this->conf_ = $conf;
+    //    $this->conf_ = $conf;
     //    print_r($this->conf_);
 
-    $this->init($this->conf_);
+    $this->init($conf);
     
   }
 

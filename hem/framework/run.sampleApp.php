@@ -16,7 +16,8 @@ $thisApp = new sampleApp(
 			       'app_exit_point' => $_SERVER['SCRIPT_NAME'],
 			       'app_session_name' => 'PHPSESSION',
 			       'app_type' => 'WEB',
-			       'app_debugger' => $ON
+			       'app_debugger' => $ON,
+			       'app_themes' => FALSE
 			       )
 			 );
 
