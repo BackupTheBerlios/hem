@@ -1,0 +1,17 @@
+<html>
+<base href="{BASE_URL}"/>
+<head>
+<title>{PAGE_TITLE}</title>
+</head>
+<body onload="javascript:document.loginForm.handle.focus();">
+<form name="loginForm" action="{SELF_PATH}" method="post">
+{LABEL_USERNAME}<input type="text" name="handle" value="{USERNAME}" /><br/>
+{LABEL_PASSWORD}<input type="password" name="passwd" /><br/>
+<input type="submit" value="{LOGIN_BUTTON}" /><br/>
+<input type="reset" value="{CANCEL_BUTTON}" /><br/>
+<input type="hidden" value="{REDIRECT_URL}" name="url" />
+</form>
+<a href="{FORGOTTEN_PASSWORD_APP}">{LABEL_FORGOTTEN_PASSWORD}</a>
+</body>
+
+</html>
